@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/ -->
+<html lang="es-ES"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/M9AvLqnMSdUx1E_OzytJTC7RTcsvytU118_MS84pTUkt1k8uLoaoKQYA.css" media="all">
+<script type="text/javascript" async="" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/ga.js"></script><script type="text/javascript" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/fc1LCoAwDATQCxmDKHgcKTFixX5MIuLttdK1uzDzmAxIKQSOBsJ5v9vgY9Pjdpwsd9OheiCXjVYHSxK4ksxZWBVr-oKpnq-mFM2RFRpgRB9pP2dW.js"></script><style type="text/css" style="display: none !important;">object:not([type]),object[classid$=":D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid$=":d27cdb6e-ae6d-11cf-96b8-444553540000"],object[codebase*="swflash.cab"],object[data*=".swf"],embed[type="application/x-shockwave-flash"],embed[src*=".swf"],object[type="application/x-shockwave-flash"],object[src*=".swf"],object[codetype="application/x-shockwave-flash"],iframe[type="application/x-shockwave-flash"],object[classid$=":166B1BCA-3F9C-11CF-8075-444553540000"],object[codebase*="sw.cab"],object[data*=".dcr"],embed[type="application/x-director"],embed[src*=".dcr"],object[type="application/x-director"],object[src*=".dcr"],object[classid$=":15B782AF-55D8-11D1-B477-006097098764"],object[codebase*="awswaxf.cab"],object[data*=".aam"],embed[type="application/x-authorware-map"],embed[src*=".aam"],object[type="application/x-authorware-map"],object[src*=".aam"],object[classid*="32C73088-76AE-40F7-AC40-81F62CB2C1DA"],object[type="application/ag-plugin"],object[type="application/x-silverlight"],object[type="application/x-silverlight-2"],object[source*=".xaml"],object[sourceelement*="xaml"],embed[type="application/ag-plugin"],embed[source*=".xaml"]{display: none !important;}</style><style type="text/css"></style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Conectando una pantalla LCD a Arduino | Proyectos Arduino</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+
+<link rel="pingback" href="http://www.proyectosarduino.com.ar/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://www.proyectosarduino.com.ar/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="Proyectos Arduino » Feed" href="http://www.proyectosarduino.com.ar/feed/">
+<link rel="alternate" type="application/rss+xml" title="Proyectos Arduino » RSS de los comentarios" href="http://www.proyectosarduino.com.ar/comments/feed/">
+
+			<script type="text/javascript">//<![CDATA[
+			// Google Analytics for WordPress by Yoast v4.2.8 | http://yoast.com/wordpress/google-analytics/
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-28932555-1']);
+							_gaq.push(['_trackPageview']);
+			(function () {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+			//]]></script>
+			<link rel="alternate" type="application/rss+xml" title="Proyectos Arduino » Conectando una pantalla LCD a Arduino RSS de los comentarios" href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/feed/">
+
+
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.proyectosarduino.com.ar/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.proyectosarduino.com.ar/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Sensor de temperatura y humedad DHT11" href="http://www.proyectosarduino.com.ar/sensor-de-temperatura-y-humedad-dht11/">
+<link rel="next" title="Two Wire: O como conectar una pantalla a tu Arduino usando menos cables" href="http://www.proyectosarduino.com.ar/two-wire-o-como-conectar-una-pantalla-a-tu-arduino-usando-menos-cables/">
+<meta name="generator" content="WordPress 3.5.1">
+<link rel="shortlink" href="http://www.proyectosarduino.com.ar/?p=108">
+
+<!-- All in One SEO Pack 1.6.15.3 by Michael Torbert of Semper Fi Web Design[371,435] -->
+<link rel="author" href="https://plus.google.com/105119789789851585485">
+<meta name="description" content="Como ya vimos en una entrada anterior, podemos conectar una pantalla de cristal líquido a nuestro Arduino. En aquella ocasión yo utilicé un shield que">
+<meta name="keywords" content="contraste lcd,hd44780,pinout lcd arduino,shield lcd,arduino nano,arduino uno,atmega,intermedio">
+<link rel="canonical" href="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/Conectando una pantalla LCD a Arduino   Proyectos Arduino.htm">
+<!-- /all in one seo pack -->
+	<style type="text/css">
+			#site-title,
+		#site-description {
+			position: absolute !important;
+			clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+			clip: rect(1px, 1px, 1px, 1px);
+		}
+		</style>
+	<!-- begin SI CAPTCHA Anti-Spam - comment form style --><style type="text/css">div#captchaImgDiv { display:block; }.captchaSizeDivSmall { width:175px; height:45px; padding-top:10px; }.captchaSizeDivLarge { width:250px; height:60px; padding-top:10px; }img#si_image_com,#si_image_reg,#si_image_log,#si_image_side_login { border-style:none; margin:0; padding-right:5px; float:left; }.captchaImgRefresh { border-style:none; margin:0; vertical-align:bottom; }div#captchaInputDiv { display:block; padding-top:15px; padding-bottom:5px; }label#captcha_code_label { margin:0; }input#captcha_code { width:65px; }</style><!-- end SI CAPTCHA Anti-Spam - comment form style --></head>
+
+<body class="single single-post postid-108 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="http://www.proyectosarduino.com.ar/" title="Proyectos Arduino" rel="home">Proyectos Arduino</a></span></h1>
+				<h2 id="site-description">Otro sitio realizado con WordPress</h2>
+			</hgroup>
+
+						<a href="http://www.proyectosarduino.com.ar/">
+									<img src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/header.jpg" width="1000" height="288" alt="">
+							</a>
+			
+							<div class="only-search with-image">
+				
+				</div>
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Menú principal</h3>
+								<div class="skip-link"><a class="assistive-text" href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/#content" title="Ir al contenido principal">Ir al contenido principal</a></div>
+				<div class="skip-link"><a class="assistive-text" href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/#secondary" title="Ir al contenido secundario">Ir al contenido secundario</a></div>
+								<div class="menu"><ul><li><a href="http://www.proyectosarduino.com.ar/" title="Inicio">Inicio</a></li><li class="page_item page-item-14"><a href="http://www.proyectosarduino.com.ar/comprar-en-dealextreme/">Comprar en Dealextreme</a></li><li class="page_item page-item-26"><a href="http://www.proyectosarduino.com.ar/contacto/">Contacto</a></li></ul></div>
+			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Navegador de artículos</h3>
+						<span class="nav-previous"><a href="http://www.proyectosarduino.com.ar/sensor-de-temperatura-y-humedad-dht11/" rel="prev"><span class="meta-nav">←</span> Anterior</a></span>
+						<span class="nav-next"><a href="http://www.proyectosarduino.com.ar/two-wire-o-como-conectar-una-pantalla-a-tu-arduino-usando-menos-cables/" rel="next">Siguiente <span class="meta-nav">→</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-108" class="post-108 post type-post status-publish format-standard hentry category-arduino-nano category-arduino-uno category-atmega category-hd44780 category-intermedio tag-contraste-lcd tag-hd44780 tag-pinout-lcd-arduino tag-shield-lcd">
+	<header class="entry-header">
+		<h1 class="entry-title">Conectando una pantalla LCD a Arduino</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/Conectando una pantalla LCD a Arduino   Proyectos Arduino.htm" title="21:12" rel="bookmark"><time class="entry-date" datetime="2012-11-23T21:12:46+00:00" pubdate="">23 noviembre, 2012</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://www.proyectosarduino.com.ar/author/nico/" title="Ver todas las entradas de nico" rel="author">nico</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>Como ya vimos en una <a title="Display LCD de Dealextreme: ¡Cuidado!" href="http://www.proyectosarduino.com.ar/display-lcd-de-dealextreme-cuidado/">entrada anterior</a>, podemos conectar una pantalla de cristal líquido a nuestro Arduino. En aquella ocasión yo utilicé un shield que compré en Dealextreme por unos 7 dólares. Es algo caro si lo comparamos con lo que en realidad <a href="http://www.ebay.com/itm/1pcs-1602-16x2-HD44780-Character-LCD-Display-Module-LCM-blue-blacklight-New-/251049844026?pt=LH_DefaultDomain_0&hash=item3a73bc9d3a" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://www.ebay.com&#39;]);">cuesta sólo la pantalla</a>, algo de 2.20 dólares, podemos comprar 3 pantallas antes que un shield de Dealextreme, claro.. No vamos a tener los botones ni la conectividad sencilla que ofrece el shield.</p>
+<div id="attachment_111" class="wp-caption aligncenter" style="width: 594px"><a href="http://www.proyectosarduino.com.ar/wp-content/uploads/2012/11/running.jpg"><img class="size-large wp-image-111" title="HD44780 y Atmega328" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/running-1024x680.jpg" alt="Atmega 328 con bootloader arduino" width="584" height="387"></a><p class="wp-caption-text">Un display HD44780 funcionando desde un Atmega 328p con bootloader Arduino</p></div>
+<p><span id="more-108"></span>Bien, Mi pantalla arribó en unos 20 días a casa así que me dediqué a jugar un poco con ella, leyendo su datasheet primero.</p>
+<p>Por suerte mi pantalla tenía la serigrafía escrita con el significado de cada pin, que detallo a continuación:</p>
+<p><a href="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/hd44780-arduino2.png"><img class="aligncenter size-full wp-image-109" title="HD44780 pinout" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/hd44780-arduino2.png" alt="Pinout del HD44780" width="703" height="696"></a>Esta pantalla funciona gracias al famoso y superconocido chip HD44780 que se utiliza en infinidad de proyectos.<br>
+Bien, veamos los pines:</p>
+<ul>
+<li>VSS que es el pin de negativo o masa o 0 volts o GND.</li>
+<li>VDD es la alimentación principal de la pantalla y el chip, lleva 5 volts.</li>
+<li>VO es el contraste de la pantalla, debe conectarse con un potenciometro de unos 10k ohms o una resistencia fija una vez que encontremos el valor deseado de contraste. Tengan en cuenta que si no conectan esto, no verán nada.</li>
+<li>RS es el selector de registro (Register select).</li>
+<li>RW es el pin que comanda la lectura/escritura. En nuestro caso siempre estará en 0 (conectado a GND) para que escriba en todo momento.</li>
+<li>E es enable, habilita la pantalla para recibir información.</li>
+<li>D0~D3 no los vamos a utilizar. Como pueden ver la pantalla tiene un bus de datos de 8 bits, de D0 a D7. Nosotros solamente utilizaremos 4 bits, de D4 a D7.</li>
+<li>A y K son los pines del led del backlight de la pantalla. A se conectará a 4 o 5 volts y K a gnd.</li>
+</ul>
+<div>Habiendo conocido los pines del modulito HD44780, conectemoslo a Arduino, primero el hardware:</div>
+<div><a href="http://www.proyectosarduino.com.ar/wp-content/uploads/2012/11/hd44780-arduino1.png"><img class="aligncenter size-large wp-image-110" title="hd44780 arduino UNO" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/hd44780-arduino1-1024x699.png" alt="HD44780 conectado a un Arduino UNO" width="584" height="398"></a></div>
+<div>En mi caso utiilicé el siguiente conexionado:</div>
+<div>
+<ul>
+<li>VSS: a GND.</li>
+<li>VDD: a 5 volts.</li>
+<li>VO: Al pin medio de un potenciometro de 10K con sus terminales entre 5v y GND.</li>
+<li>RS: Pin 11.</li>
+<li>RW: a GND.</li>
+<li>E: Pin 12.</li>
+<li>D0~D3: Sin conectar.</li>
+<li>D4~D7: pines 7 a 10. (bits de datos).</li>
+<li>A: A 5 volts pasando por una resistencia de 5K para bajar un poco la luminosidad.</li>
+<li>K: a GND.</li>
+</ul>
+<p>Para comandar la HD44780 utilizamos la librería ya conocida <a href="http://www.arduino.cc/en/Tutorial/LiquidCrystal" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://www.arduino.cc&#39;]);">LiquidCrystal</a></p>
+<p>Lo primero que hacemos en el código, es incluir la librería y configurarla según nuestros pines:</p>
+<pre>#include &lt;LiquidCrystal.h&gt;
+LiquidCrystal lcd(11, NULL, 12, 7, 8, 9, 10);</pre>
+<p>Luego podemos utilizarla como en cualquier otro proyecto:</p>
+<pre>void setup() {
+	lcd.begin(16, 2);
+}
+
+void loop() {
+	lcd.setCursor(0,0);
+	lcd.print("Hola! ");
+}</pre>
+<p>De esta forma podemos usar una pantalla de cristal liquido de muy bajo coste para enviar texto en Arduino.</p>
+</div>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		Esta entrada fue publicada en <a href="http://www.proyectosarduino.com.ar/category/arduino-nano/" title="Ver todas las entradas en Arduino Nano" rel="category tag">Arduino Nano</a>, <a href="http://www.proyectosarduino.com.ar/category/arduino-uno/" title="Ver todas las entradas en Arduino UNO" rel="category tag">Arduino UNO</a>, <a href="http://www.proyectosarduino.com.ar/category/atmega/" title="Ver todas las entradas en Atmega" rel="category tag">Atmega</a>, <a href="http://www.proyectosarduino.com.ar/category/hd44780/" title="Ver todas las entradas en HD44780" rel="category tag">HD44780</a>, <a href="http://www.proyectosarduino.com.ar/category/intermedio/" title="Ver todas las entradas en Intermedio" rel="category tag">Intermedio</a> y etiquetada <a href="http://www.proyectosarduino.com.ar/tag/contraste-lcd/" rel="tag">Contraste LCD</a>, <a href="http://www.proyectosarduino.com.ar/tag/hd44780/" rel="tag">HD44780</a>, <a href="http://www.proyectosarduino.com.ar/tag/pinout-lcd-arduino/" rel="tag">Pinout LCD Arduino</a>, <a href="http://www.proyectosarduino.com.ar/tag/shield-lcd/" rel="tag">Shield LCD</a> por <a href="http://www.proyectosarduino.com.ar/author/nico/">nico</a>. Guarda <a href="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/Conectando una pantalla LCD a Arduino   Proyectos Arduino.htm" title="Permalink to Conectando una pantalla LCD a Arduino" rel="bookmark">enlace permanente</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-108 -->
+
+						<div id="comments">
+	
+	
+			<h2 id="comments-title">
+			3 pensamientos en “<span>Conectando una pantalla LCD a Arduino</span>”		</h2>
+
+		
+		<ol class="commentlist">
+				<li class="post pingback">
+		<p>Pingback:  <a href="http://www.proyectosarduino.com.ar/visualizar-cuatro-ds18b20-en-un-display-lcd/" rel="external nofollow" class="url">Visualizar cuatro DS18B20 en un display LCD | Proyectos Arduino</a></p>
+	</li>
+	<li class="comment even thread-even depth-1" id="li-comment-324">
+		<article id="comment-324" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/c69711e3eb4ba8eb56bcb8d5f184932a" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Jose Manuel Medina</span> en <a href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/#comment-324"><time pubdate="" datetime="2013-05-27T19:29:39+00:00">27 mayo, 2013 en 19:29</time></a> <span class="says">dijo:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hola que tal, oye me podrias explicar como conectarle el Sensor de temperatura y humedad DHT11, como lo tienes en la primera imagen?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/?replytocom=324#respond" onclick="return addComment.moveForm(&quot;comment-324&quot;, &quot;324&quot;, &quot;respond&quot;, &quot;108&quot;)">Responder <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-nico bypostauthor odd alt depth-2" id="li-comment-325">
+		<article id="comment-325" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/e4dbaa3b5856ddf8cee487028a30d1da" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.htforos.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;http://www.htforos.com&#39;]);" rel="external nofollow" class="url">nico</a></span> en <a href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/#comment-325"><time pubdate="" datetime="2013-05-27T20:02:36+00:00">27 mayo, 2013 en 20:02</time></a> <span class="says">dijo:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hola,<br>
+<a href="http://www.proyectosarduino.com.ar/sensor-de-temperatura-y-humedad-dht11/" rel="nofollow">http://www.proyectosarduino.com.ar/sensor-de-temperatura-y-humedad-dht11/</a><br>
+Esto te va a servir</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/?replytocom=325#respond" onclick="return addComment.moveForm(&quot;comment-325&quot;, &quot;325&quot;, &quot;respond&quot;, &quot;108&quot;)">Responder <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+</ul>
+</li>
+		</ol>
+
+		
+	
+									<div id="respond">
+				<h3 id="reply-title">Deja un comentario <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/#respond" style="display:none;">Cancelar respuesta</a></small></h3>
+									<form action="http://www.proyectosarduino.com.ar/wp-comments-post.php" method="post" id="commentform">
+																			<p class="comment-notes">Tu dirección de correo electrónico no será publicada. Los campos necesarios están marcados <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Nombre <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">Correo electrónico <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Web</label><input id="url" name="url" type="text" value="" size="30"></p>
+
+<div class="captchaSizeDivLarge"><img id="si_image_com" class="si-captcha" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/securimage_show.php" width="175" height="60" alt="Imagen CAPTCHA" title="Imagen CAPTCHA">
+    <input id="si_code_com" name="si_code_com" type="hidden" value="PlSmlWP3qfknJE0w">
+    <div id="si_refresh_com">
+<a href="http://www.proyectosarduino.com.ar/conectando-una-pantalla-lcd-a-arduino/#" rel="nofollow" title="Refrescar imagen" onclick="si_captcha_refresh(&#39;si_image_com&#39;,&#39;com&#39;,&#39;/wp-content/plugins/si-captcha-for-wordpress/captcha&#39;,&#39;http://www.proyectosarduino.com.ar/wp-content/plugins/si-captcha-for-wordpress/captcha/securimage_show.php?si_form_id=com&amp;prefix=&#39;); return false;">
+      <img class="captchaImgRefresh" src="./Conectando una pantalla LCD a Arduino   Proyectos Arduino_files/refresh.png" width="22" height="20" alt="Refrescar imagen" onclick="this.blur();"></a>
+  </div>
+  </div>
+<br>
+<p><input id="captcha_code" name="captcha_code" type="text" size="6">
+<label id="captcha_code_label" for="captcha_code">Código CAPTCHA</label><span class="required"> *</span>
+</p>												<p class="comment-form-comment"><label for="comment">Comentario</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">Puedes usar las siguientes etiquetas y atributos <abbr title="HyperText Markup Language">HTML</abbr>:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Publicar comentario">
+							<input type="hidden" name="comment_post_ID" value="108" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6257323b09"></p>					</form>
+							</div><!-- #respond -->
+				<script type="text/javascript">
+		jQuery(document).ready(function () {
+			jQuery('#commentform').submit(function () {
+				_gaq.push(
+					['_setAccount', 'UA-28932555-1'],
+					['_trackEvent', 'comment', 'submit']
+				);
+			});
+		});
+	</script>
+				
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			<div id="site-generator">
+								<a href="http://es.wordpress.org/" title="Plataforma semántica de publicación personal" rel="generator">Funciona con WordPress</a>
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+
+<script type="text/javascript">
+//<![CDATA[
+var si_captcha_styles = "\
+<!-- begin SI CAPTCHA Anti-Spam - comment form style -->\
+<style type='text/css'>\
+div#captchaImgDiv { display:block; }\
+.captchaSizeDivSmall { width:175px; height:45px; padding-top:10px; }\
+.captchaSizeDivLarge { width:250px; height:60px; padding-top:10px; }\
+img#si_image_com,#si_image_reg,#si_image_log,#si_image_side_login { border-style:none; margin:0; padding-right:5px; float:left; }\
+.captchaImgRefresh { border-style:none; margin:0; vertical-align:bottom; }\
+div#captchaInputDiv { display:block; padding-top:15px; padding-bottom:5px; }\
+label#captcha_code_label { margin:0; }\
+input#captcha_code { width:65px; }\
+</style>\
+<!-- end SI CAPTCHA Anti-Spam - comment form style -->\
+";
+jQuery(document).ready(function($) {
+$('head').append(si_captcha_styles);
+});
+//]]>
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.proyectosarduino.com.ar\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Enviando...","cached":"1"};
+/* ]]> */
+</script>
+
+
+
+
+
+<!-- W3 Total Cache: Minify debug info:
+Engine:             memcached
+Theme:              c28f0
+Template:           single
+-->
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+ Served from: www.proyectosarduino.com.ar @ 2013-11-09 15:07:17 by W3 Total Cache -->
+
+<!-- W3 Total Cache: Db cache debug info:
+Engine:             memcached
+Total queries:      31
+Cached queries:     0
+Total query time:   0.0043
+SQL info:
+    # | Time (s) |    Caching (Reject reason)     |   Status   | Data size (b) | Query
+    1 |   0.0012 |  disabled (Query is rejected)  | not cached |             0 | SELECT option_name, option_value FROM wp_options WHERE autoload = 'yes'
+    2 |   0.0001 |            enabled             | not cached |           559 | SELECT option_value FROM wp_options WHERE option_name = 'akismet_comment_nonce' LIMIT 1
+    3 |   0.0001 |            enabled             | not cached |           692 | SELECT option_value FROM wp_options WHERE option_name = 'uninstall_plugins' LIMIT 1
+    4 |   0.0001 |            enabled             | not cached |           564 | SELECT option_value FROM wp_options WHERE option_name = 'twentyeleven_theme_options' LIMIT 1
+    5 |   0.0001 |            enabled             | not cached |           550 | SELECT option_value FROM wp_options WHERE option_name = 'widget_pages' LIMIT 1
+    6 |   0.0001 |            enabled             | not cached |           553 | SELECT option_value FROM wp_options WHERE option_name = 'widget_calendar' LIMIT 1
+    7 |   0.0001 |            enabled             | not cached |           554 | SELECT option_value FROM wp_options WHERE option_name = 'widget_tag_cloud' LIMIT 1
+    8 |   0.0001 |            enabled             | not cached |           553 | SELECT option_value FROM wp_options WHERE option_name = 'widget_nav_menu' LIMIT 1
+    9 |   0.0001 |            enabled             | not cached |           559 | SELECT option_value FROM wp_options WHERE option_name = 'widget_akismet_widget' LIMIT 1
+   10 |   0.0001 |            enabled             | not cached |           574 | SELECT option_value FROM wp_options WHERE option_name = 'widget_widget_twentyeleven_ephemera' LIMIT 1
+   11 |   0.0001 |            enabled             | not cached |           566 | SELECT option_value FROM wp_options WHERE option_name = 'widget_twentyeleven_ephemera' LIMIT 1
+   12 |   0.0003 |            enabled             | not cached |           561 | SELECT option_value FROM wp_options WHERE option_name = 'aiosp_post_title_format' LIMIT 1
+   13 |   0.0001 |            enabled             | not cached |           552 | SELECT option_value FROM wp_options WHERE option_name = 'theme_switched' LIMIT 1
+   14 |   0.0001 |            enabled             | not cached |          1530 | SELECT ID, post_name, post_parent, post_type FROM wp_posts WHERE post_name IN ('conectando-una-pantalla-lcd-a-arduino') AND (post_type = 'page' OR post_type = 'attachment')
+   15 |   0.0001 |            enabled             | not cached |         12669 | SELECT   wp_posts.* FROM wp_posts  WHERE 1=1  AND wp_posts.post_name = 'conectando-una-pantalla-lcd-a-arduino' AND wp_posts.post_type = 'post'  ORDER BY wp_posts.post_date DESC
+   16 |   0.0001 |            enabled             | not cached |          1375 | SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (108)
+   17 |   0.0001 |            enabled             | not cached |         12536 | SELECT * FROM wp_posts WHERE ID = 108 LIMIT 1
+   18 |   0.0002 |            enabled             | not cached |           655 | SELECT p.id FROM wp_posts AS p  WHERE p.post_date < '2012-11-23 21:12:46' AND p.post_type = 'post' AND p.post_status = 'publish'  ORDER BY p.post_date DESC LIMIT 1
+   19 |   0.0001 |            enabled             | not cached |         11210 | SELECT * FROM wp_posts WHERE ID = 99 LIMIT 1
+   20 |   0.0001 |            enabled             | not cached |           655 | SELECT p.id FROM wp_posts AS p  WHERE p.post_date > '2012-11-23 21:12:46' AND p.post_type = 'post' AND p.post_status = 'publish'  ORDER BY p.post_date ASC LIMIT 1
+   21 |   0.0001 |            enabled             | not cached |         11755 | SELECT * FROM wp_posts WHERE ID = 118 LIMIT 1
+   22 |   0.0001 |            enabled             | not cached |          3622 | SELECT * FROM wp_users WHERE ID = '1'
+   23 |   0.0001 |            enabled             | not cached |          3582 | SELECT user_id, meta_key, meta_value FROM wp_usermeta WHERE user_id IN (1)
+   24 |   0.0001 |            enabled             | not cached |          4622 | SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON tt.term_id = t.term_id INNER JOIN wp_term_relationships AS tr ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ('category') AND tr.object_id IN (108) ORDER BY t.name ASC
+   25 |   0.0001 |            enabled             | not cached |          4391 | SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON tt.term_id = t.term_id INNER JOIN wp_term_relationships AS tr ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ('post_tag') AND tr.object_id IN (108) ORDER BY t.name ASC
+   26 |   0.0001 |            enabled             | not cached |          3338 | SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON tt.term_id = t.term_id INNER JOIN wp_term_relationships AS tr ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ('post_format') AND tr.object_id IN (108) ORDER BY t.name ASC
+   27 |   0.0001 |            enabled             | not cached |           620 | SELECT DISTINCT post_author FROM wp_posts WHERE post_type = 'post' AND post_status = 'publish' LIMIT 2
+   28 |   0.0001 |            enabled             | not cached |         14873 | SELECT * FROM wp_posts  WHERE (post_type = 'page' AND post_status = 'publish')     ORDER BY menu_order,wp_posts.post_title ASC
+   29 |   0.0001 |            enabled             | not cached |          1490 | SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (14)
+   30 |   0.0001 |            enabled             | not cached |          1490 | SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (26)
+   31 |   0.0001 |            enabled             | not cached |          7420 | SELECT * FROM wp_comments  WHERE comment_approved = '1' AND comment_post_ID = 108  ORDER BY comment_date_gmt ASC
+-->
+
+<!-- W3 Total Cache: Object Cache debug info:
+Engine:             memcached
+Caching:            enabled
+Total calls:        850
+Cache hits:         776
+Cache misses:       74
+Total time:         0.0110
+W3TC Object Cache info:
+    # |     Status      |     Source      | Data size (b) | Query time (s) | ID:Group
+    1 |   not cached    |   persistent    |               |         0.0002 | is_blog_installed:default
+    2 |   not cached    |   persistent    |               |         0.0001 | alloptions:options
+    3 |   not cached    |    internal     |               |              0 | alloptions:options
+    4 |   not cached    |   persistent    |               |         0.0001 | notoptions:options
+    5 |     cached      |    internal     |         46487 |              0 | alloptions:options
+    6 |   not cached    |    internal     |               |              0 | notoptions:options
+    7 |     cached      |    internal     |         46487 |              0 | alloptions:options
+    8 |   not cached    |    internal     |               |              0 | notoptions:options
+    9 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   10 |   not cached    |    internal     |               |              0 | notoptions:options
+   11 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   12 |   not cached    |    internal     |               |              0 | notoptions:options
+   13 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   14 |   not cached    |    internal     |               |              0 | notoptions:options
+   15 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   16 |   not cached    |    internal     |               |              0 | notoptions:options
+   17 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   18 |   not cached    |   persistent    |               |              0 | akismet_comment_nonce:options
+   19 |     cached      |    internal     |            39 |              0 | notoptions:options
+   20 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   21 |     cached      |    internal     |            39 |              0 | notoptions:options
+   22 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   23 |     cached      |    internal     |            39 |              0 | notoptions:options
+   24 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   25 |     cached      |    internal     |            39 |              0 | notoptions:options
+   26 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   27 |     cached      |    internal     |            39 |              0 | notoptions:options
+   28 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   29 |     cached      |    internal     |            39 |              0 | notoptions:options
+   30 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   31 |     cached      |    internal     |            39 |              0 | notoptions:options
+   32 |     cached      |    internal     |            39 |              0 | notoptions:options
+   33 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   34 |     cached      |    internal     |            39 |              0 | notoptions:options
+   35 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   36 |     cached      |    internal     |            39 |              0 | notoptions:options
+   37 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   38 |   not cached    |   persistent    |               |         0.0001 | uninstall_plugins:options
+   39 |   not cached    |    internal     |               |              0 | uninstall_plugins:options
+   40 |     cached      |    internal     |            39 |              0 | notoptions:options
+   41 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   42 |     cached      |    internal     |            93 |              0 | uninstall_plugins:options
+   43 |     cached      |    internal     |            39 |              0 | notoptions:options
+   44 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   45 |     cached      |    internal     |            39 |              0 | notoptions:options
+   46 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   47 |     cached      |    internal     |            39 |              0 | notoptions:options
+   48 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   49 |     cached      |    internal     |            39 |              0 | notoptions:options
+   50 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   51 |     cached      |    internal     |            39 |              0 | notoptions:options
+   52 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   53 |     cached      |    internal     |            39 |              0 | notoptions:options
+   54 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   55 |     cached      |    internal     |            39 |              0 | notoptions:options
+   56 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   57 |     cached      |    internal     |            39 |              0 | notoptions:options
+   58 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   59 |     cached      |    internal     |            39 |              0 | notoptions:options
+   60 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   61 |     cached      |    internal     |            39 |              0 | notoptions:options
+   62 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   63 |     cached      |    internal     |            39 |              0 | notoptions:options
+   64 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   65 |     cached      |    internal     |            39 |              0 | notoptions:options
+   66 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   67 |     cached      |    internal     |            39 |              0 | notoptions:options
+   68 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   69 |     cached      |    internal     |            39 |              0 | notoptions:options
+   70 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   71 |     cached      |    internal     |            39 |              0 | notoptions:options
+   72 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   73 |     cached      |    internal     |            39 |              0 | notoptions:options
+   74 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   75 |   not cached    |   persistent    |               |         0.0001 | twentyeleven_theme_options:options
+   76 |     cached      |    internal     |            77 |              0 | notoptions:options
+   77 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   78 |     cached      |    internal     |            77 |              0 | notoptions:options
+   79 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   80 |     cached      |    internal     |            77 |              0 | notoptions:options
+   81 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   82 |     cached      |    internal     |            77 |              0 | notoptions:options
+   83 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   84 |     cached      |    internal     |            77 |              0 | notoptions:options
+   85 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   86 |     cached      |    internal     |            77 |              0 | notoptions:options
+   87 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   88 |     cached      |    internal     |            77 |              0 | notoptions:options
+   89 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   90 |     cached      |    internal     |             4 |              0 | is_blog_installed:default
+   91 |     cached      |    internal     |            77 |              0 | notoptions:options
+   92 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   93 |     cached      |    internal     |            77 |              0 | notoptions:options
+   94 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   95 |     cached      |    internal     |            77 |              0 | notoptions:options
+   96 |     cached      |    internal     |         46487 |              0 | alloptions:options
+   97 |   not cached    |   persistent    |               |         0.0001 | widget_pages:options
+   98 |     cached      |    internal     |           101 |              0 | notoptions:options
+   99 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  100 |   not cached    |   persistent    |               |              0 | widget_calendar:options
+  101 |     cached      |    internal     |           128 |              0 | notoptions:options
+  102 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  103 |     cached      |    internal     |           128 |              0 | notoptions:options
+  104 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  105 |     cached      |    internal     |           128 |              0 | notoptions:options
+  106 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  107 |     cached      |    internal     |           128 |              0 | notoptions:options
+  108 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  109 |     cached      |    internal     |           128 |              0 | notoptions:options
+  110 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  111 |     cached      |    internal     |           128 |              0 | notoptions:options
+  112 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  113 |     cached      |    internal     |           128 |              0 | notoptions:options
+  114 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  115 |     cached      |    internal     |           128 |              0 | notoptions:options
+  116 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  117 |     cached      |    internal     |           128 |              0 | notoptions:options
+  118 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  119 |     cached      |    internal     |           128 |              0 | notoptions:options
+  120 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  121 |   not cached    |   persistent    |               |              0 | widget_tag_cloud:options
+  122 |     cached      |    internal     |           156 |              0 | notoptions:options
+  123 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  124 |   not cached    |   persistent    |               |              0 | widget_nav_menu:options
+  125 |     cached      |    internal     |           183 |              0 | notoptions:options
+  126 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  127 |   not cached    |   persistent    |               |              0 | widget_akismet_widget:options
+  128 |     cached      |    internal     |           216 |              0 | notoptions:options
+  129 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  130 |   not cached    |   persistent    |               |              0 | widget_widget_twentyeleven_ephemera:options
+  131 |     cached      |    internal     |           263 |              0 | notoptions:options
+  132 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  133 |   not cached    |   persistent    |               |              0 | widget_twentyeleven_ephemera:options
+  134 |     cached      |    internal     |           303 |              0 | notoptions:options
+  135 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  136 |     cached      |    internal     |           303 |              0 | notoptions:options
+  137 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  138 |   not cached    |   persistent    |               |              0 | doing_cron:transient
+  139 |     cached      |    internal     |           303 |              0 | notoptions:options
+  140 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  141 |     cached      |    internal     |           303 |              0 | notoptions:options
+  142 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  143 |     cached      |    internal     |           303 |              0 | notoptions:options
+  144 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  145 |     cached      |    internal     |           303 |              0 | notoptions:options
+  146 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  147 |     cached      |    internal     |           303 |              0 | notoptions:options
+  148 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  149 |     cached      |    internal     |           303 |              0 | notoptions:options
+  150 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  151 |     cached      |    internal     |           303 |              0 | notoptions:options
+  152 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  153 |     cached      |    internal     |           303 |              0 | notoptions:options
+  154 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  155 |     cached      |    internal     |           303 |              0 | notoptions:options
+  156 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  157 |   not cached    |   persistent    |               |         0.0001 | aiosp_post_title_format:options
+  158 |     cached      |    internal     |           339 |              0 | notoptions:options
+  159 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  160 |     cached      |    internal     |           339 |              0 | notoptions:options
+  161 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  162 |   not cached    |   persistent    |               |         0.0001 | theme_switched:options
+  163 |     cached      |    internal     |           365 |              0 | notoptions:options
+  164 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  165 |     cached      |    internal     |           365 |              0 | notoptions:options
+  166 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  167 |     cached      |    internal     |           365 |              0 | notoptions:options
+  168 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  169 |     cached      |    internal     |           365 |              0 | notoptions:options
+  170 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  171 |     cached      |    internal     |           365 |              0 | notoptions:options
+  172 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  173 |     cached      |    internal     |           365 |              0 | notoptions:options
+  174 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  175 |     cached      |    internal     |           365 |              0 | notoptions:options
+  176 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  177 |     cached      |    internal     |           365 |              0 | notoptions:options
+  178 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  179 |     cached      |    internal     |           365 |              0 | notoptions:options
+  180 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  181 |     cached      |    internal     |           365 |              0 | notoptions:options
+  182 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  183 |     cached      |    internal     |           365 |              0 | notoptions:options
+  184 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  185 |     cached      |    internal     |           365 |              0 | notoptions:options
+  186 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  187 |     cached      |    internal     |           365 |              0 | notoptions:options
+  188 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  189 |     cached      |    internal     |           365 |              0 | notoptions:options
+  190 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  191 |   not cached    |   persistent    |               |         0.0001 | 108:post_meta
+  192 |   not cached    |    internal     |               |              0 | 108:post_meta
+  193 |   not cached    |    internal     |               |              0 | 108:post_meta
+  194 |     cached      |    internal     |           365 |              0 | notoptions:options
+  195 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  196 |   not cached    |   persistent    |               |              0 | 108:posts
+  197 |   not cached    |    internal     |               |              0 | 108:posts
+  198 |     cached      |    internal     |           365 |              0 | notoptions:options
+  199 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  200 |     cached      |    internal     |           365 |              0 | notoptions:options
+  201 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  202 |     cached      |    internal     |           365 |              0 | notoptions:options
+  203 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  204 |     cached      |    internal     |           365 |              0 | notoptions:options
+  205 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  206 |     cached      |    internal     |           365 |              0 | notoptions:options
+  207 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  208 |     cached      |    internal     |           365 |              0 | notoptions:options
+  209 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  210 |     cached      |    internal     |           365 |              0 | notoptions:options
+  211 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  212 |     cached      |    internal     |           365 |              0 | notoptions:options
+  213 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  214 |     cached      |    internal     |           365 |              0 | notoptions:options
+  215 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  216 |     cached      |    internal     |           365 |              0 | notoptions:options
+  217 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  218 |     cached      |    internal     |           365 |              0 | notoptions:options
+  219 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  220 |     cached      |    internal     |           365 |              0 | notoptions:options
+  221 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  222 |     cached      |    internal     |           365 |              0 | notoptions:options
+  223 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  224 |     cached      |    internal     |           365 |              0 | notoptions:options
+  225 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  226 |     cached      |    internal     |           365 |              0 | notoptions:options
+  227 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  228 |     cached      |    internal     |           365 |              0 | notoptions:options
+  229 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  230 |     cached      |    internal     |           365 |              0 | notoptions:options
+  231 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  232 |     cached      |    internal     |           365 |              0 | notoptions:options
+  233 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  234 |     cached      |    internal     |           365 |              0 | notoptions:options
+  235 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  236 |     cached      |    internal     |           365 |              0 | notoptions:options
+  237 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  238 |     cached      |    internal     |           365 |              0 | notoptions:options
+  239 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  240 |     cached      |    internal     |           365 |              0 | notoptions:options
+  241 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  242 |     cached      |    internal     |           365 |              0 | notoptions:options
+  243 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  244 |     cached      |    internal     |           365 |              0 | notoptions:options
+  245 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  246 |     cached      |    internal     |           365 |              0 | notoptions:options
+  247 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  248 |     cached      |    internal     |           365 |              0 | notoptions:options
+  249 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  250 |     cached      |    internal     |           365 |              0 | notoptions:options
+  251 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  252 |     cached      |    internal     |           365 |              0 | notoptions:options
+  253 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  254 |     cached      |    internal     |           365 |              0 | notoptions:options
+  255 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  256 |     cached      |    internal     |           365 |              0 | notoptions:options
+  257 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  258 |     cached      |    internal     |           365 |              0 | notoptions:options
+  259 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  260 |     cached      |    internal     |           365 |              0 | notoptions:options
+  261 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  262 |     cached      |    internal     |           365 |              0 | notoptions:options
+  263 |     cached      |    internal     |           365 |              0 | notoptions:options
+  264 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  265 |     cached      |    internal     |           365 |              0 | notoptions:options
+  266 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  267 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  268 |     cached      |    internal     |           365 |              0 | notoptions:options
+  269 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  270 |     cached      |    internal     |           365 |              0 | notoptions:options
+  271 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  272 |     cached      |    internal     |           365 |              0 | notoptions:options
+  273 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  274 |     cached      |    internal     |           365 |              0 | notoptions:options
+  275 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  276 |     cached      |    internal     |           365 |              0 | notoptions:options
+  277 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  278 |     cached      |    internal     |           365 |              0 | notoptions:options
+  279 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  280 |     cached      |    internal     |           365 |              0 | notoptions:options
+  281 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  282 |     cached      |    internal     |           365 |              0 | notoptions:options
+  283 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  284 |     cached      |    internal     |          5364 |              0 | 108:posts
+  285 |     cached      |    internal     |           365 |              0 | notoptions:options
+  286 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  287 |     cached      |    internal     |           365 |              0 | notoptions:options
+  288 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  289 |     cached      |    internal     |           365 |              0 | notoptions:options
+  290 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  291 |     cached      |    internal     |           365 |              0 | notoptions:options
+  292 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  293 |     cached      |    internal     |           365 |              0 | notoptions:options
+  294 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  295 |     cached      |    internal     |           365 |              0 | notoptions:options
+  296 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  297 |     cached      |    internal     |           365 |              0 | notoptions:options
+  298 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  299 |   not cached    |   persistent    |               |              0 | adjacent_post_d85a36957ddb34f99066c7137b3ebf03:counts
+  300 |   not cached    |   persistent    |               |              0 | 99:posts
+  301 |   not cached    |    internal     |               |              0 | 99:posts
+  302 |     cached      |    internal     |           365 |              0 | notoptions:options
+  303 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  304 |     cached      |    internal     |           365 |              0 | notoptions:options
+  305 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  306 |     cached      |    internal     |           365 |              0 | notoptions:options
+  307 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  308 |     cached      |    internal     |           365 |              0 | notoptions:options
+  309 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  310 |   not cached    |   persistent    |               |              0 | adjacent_post_154463ede5d2a9fb9ac0e9dc38b17d69:counts
+  311 |   not cached    |   persistent    |               |              0 | 118:posts
+  312 |   not cached    |    internal     |               |              0 | 118:posts
+  313 |     cached      |    internal     |           365 |              0 | notoptions:options
+  314 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  315 |     cached      |    internal     |           365 |              0 | notoptions:options
+  316 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  317 |     cached      |    internal     |           365 |              0 | notoptions:options
+  318 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  319 |     cached      |    internal     |           365 |              0 | notoptions:options
+  320 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  321 |     cached      |    internal     |           365 |              0 | notoptions:options
+  322 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  323 |     cached      |    internal     |           365 |              0 | notoptions:options
+  324 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  325 |     cached      |    internal     |           365 |              0 | notoptions:options
+  326 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  327 |     cached      |    internal     |           365 |              0 | notoptions:options
+  328 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  329 |     cached      |    internal     |          5364 |              0 | 108:posts
+  330 |     cached      |    internal     |           365 |              0 | notoptions:options
+  331 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  332 |     cached      |    internal     |           365 |              0 | notoptions:options
+  333 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  334 |     cached      |    internal     |            90 |              0 | 108:post_meta
+  335 |   not cached    |   persistent    |               |              0 | 1:users
+  336 |   not cached    |    internal     |               |              0 | 1:users
+  337 |   not cached    |   persistent    |               |              0 | nico:userlogins
+  338 |   not cached    |   persistent    |               |              0 | rey.nico@gmail.com:useremail
+  339 |   not cached    |   persistent    |               |              0 | nico:userslugs
+  340 |   not cached    |   persistent    |               |              0 | 1:user_meta
+  341 |   not cached    |    internal     |               |              0 | 1:user_meta
+  342 |   not cached    |    internal     |               |              0 | 1:user_meta
+  343 |   not cached    |   persistent    |               |              0 | 108:category_relationships
+  344 |   not cached    |   persistent    |               |              0 | 18:category
+  345 |   not cached    |   persistent    |               |              0 | 3:category
+  346 |   not cached    |   persistent    |               |              0 | 23:category
+  347 |   not cached    |   persistent    |               |              0 | 32:category
+  348 |   not cached    |   persistent    |               |              0 | 7:category
+  349 |   not cached    |    internal     |               |              0 | 108:category_relationships
+  350 |     cached      |    internal     |            90 |              0 | 108:post_meta
+  351 |     cached      |    internal     |            90 |              0 | 108:post_meta
+  352 |     cached      |    internal     |           365 |              0 | notoptions:options
+  353 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  354 |     cached      |    internal     |           365 |              0 | notoptions:options
+  355 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  356 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  357 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  358 |     cached      |    internal     |           365 |              0 | notoptions:options
+  359 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  360 |     cached      |    internal     |           365 |              0 | notoptions:options
+  361 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  362 |     cached      |    internal     |            90 |              0 | 108:post_meta
+  363 |     cached      |    internal     |          5364 |              0 | 108:posts
+  364 |   not cached    |   persistent    |               |         0.0001 | 108:post_tag_relationships
+  365 |   not cached    |   persistent    |               |              0 | 22:post_tag
+  366 |   not cached    |   persistent    |               |              0 | 32:post_tag
+  367 |   not cached    |   persistent    |               |              0 | 21:post_tag
+  368 |   not cached    |   persistent    |               |              0 | 20:post_tag
+  369 |   not cached    |    internal     |               |              0 | 108:post_tag_relationships
+  370 |     cached      |    internal     |            90 |              0 | 108:post_meta
+  371 |     cached      |    internal     |          5364 |              0 | 108:posts
+  372 |     cached      |    internal     |          2072 |              0 | 108:category_relationships
+  373 |     cached      |    internal     |           365 |              0 | notoptions:options
+  374 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  375 |     cached      |    internal     |           365 |              0 | notoptions:options
+  376 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  377 |     cached      |    internal     |           365 |              0 | notoptions:options
+  378 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  379 |     cached      |    internal     |           365 |              0 | notoptions:options
+  380 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  381 |     cached      |    internal     |           365 |              0 | notoptions:options
+  382 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  383 |     cached      |    internal     |           365 |              0 | notoptions:options
+  384 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  385 |     cached      |    internal     |           365 |              0 | notoptions:options
+  386 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  387 |     cached      |    internal     |           365 |              0 | notoptions:options
+  388 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  389 |     cached      |    internal     |           365 |              0 | notoptions:options
+  390 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  391 |     cached      |    internal     |           365 |              0 | notoptions:options
+  392 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  393 |     cached      |    internal     |            90 |              0 | 108:post_meta
+  394 |     cached      |    internal     |           365 |              0 | notoptions:options
+  395 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  396 |     cached      |    internal     |           365 |              0 | notoptions:options
+  397 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  398 |     cached      |    internal     |           387 |              0 | 1:users
+  399 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  400 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  401 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  402 |     cached      |    internal     |          5364 |              0 | 108:posts
+  403 |     cached      |    internal     |           365 |              0 | notoptions:options
+  404 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  405 |     cached      |    internal     |           365 |              0 | notoptions:options
+  406 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  407 |     cached      |    internal     |           365 |              0 | notoptions:options
+  408 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  409 |     cached      |    internal     |           365 |              0 | notoptions:options
+  410 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  411 |     cached      |    internal     |           365 |              0 | notoptions:options
+  412 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  413 |     cached      |    internal     |           365 |              0 | notoptions:options
+  414 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  415 |     cached      |    internal     |           365 |              0 | notoptions:options
+  416 |     cached      |    internal     |           365 |              0 | notoptions:options
+  417 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  418 |     cached      |    internal     |           365 |              0 | notoptions:options
+  419 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  420 |     cached      |    internal     |           365 |              0 | notoptions:options
+  421 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  422 |     cached      |    internal     |           365 |              0 | notoptions:options
+  423 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  424 |     cached      |    internal     |           365 |              0 | notoptions:options
+  425 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  426 |     cached      |    internal     |           365 |              0 | notoptions:options
+  427 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  428 |     cached      |    internal     |           365 |              0 | notoptions:options
+  429 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  430 |     cached      |    internal     |           365 |              0 | notoptions:options
+  431 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  432 |     cached      |    internal     |           365 |              0 | notoptions:options
+  433 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  434 |     cached      |    internal     |           365 |              0 | notoptions:options
+  435 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  436 |     cached      |    internal     |           365 |              0 | notoptions:options
+  437 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  438 |     cached      |    internal     |           365 |              0 | notoptions:options
+  439 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  440 |     cached      |    internal     |           365 |              0 | notoptions:options
+  441 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  442 |     cached      |    internal     |           365 |              0 | notoptions:options
+  443 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  444 |     cached      |    internal     |           365 |              0 | notoptions:options
+  445 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  446 |     cached      |    internal     |           365 |              0 | notoptions:options
+  447 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  448 |     cached      |    internal     |          5364 |              0 | 108:posts
+  449 |     cached      |    internal     |          5364 |              0 | 108:posts
+  450 |   not cached    |   persistent    |               |              0 | 108:post_format_relationships
+  451 |   not cached    |    internal     |               |              0 | 108:post_format_relationships
+  452 |     cached      |    internal     |           365 |              0 | notoptions:options
+  453 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  454 |     cached      |    internal     |           365 |              0 | notoptions:options
+  455 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  456 |     cached      |    internal     |           365 |              0 | notoptions:options
+  457 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  458 |     cached      |    internal     |           365 |              0 | notoptions:options
+  459 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  460 |     cached      |    internal     |           365 |              0 | notoptions:options
+  461 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  462 |     cached      |    internal     |           365 |              0 | notoptions:options
+  463 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  464 |     cached      |    internal     |           365 |              0 | notoptions:options
+  465 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  466 |     cached      |    internal     |           365 |              0 | notoptions:options
+  467 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  468 |   not cached    |   persistent    |               |              0 | is_multi_author:posts
+  469 |     cached      |    internal     |           365 |              0 | notoptions:options
+  470 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  471 |     cached      |    internal     |           365 |              0 | notoptions:options
+  472 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  473 |     cached      |    internal     |           365 |              0 | notoptions:options
+  474 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  475 |     cached      |    internal     |           365 |              0 | notoptions:options
+  476 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  477 |     cached      |    internal     |           365 |              0 | notoptions:options
+  478 |     cached      |    internal     |           365 |              0 | notoptions:options
+  479 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  480 |     cached      |    internal     |           365 |              0 | notoptions:options
+  481 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  482 |     cached      |    internal     |           365 |              0 | notoptions:options
+  483 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  484 |     cached      |    internal     |           365 |              0 | notoptions:options
+  485 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  486 |     cached      |    internal     |           365 |              0 | notoptions:options
+  487 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  488 |     cached      |    internal     |           365 |              0 | notoptions:options
+  489 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  490 |     cached      |    internal     |           365 |              0 | notoptions:options
+  491 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  492 |     cached      |    internal     |           365 |              0 | notoptions:options
+  493 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  494 |     cached      |    internal     |           365 |              0 | notoptions:options
+  495 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  496 |     cached      |    internal     |           365 |              0 | notoptions:options
+  497 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  498 |     cached      |    internal     |           365 |              0 | notoptions:options
+  499 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  500 |     cached      |    internal     |           365 |              0 | notoptions:options
+  501 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  502 |     cached      |    internal     |           365 |              0 | notoptions:options
+  503 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  504 |     cached      |    internal     |           365 |              0 | notoptions:options
+  505 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  506 |     cached      |    internal     |           365 |              0 | notoptions:options
+  507 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  508 |     cached      |    internal     |           365 |              0 | notoptions:options
+  509 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  510 |     cached      |    internal     |           365 |              0 | notoptions:options
+  511 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  512 |     cached      |    internal     |           365 |              0 | notoptions:options
+  513 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  514 |     cached      |    internal     |           365 |              0 | notoptions:options
+  515 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  516 |     cached      |    internal     |            90 |              0 | 108:post_meta
+  517 |     cached      |    internal     |           365 |              0 | notoptions:options
+  518 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  519 |     cached      |    internal     |           365 |              0 | notoptions:options
+  520 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  521 |     cached      |    internal     |           365 |              0 | notoptions:options
+  522 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  523 |     cached      |    internal     |           365 |              0 | notoptions:options
+  524 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  525 |     cached      |    internal     |           365 |              0 | notoptions:options
+  526 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  527 |     cached      |    internal     |           365 |              0 | notoptions:options
+  528 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  529 |     cached      |    internal     |           365 |              0 | notoptions:options
+  530 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  531 |     cached      |    internal     |           365 |              0 | notoptions:options
+  532 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  533 |     cached      |    internal     |           365 |              0 | notoptions:options
+  534 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  535 |     cached      |    internal     |           365 |              0 | notoptions:options
+  536 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  537 |     cached      |    internal     |           365 |              0 | notoptions:options
+  538 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  539 |     cached      |    internal     |           365 |              0 | notoptions:options
+  540 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  541 |     cached      |    internal     |           365 |              0 | notoptions:options
+  542 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  543 |     cached      |    internal     |           365 |              0 | notoptions:options
+  544 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  545 |     cached      |    internal     |           365 |              0 | notoptions:options
+  546 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  547 |     cached      |    internal     |           365 |              0 | notoptions:options
+  548 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  549 |     cached      |    internal     |           365 |              0 | notoptions:options
+  550 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  551 |     cached      |    internal     |           365 |              0 | notoptions:options
+  552 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  553 |     cached      |    internal     |           365 |              0 | notoptions:options
+  554 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  555 |     cached      |    internal     |           365 |              0 | notoptions:options
+  556 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  557 |     cached      |    internal     |           365 |              0 | notoptions:options
+  558 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  559 |   not cached    |   persistent    |               |              0 | get_pages:posts
+  560 |   not cached    |   persistent    |               |         0.0001 | 14:posts
+  561 |   not cached    |   persistent    |               |              0 | 26:posts
+  562 |   not cached    |   persistent    |               |              0 | 14:post_meta
+  563 |   not cached    |    internal     |               |              0 | 14:post_meta
+  564 |   not cached    |    internal     |               |              0 | 14:post_meta
+  565 |   not cached    |   persistent    |               |              0 | 26:post_meta
+  566 |   not cached    |    internal     |               |              0 | 26:post_meta
+  567 |   not cached    |    internal     |               |              0 | 26:post_meta
+  568 |     cached      |    internal     |           365 |              0 | notoptions:options
+  569 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  570 |     cached      |    internal     |          6780 |              0 | 14:posts
+  571 |     cached      |    internal     |          6780 |              0 | 14:posts
+  572 |     cached      |    internal     |           365 |              0 | notoptions:options
+  573 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  574 |     cached      |    internal     |           365 |              0 | notoptions:options
+  575 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  576 |     cached      |    internal     |           365 |              0 | notoptions:options
+  577 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  578 |     cached      |    internal     |           847 |              0 | 26:posts
+  579 |     cached      |    internal     |           847 |              0 | 26:posts
+  580 |     cached      |    internal     |           365 |              0 | notoptions:options
+  581 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  582 |     cached      |    internal     |           365 |              0 | notoptions:options
+  583 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  584 |     cached      |    internal     |           139 |              0 | 14:post_meta
+  585 |     cached      |    internal     |           139 |              0 | 26:post_meta
+  586 |     cached      |    internal     |           139 |              0 | 14:post_meta
+  587 |     cached      |    internal     |           139 |              0 | 26:post_meta
+  588 |     cached      |    internal     |           387 |              0 | 1:users
+  589 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  590 |     cached      |    internal     |             9 |              0 | adjacent_post_d85a36957ddb34f99066c7137b3ebf03:counts
+  591 |     cached      |    internal     |          4040 |              0 | 99:posts
+  592 |     cached      |    internal     |           365 |              0 | notoptions:options
+  593 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  594 |     cached      |    internal     |           365 |              0 | notoptions:options
+  595 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  596 |     cached      |    internal     |           365 |              0 | notoptions:options
+  597 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  598 |     cached      |    internal     |           365 |              0 | notoptions:options
+  599 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  600 |     cached      |    internal     |            10 |              0 | adjacent_post_154463ede5d2a9fb9ac0e9dc38b17d69:counts
+  601 |     cached      |    internal     |          4584 |              0 | 118:posts
+  602 |     cached      |    internal     |           365 |              0 | notoptions:options
+  603 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  604 |     cached      |    internal     |           365 |              0 | notoptions:options
+  605 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  606 |     cached      |    internal     |           365 |              0 | notoptions:options
+  607 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  608 |     cached      |    internal     |           365 |              0 | notoptions:options
+  609 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  610 |     cached      |    internal     |          5364 |              0 | 108:posts
+  611 |     cached      |    internal     |          5364 |              0 | 108:posts
+  612 |     cached      |    internal     |               |              0 | 108:post_format_relationships
+  613 |     cached      |    internal     |          5364 |              0 | 108:posts
+  614 |     cached      |    internal     |           365 |              0 | notoptions:options
+  615 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  616 |     cached      |    internal     |          5364 |              0 | 108:posts
+  617 |     cached      |    internal     |          2072 |              0 | 108:category_relationships
+  618 |     cached      |    internal     |          5364 |              0 | 108:posts
+  619 |     cached      |    internal     |          1060 |              0 | 108:post_tag_relationships
+  620 |     cached      |    internal     |           365 |              0 | notoptions:options
+  621 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  622 |     cached      |    internal     |           365 |              0 | notoptions:options
+  623 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  624 |     cached      |    internal     |           365 |              0 | notoptions:options
+  625 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  626 |     cached      |    internal     |           365 |              0 | notoptions:options
+  627 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  628 |     cached      |    internal     |           365 |              0 | notoptions:options
+  629 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  630 |     cached      |    internal     |           387 |              0 | 1:users
+  631 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  632 |     cached      |    internal     |           365 |              0 | notoptions:options
+  633 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  634 |     cached      |    internal     |           365 |              0 | notoptions:options
+  635 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  636 |     cached      |    internal     |           365 |              0 | notoptions:options
+  637 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  638 |     cached      |    internal     |           365 |              0 | notoptions:options
+  639 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  640 |     cached      |    internal     |           365 |              0 | notoptions:options
+  641 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  642 |     cached      |    internal     |           365 |              0 | notoptions:options
+  643 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  644 |     cached      |    internal     |           365 |              0 | notoptions:options
+  645 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  646 |     cached      |    internal     |           365 |              0 | notoptions:options
+  647 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  648 |     cached      |    internal     |           365 |              0 | notoptions:options
+  649 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  650 |     cached      |    internal     |           365 |              0 | notoptions:options
+  651 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  652 |     cached      |    internal     |           365 |              0 | notoptions:options
+  653 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  654 |     cached      |    internal     |           365 |              0 | notoptions:options
+  655 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  656 |     cached      |    internal     |           365 |              0 | notoptions:options
+  657 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  658 |     cached      |    internal     |           365 |              0 | notoptions:options
+  659 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  660 |     cached      |    internal     |           365 |              0 | notoptions:options
+  661 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  662 |     cached      |    internal     |          2072 |              0 | 108:category_relationships
+  663 |     cached      |    internal     |           260 |              0 | 18:category
+  664 |     cached      |    internal     |           260 |              0 | 18:category
+  665 |     cached      |    internal     |           365 |              0 | notoptions:options
+  666 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  667 |     cached      |    internal     |           257 |              0 | 3:category
+  668 |     cached      |    internal     |           257 |              0 | 3:category
+  669 |     cached      |    internal     |           365 |              0 | notoptions:options
+  670 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  671 |     cached      |    internal     |           246 |              0 | 23:category
+  672 |     cached      |    internal     |           246 |              0 | 23:category
+  673 |     cached      |    internal     |           365 |              0 | notoptions:options
+  674 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  675 |     cached      |    internal     |           248 |              0 | 32:category
+  676 |     cached      |    internal     |           248 |              0 | 32:category
+  677 |     cached      |    internal     |           365 |              0 | notoptions:options
+  678 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  679 |     cached      |    internal     |           254 |              0 | 7:category
+  680 |     cached      |    internal     |           254 |              0 | 7:category
+  681 |     cached      |    internal     |           365 |              0 | notoptions:options
+  682 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  683 |     cached      |    internal     |          1060 |              0 | 108:post_tag_relationships
+  684 |     cached      |    internal     |           365 |              0 | notoptions:options
+  685 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  686 |     cached      |    internal     |           365 |              0 | notoptions:options
+  687 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  688 |     cached      |    internal     |           365 |              0 | notoptions:options
+  689 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  690 |     cached      |    internal     |           365 |              0 | notoptions:options
+  691 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  692 |     cached      |    internal     |           365 |              0 | notoptions:options
+  693 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  694 |     cached      |    internal     |           365 |              0 | notoptions:options
+  695 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  696 |     cached      |    internal     |           387 |              0 | 1:users
+  697 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  698 |     cached      |    internal     |           365 |              0 | notoptions:options
+  699 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  700 |     cached      |    internal     |          5364 |              0 | 108:posts
+  701 |     cached      |    internal     |          5364 |              0 | 108:posts
+  702 |     cached      |    internal     |           387 |              0 | 1:users
+  703 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  704 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  705 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  706 |     cached      |    internal     |           365 |              0 | notoptions:options
+  707 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  708 |   not cached    |   persistent    |               |              0 | last_changed:comment
+  709 |   not cached    |   persistent    |               |              0 | get_comments:1494cb4046a94fb09848753f39fe98df:1:comment
+  710 |   not cached    |    internal     |               |              0 | get_comments:1494cb4046a94fb09848753f39fe98df:1:comment
+  711 |   not cached    |   persistent    |               |              0 | 203:comment
+  712 |   not cached    |   persistent    |               |              0 | 324:comment
+  713 |   not cached    |   persistent    |               |              0 | 325:comment
+  714 |     cached      |    internal     |           365 |              0 | notoptions:options
+  715 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  716 |     cached      |    internal     |          5364 |              0 | 108:posts
+  717 |     cached      |    internal     |          5364 |              0 | 108:posts
+  718 |     cached      |    internal     |           365 |              0 | notoptions:options
+  719 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  720 |     cached      |    internal     |           365 |              0 | notoptions:options
+  721 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  722 |     cached      |    internal     |           365 |              0 | notoptions:options
+  723 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  724 |     cached      |    internal     |           365 |              0 | notoptions:options
+  725 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  726 |     cached      |    internal     |           365 |              0 | notoptions:options
+  727 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  728 |     cached      |    internal     |           365 |              0 | notoptions:options
+  729 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  730 |     cached      |    internal     |          5364 |              0 | 108:posts
+  731 |     cached      |    internal     |          5364 |              0 | 108:posts
+  732 |     cached      |    internal     |           387 |              0 | 1:users
+  733 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  734 |     cached      |    internal     |           365 |              0 | notoptions:options
+  735 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  736 |     cached      |    internal     |           365 |              0 | notoptions:options
+  737 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  738 |     cached      |    internal     |           365 |              0 | notoptions:options
+  739 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  740 |     cached      |    internal     |           365 |              0 | notoptions:options
+  741 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  742 |     cached      |    internal     |           365 |              0 | notoptions:options
+  743 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  744 |     cached      |    internal     |          5364 |              0 | 108:posts
+  745 |     cached      |    internal     |           365 |              0 | notoptions:options
+  746 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  747 |     cached      |    internal     |           365 |              0 | notoptions:options
+  748 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  749 |     cached      |    internal     |           365 |              0 | notoptions:options
+  750 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  751 |     cached      |    internal     |           365 |              0 | notoptions:options
+  752 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  753 |     cached      |    internal     |          5364 |              0 | 108:posts
+  754 |     cached      |    internal     |          5364 |              0 | 108:posts
+  755 |     cached      |    internal     |           387 |              0 | 1:users
+  756 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  757 |     cached      |    internal     |           365 |              0 | notoptions:options
+  758 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  759 |     cached      |    internal     |          5364 |              0 | 108:posts
+  760 |     cached      |    internal     |          5364 |              0 | 108:posts
+  761 |     cached      |    internal     |           365 |              0 | notoptions:options
+  762 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  763 |     cached      |    internal     |           365 |              0 | notoptions:options
+  764 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  765 |     cached      |    internal     |           387 |              0 | 1:users
+  766 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  767 |     cached      |    internal     |           365 |              0 | notoptions:options
+  768 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  769 |     cached      |    internal     |           387 |              0 | 1:users
+  770 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  771 |     cached      |    internal     |           365 |              0 | notoptions:options
+  772 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  773 |     cached      |    internal     |           365 |              0 | notoptions:options
+  774 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  775 |     cached      |    internal     |           365 |              0 | notoptions:options
+  776 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  777 |     cached      |    internal     |           365 |              0 | notoptions:options
+  778 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  779 |     cached      |    internal     |           365 |              0 | notoptions:options
+  780 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  781 |     cached      |    internal     |          5364 |              0 | 108:posts
+  782 |     cached      |    internal     |           365 |              0 | notoptions:options
+  783 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  784 |     cached      |    internal     |           365 |              0 | notoptions:options
+  785 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  786 |     cached      |    internal     |           365 |              0 | notoptions:options
+  787 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  788 |     cached      |    internal     |           365 |              0 | notoptions:options
+  789 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  790 |     cached      |    internal     |          5364 |              0 | 108:posts
+  791 |     cached      |    internal     |          5364 |              0 | 108:posts
+  792 |     cached      |    internal     |           387 |              0 | 1:users
+  793 |     cached      |    internal     |          1066 |              0 | 1:user_meta
+  794 |     cached      |    internal     |           365 |              0 | notoptions:options
+  795 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  796 |     cached      |    internal     |           365 |              0 | notoptions:options
+  797 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  798 |     cached      |    internal     |          5364 |              0 | 108:posts
+  799 |     cached      |    internal     |          5364 |              0 | 108:posts
+  800 |     cached      |    internal     |           365 |              0 | notoptions:options
+  801 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  802 |     cached      |    internal     |           365 |              0 | notoptions:options
+  803 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  804 |     cached      |    internal     |           365 |              0 | notoptions:options
+  805 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  806 |     cached      |    internal     |          5364 |              0 | 108:posts
+  807 |     cached      |    internal     |           365 |              0 | notoptions:options
+  808 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  809 |     cached      |    internal     |           365 |              0 | notoptions:options
+  810 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  811 |     cached      |    internal     |           365 |              0 | notoptions:options
+  812 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  813 |     cached      |    internal     |          5364 |              0 | 108:posts
+  814 |     cached      |    internal     |           365 |              0 | notoptions:options
+  815 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  816 |     cached      |    internal     |           365 |              0 | notoptions:options
+  817 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  818 |     cached      |    internal     |           365 |              0 | notoptions:options
+  819 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  820 |     cached      |    internal     |          5364 |              0 | 108:posts
+  821 |     cached      |    internal     |           365 |              0 | notoptions:options
+  822 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  823 |     cached      |    internal     |           365 |              0 | notoptions:options
+  824 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  825 |     cached      |    internal     |           365 |              0 | notoptions:options
+  826 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  827 |     cached      |    internal     |           365 |              0 | notoptions:options
+  828 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  829 |     cached      |    internal     |           365 |              0 | notoptions:options
+  830 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  831 |     cached      |    internal     |           365 |              0 | notoptions:options
+  832 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  833 |     cached      |    internal     |           365 |              0 | notoptions:options
+  834 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  835 |     cached      |    internal     |           365 |              0 | notoptions:options
+  836 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  837 |     cached      |    internal     |           365 |              0 | notoptions:options
+  838 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  839 |     cached      |    internal     |           365 |              0 | notoptions:options
+  840 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  841 |     cached      |    internal     |           365 |              0 | notoptions:options
+  842 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  843 |     cached      |    internal     |           365 |              0 | notoptions:options
+  844 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  845 |     cached      |    internal     |           365 |              0 | notoptions:options
+  846 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  847 |     cached      |    internal     |           365 |              0 | notoptions:options
+  848 |     cached      |    internal     |         46487 |              0 | alloptions:options
+  849 |     cached      |    internal     |           365 |              0 | notoptions:options
+  850 |     cached      |    internal     |         46487 |              0 | alloptions:options
+-->
+
+<!-- W3 Total Cache: Page cache debug info:
+Engine:             memcached
+Cache key:          2842fea9aa747df552e564dd2104624c
+Caching:            enabled
+Status:             not cached
+Creation Time:      0.539s
+Header info:
+X-Powered-By:        PHP/5.3.3-7+squeeze14
+X-W3TC-Minify:       On
+Link:                <http://www.proyectosarduino.com.ar/?p=108>; rel=shortlink
+Last-Modified:       Sat, 09 Nov 2013 18:07:17 GMT
+Vary:               
+X-Pingback:           http://www.proyectosarduino.com.ar/xmlrpc.php
+Content-Type:         text/html; charset=UTF-8
+--></body></html>

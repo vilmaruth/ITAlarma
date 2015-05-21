@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)http://www.limetrace.co.uk/blogs/electronics-tutorials/8795313-how-to-connect-an-lcd-to-the-arduino -->
+<html lang="en" class="no-js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" async="" src="./How to connect an LCD to the Arduino   LimeTrace_files/dpx.js" data-sifi-parsed="true"></script><script type="text/javascript" async="" src="./How to connect an LCD to the Arduino   LimeTrace_files/keen-2.1.0-min.js"></script><script type="text/javascript" async="" src="./How to connect an LCD to the Arduino   LimeTrace_files/shopify_stats.js"></script><script type="text/javascript" async="" src="./How to connect an LCD to the Arduino   LimeTrace_files/pict-plugin.js"></script><script type="text/javascript" async="" src="./How to connect an LCD to the Arduino   LimeTrace_files/9821fff0"></script><script type="text/javascript" async="" src="./How to connect an LCD to the Arduino   LimeTrace_files/detect.js"></script><script type="text/javascript" async="" src="./How to connect an LCD to the Arduino   LimeTrace_files/ga.js"></script><script async="" src="./How to connect an LCD to the Arduino   LimeTrace_files/analytics.js"></script><script type="text/javascript" src="./How to connect an LCD to the Arduino   LimeTrace_files/yQuery.js"></script><style type="text/css" style="display: none !important;">object:not([type]),object[classid$=":D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid$=":d27cdb6e-ae6d-11cf-96b8-444553540000"],object[codebase*="swflash.cab"],object[data*=".swf"],embed[type="application/x-shockwave-flash"],embed[src*=".swf"],object[type="application/x-shockwave-flash"],object[src*=".swf"],object[codetype="application/x-shockwave-flash"],iframe[type="application/x-shockwave-flash"],object[classid$=":166B1BCA-3F9C-11CF-8075-444553540000"],object[codebase*="sw.cab"],object[data*=".dcr"],embed[type="application/x-director"],embed[src*=".dcr"],object[type="application/x-director"],object[src*=".dcr"],object[classid$=":15B782AF-55D8-11D1-B477-006097098764"],object[codebase*="awswaxf.cab"],object[data*=".aam"],embed[type="application/x-authorware-map"],embed[src*=".aam"],object[type="application/x-authorware-map"],object[src*=".aam"],object[classid*="32C73088-76AE-40F7-AC40-81F62CB2C1DA"],object[type="application/ag-plugin"],object[type="application/x-silverlight"],object[type="application/x-silverlight-2"],object[source*=".xaml"],object[sourceelement*="xaml"],embed[type="application/ag-plugin"],embed[source*=".xaml"]{display: none !important;}</style><style type="text/css"></style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="canonical" href="./How to connect an LCD to the Arduino   LimeTrace_files/How to connect an LCD to the Arduino   LimeTrace.htm">
+  
+  <!-- favicon link -->
+  <link rel="shortcut icon" href="http://cdn.shopify.com/s/files/1/0225/1731/t/9/assets/favicon.ico?1336" type="image/x-icon">
+  
+  <!--<meta name="keywords" content="Electronics, DIY, Arduino, Raspberry Pi, Raspberry, PCB, electronic, electric, projects, hacker">-->
+  <meta property="fb:admins" content="152569421422900">
+  
+  <!-- Google tags -->
+  <link href="https://plus.google.com/112360185317994604163" rel="publisher">
+  <style type="text/css"></style></head><body class=" template-article" id="how-to-connect-an-lcd-to-the-arduino"><a href="https://plus.google.com/112360185317994604163" rel="publisher"></a>
+  <meta name="google-site-verification" content="Ya-J-wNb6ALesKBhhHj9VA-FPYF9ROQhnWPKaLkAsWI">
+  <!-- Google stuff ends -->
+  
+  <!-- pinterest meta tag -->
+  <meta name="p:domain_verify" content="8a8a8a044c1fe635ed5e13288a9b0e02">
+  <!-- pinterest end -->
+   
+  
+  
+  
+  <meta name="description" content="In this tutorial we’ll look at how to connect up an LCD to an Arduino. The Arduino IDE comes with an example LCD sketch which uses an Hitachi HD44780 compatible LCD.  We will use">
+  
+
+  <meta property="og:site_name" content="LimeTrace ">
+  
+  <meta property="og:image" content="//cdn.shopify.com/s/files/1/0225/1731/t/9/assets/logo.png?1336">
+    
+
+  
+  <title>How to connect an LCD to the Arduino | LimeTrace </title>
+  
+   
+  <link href="http://feedproxy.google.com/Limetrace-News" title="Feed" rel="alternate" type="application/atom+xml">
+<script type="text/javascript">
+//<![CDATA[
+      var Shopify = Shopify || {};
+      Shopify.shop = "limetrace.myshopify.com";
+      Shopify.theme = {"name":"Copy of Megatronic-updated","id":4176067,"theme_store_id":null,"role":"main"};
+
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+    (function() {
+      function asyncLoad() {
+        var urls = ["http://limetrace.theshoppad.com/js/detect.js?shop=limetrace.myshopify.com#shopify","//np.lexity.com/9821fff0?shop=limetrace.myshopify.com","https://api.pict.com/pict-plugin.js?v=0.1.0\u0026shop=limetrace.myshopify.com"];
+        for (var i = 0; i < urls.length; i++) {
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = urls[i];
+          var x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+        }
+      }
+      window.attachEvent ? window.attachEvent('onload', asyncLoad) : window.addEventListener('load', asyncLoad, false);
+    })();
+
+//]]>
+</script>
+<script id="__st" type="text/javascript">
+//<![CDATA[
+var __st={"a":2251731,"offset":0,"u":"1ae6104e3de4","s":"articles-8795313"};
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+    (function() {
+      function asyncLoad() {
+        var urls = ["//s.shopify.com/javascripts/shopify_stats.js?v=5"];
+        for (var i = 0; i < urls.length; i++) {
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = urls[i];
+          var x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+        }
+      }
+      window.attachEvent ? window.attachEvent('onload', asyncLoad) : window.addEventListener('load', asyncLoad, false);
+    })();
+
+//]]>
+</script>
+<script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-39879060-1', {cookieDomain: 'none', legacyCookieDomain: 'none'});ga('send', 'pageview');</script><script type="text/javascript" src="./How to connect an LCD to the Arduino   LimeTrace_files/ga_urchin_forms.js"></script>
+<link rel="stylesheet" href="./How to connect an LCD to the Arduino   LimeTrace_files/theme-controls.css" type="text/css">
+
+   
+
+  <link href="./How to connect an LCD to the Arduino   LimeTrace_files/style.css" rel="stylesheet" type="text/css" media="all">  
+  <link href="./How to connect an LCD to the Arduino   LimeTrace_files/facebox.css" rel="stylesheet" type="text/css" media="all">
+  <script src="./How to connect an LCD to the Arduino   LimeTrace_files/option_selection.js" type="text/javascript"></script>
+  
+<!-- Added by Lexity. DO NOT REMOVE/EDIT -->
+<meta name="google-site-verification" content="MfT3T1u_VHbY1QHrfhk7aNQVANybsbfsTA2QIT_5o2s">
+<script type="text/javascript">
+(function (d, w) {
+  var x = d.getElementsByTagName('SCRIPT')[0], g = d.createElement('SCRIPT'); 
+  g.type = 'text/javascript';
+  g.async = true;
+  g.src = ('https:' == d.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  x.parentNode.insertBefore(g, x);
+}(document, window));
+</script>
+<!-- End of addition by Lexity. DO NOT REMOVE/EDIT -->
+
+  
+
+
+
+
+
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div id="header" class="wrapper clearfix">
+       
+       <strong id="site-title"> 
+        <a href="http://www.limetrace.co.uk/" title="Home">
+           <img src="./How to connect an LCD to the Arduino   LimeTrace_files/logo.png" alt="LimeTrace ">         
+        </a>
+       </strong> 
+      
+      <div align="right"><span id="currencies">
+  <span data-currency="GBP" class="selected right">£</span>
+  <span data-currency="EUR" class="left">€</span>
+  <span data-currency="USD" class="middle">$</span>
+</span>
+
+<style>
+#currencies {
+    display: inline-block;
+    color: #bbbbbb;
+    font-size: 12px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+#currencies span {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #D6D6D6;
+    background: none #F6F6F6;
+}
+#currencies .left  {
+    -webkit-border-top-left-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -moz-border-radius-topleft: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+#currencies .middle  {
+    border-left: none;
+}
+#currencies .right  {
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-bottom-right-radius: 7px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-bottomright: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-left: none;
+}
+#currencies .selected {
+    font-weight: normal;
+    color: #666666;
+    background: none #eeeeee;
+}
+</style> </div>
+      
+      <form id="search" action="http://www.limetrace.co.uk/search" method="get">
+        <label for="top-search-input" class="visuallyhidden">Search</label>
+        <input type="text" id="top-search-input" name="q" class="search-input" value="" accesskey="4" autocomplete="off">
+        <input type="submit" class="search-submit" value="Search">
+      </form>
+      
+    </div><!-- /#header -->
+
+  </div><!-- /#header-wrapper -->
+    
+  <!--<a href="https://plus.google.com/118016407553443354568" rel="publisher"></a>  -->
+ 
+  
+  <div id="main-wrapper">
+    <!-- Top Menu -->
+    <div id="top-menu" class="wrapper clearfix top-menu">
+      <ul id="nav" style="width: 731px;">
+        
+        <li class="top ">
+          
+          
+            <a class="root" href="http://www.limetrace.co.uk/">Home</a>
+          
+        </li>
+        
+        <li class="top ">
+          
+          
+            <a class="root" href="http://www.limetrace.co.uk/collections/all">Catalog</a>
+          
+        </li>
+        
+        <li class="top ">
+          
+          
+            <a class="root" href="http://www.limetrace.co.uk/blogs/news">News</a>
+          
+        </li>
+        
+        <li class="top current">
+          
+          
+            <a class="root" href="http://www.limetrace.co.uk/blogs/electronics-tutorials">Tutorials</a>
+          
+        </li>
+        
+        <li class="top ">
+          
+          
+            <a class="root" href="http://www.limetrace.co.uk/pages/about-us">About Us</a>
+          
+        </li>
+        
+        <li class="top ">
+          
+          
+            <a class="root" href="http://www.limetrace.co.uk/pages/contact-us">Contact Us</a>
+          
+        </li>
+        
+      </ul><!-- /#nav -->
+    
+      <ul id="customer-controls">
+        
+        <li class="customer-account-links" style="height: 14px;">
+          
+            <p><a href="http://www.limetrace.co.uk/account/login" id="customer_login_link">Login</a></p>
+          
+        </li>
+             
+      
+           
+      
+        <li class="cart-link" style="height: 14px;">
+          <a href="http://www.limetrace.co.uk/cart" class="num-items-in-cart">
+            <span id="top-cartlink-text" class="icon">
+              
+                Your cart is empty
+              
+            </span>
+          </a>             
+        </li>
+      </ul><!-- #customer-controls -->
+    </div><!-- /#top-menu --> 
+  
+  
+  
+    <!-- Main Content -->
+    <div id="main" class="wrapper clearfix">
+      <div class="content-wrapper clearfix">
+          
+        
+          <div class="col-content">
+    
+  <div class="page-header clearfix">
+    <h1 class="title"><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials">Electronics Tutorials</a></h1>
+  </div>
+
+  <div class="articles-aside">
+
+	<!-- Widget: Archives -->
+	<div class="widget widget-linklist" id="widget-allcollections">
+		<div class="widget-header">
+			<h3>Recent Posts</h3>
+		</div>
+		<div class="widget-content">
+			<ul>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/9994249-simple-and-intuitive-web-interface-for-your-raspberry-pi" title="Simple and intuitive web interface for your Raspberry Pi">Simple and intuitive web interface for your Raspberry Pi<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">November 07, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/9602103-raspberry-pi-home-automation-gateway" title="Raspberry Pi Home Automation Gateway">Raspberry Pi Home Automation Gateway<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">October 13, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/9583775-pc-maintenance-quiz" title="PC Maintenance Quiz">PC Maintenance Quiz<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">October 12, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/9583365-how-to-powder-coat-your-hand-tools" title="How to Powder Coat your Hand Tools">How to Powder Coat your Hand Tools<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">October 12, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/8960731-sugru-self-setting-rubber-and-its-many-uses" title="Sugru Self-setting Rubber and its many uses!">Sugru Self-setting Rubber and its many uses!<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">September 05, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/8960717-bare-conductive-makes-using-electronics-as-easy-as-drawing" title="Bare Conductive makes using electronics as easy as drawing!">Bare Conductive makes using electronics as easy as drawing!<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">September 05, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/8580369-smd-led-polarity-guide" title="SMD LED Polarity Guide">SMD LED Polarity Guide<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">August 12, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="./How to connect an LCD to the Arduino   LimeTrace_files/How to connect an LCD to the Arduino   LimeTrace.htm" title="How to connect an LCD to the Arduino">How to connect an LCD to the Arduino<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">August 26, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/8603793-how-to-use-an-rgb-led-with-the-arduino" title="How to use an RGB LED with the Arduino">How to use an RGB LED with the Arduino<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">August 13, 2013</p>-->
+				</li>
+			
+				<li>
+					<h4><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials/8552899-interfacing-the-hc-sr04-ultrasonic-measurement-module-to-the-arduino" title="Interfacing the HC-SR04 Ultrasonic Measurement Module to the Arduino">Interfacing the HC-SR04 Ultrasonic Measurement Module to the Arduino<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">August 10, 2013</p>-->
+				</li>
+			
+			</ul>
+		</div>		
+	</div><!-- /.widget -->
+	
+	<div class="widget widget-rss">
+		<a href="http://www.limetrace.co.uk/blogs/electronics-tutorials.atom" class="rss-link">Subscribe via RSS</a>
+	</div> 
+	
+</div><!-- /.articles-aside -->  
+  
+  <div class="articles">
+    <div class="article clearfix">
+      
+      <div class="article-header clearfix">
+        <p class="date-posted">August 26, 2013</p>
+        <h2 class="title"><a href="./How to connect an LCD to the Arduino   LimeTrace_files/How to connect an LCD to the Arduino   LimeTrace.htm">How to connect an LCD to the Arduino</a></h2>
+      </div>
+      
+      <div class="article-content content">
+      <p id="page-title">In this tutorial we’ll look at how to connect up a character Liquid Crystal Display (LCD) to an Arduino board.&nbsp;The Arduino IDE comes with an example LCD sketch which uses an Hitachi HD44780 compatible LCD. &nbsp;We will use a similar LCD. Many LCDs use this controller or a compatible one and you can usually tell by the 16-pin interface.&nbsp;</p>
+<h3><b style="line-height: 1.2; font-size: 14px;">Hardware</b></h3>
+<div>
+<ul>
+<li><span style="font-size: 14px; line-height: 1.5;">Arduino with USB cable</span></li>
+<li><span style="font-size: 14px; line-height: 1.5;"><span style="font-size: 14px; line-height: 1.5;">HD44780-compatible LCD -&nbsp;</span></span>The particular LCD I'm using has QC1602A v2.0 on the back, others have text such as&nbsp;AMC2004A-B-B6NTDW-SP</li>
+<li><span style="font-size: 14px; line-height: 1.5;"><span style="font-size: 14px; line-height: 1.5;">12 x Jumper wires -&nbsp;You only need to solder 12 of the 16 wires to use the LCD. This will let you to use the 4-bit interface.&nbsp;</span></span><span style="font-size: 14px; line-height: 1.5;"><br class="Apple-interchange-newline"></span></li>
+<li><span style="font-size: 14px; line-height: 1.5;">1 x 4K7Ω Potentiometer</span></li>
+<li><span style="font-size: 14px; line-height: 1.5;">1 x 16-pin Male Breakaway Header</span></li>
+<li>10KΩ Resistor</li>
+</ul>
+</div>
+<b>Tools</b>
+<div>
+<ul>
+<li><span style="font-size: 14px; line-height: 1.5;">Soldering Iron</span><span style="font-size: 14px; line-height: 1.5;">&nbsp;</span></li>
+<li><span style="font-size: 14px; line-height: 1.5;">Solder</span></li>
+</ul>
+</div>
+<div>&nbsp;</div>
+<h2>LCD 1602 Pin-Out and Interface</h2>
+<p>On most LCD displays, the LCD pins are numbered from 1-16. If they aren't number please refer to the datasheet that came with the LCD.&nbsp;The table below explains how to connect the LCD pins to the Arduino.&nbsp;&nbsp;The first thing we need to do is solder the male pin headers to the LCD. Its important that they are soldered to make a decent connection. A simple way to do this is to put the headers in a breadboard and then let the LCD sit on the headers. This leaves both hands free to solder. You only need to connect 12 pins, but it makes sense to solder all 16 in case you need them in future. The LCD pin-outs and the corresponding pin connections on the Arduino are given in Table 1. &nbsp;</p>
+<div>
+<table class="reference">
+<tbody>
+<tr><th>LCD Pin</th><th>Symbol</th><th>Function</th><th>Arduino Pin</th></tr>
+<tr>
+<td>1</td>
+<td>Vss</td>
+<td>Ground (0 V)</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Vdd</td>
+<td>Power (4.5 – 5.5 V)</td>
+<td>+5V</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Vo</td>
+<td>Contrast adjustment</td>
+<td>Pot. Middle Pin</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RS</td>
+<td>H/L register select signal</td>
+<td>7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>R/W</td>
+<td>H/L read/write signal</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>6</td>
+<td>E</td>
+<td>H/L enable signal</td>
+<td>8</td>
+</tr>
+<tr>
+<td>11</td>
+<td>DB4</td>
+<td>H/L data bus for 4-bit mode</td>
+<td>9</td>
+</tr>
+<tr>
+<td>12</td>
+<td>DB5</td>
+<td>H/L data bus for 4--bit mode</td>
+<td>10</td>
+</tr>
+<tr>
+<td>13</td>
+<td>DB6</td>
+<td>H/L data bus for 4-bit mode</td>
+<td>11</td>
+</tr>
+<tr>
+<td>14</td>
+<td>DB7</td>
+<td>H/L data bus for 4-bit mode</td>
+<td>12</td>
+</tr>
+<tr>
+<td>15</td>
+<td>A</td>
+<td>'Back Light' Anode - Resistor to 5V</td>
+<td>+5V</td>
+</tr>
+<tr>
+<td>16</td>
+<td>K</td>
+<td>'Back Light' Cathode</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center;">Table 1 - LCD to Arduino Connections</p>
+<ul>
+<li><span style="line-height: 1.2; font-size: 14px;">The 4K7Ω potentiometer is used to adjust the contrast.&nbsp;Connect one side to GND and the opposite side to +5V. Then connect the centre pin to pin 3 on the LCD. &nbsp;It doesn't matter which side of the pot is at +5V and which is at GND.</span></li>
+<li>LCD pins 15,16 are for the “back light” LED. Pin 15 is the anode or positive terminal of the LED and should be connected through a 10KΩ resistor to +5V.&nbsp;</li>
+<li>Because we will only be writing, pin 5 will&nbsp;be grounded to show that there will be no reading.</li>
+</ul>
+</div>
+<h3 dir="ltr">&nbsp;</h3>
+<h2>Wiring the LCD Display to the Arduino</h2>
+<p>Follow the above table and circuit diagram in&nbsp;and wire up the LCD using the wires provided. The wires are colour coded to help you.</p>
+<table width="100%">
+<tbody>
+<tr>
+<td>&nbsp;Wire Colour</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Red</td>
+<td>+5V (Vcc)</td>
+</tr>
+<tr>
+<td>Black</td>
+<td>Ground</td>
+</tr>
+<tr>
+<td>White</td>
+<td>Data Lines</td>
+</tr>
+<tr>
+<td>Blue</td>
+<td>Control Lines</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<div style="text-align: center;"><img src="./How to connect an LCD to the Arduino   LimeTrace_files/LCD_to_Arduino_Interface_2_large.jpg" alt=""><br>
+<p>Figure 1 - LCD to Arduino Connections</p>
+<p>&nbsp;</p>
+<div id="content">
+<div class="region region region-content">
+<div id="block-system-main" class="block block-system">
+<div class="content">
+<div id="node-19" class="node node-article" about="/?q=diy-tutorials" typeof="sioc:Item foaf:Document">
+<div class="node-container">
+<div class="nodecontent">
+<div class="field field-name-body field-type-text-with-summary field-label-hidden">
+<div class="field-items">
+<div class="field-item even" property="content:encoded" style="text-align: left;">
+<h3 dir="ltr" style="text-align: left;">&nbsp;</h3>
+<h2 dir="ltr" style="text-align: left;">Sketch Code</h2>
+<p style="text-align: left;">To run the sketch code you need to:</p>
+<ul>
+<li style="text-align: left;"><span style="line-height: 1.2; font-size: 14px;">Open up the </span><a href="http://arduino.cc/en/Main/Software" target="_blank" title="Arduino IDE Download Link" style="line-height: 1.2; font-size: 14px;">Arduino IDE</a><span style="line-height: 1.2; font-size: 14px;">&nbsp;</span></li>
+<li style="text-align: left;">Select File -&gt; Examples -&gt; LiquidCrystal -&gt; HelloWorld &nbsp;</li>
+<li style="text-align: left;">Open the sketch and upload it to your Arduino board &nbsp;</li>
+<li style="text-align: left;">Once you are comfortable with the code you can change the text, display variables, sensor values or even use analogRead().</li>
+</ul>
+<span style="text-align: left; font-size: 14px; line-height: 1.5;">The Arduino LiquidCrystal&nbsp;</span><a href="http://arduino.cc/en/Reference/LiquidCrystal?from=Tutorial.LCDLibrary" title="LCDCrystal Library" style="text-align: left; font-size: 14px; line-height: 1.5;">library</a><span style="text-align: left; font-size: 14px; line-height: 1.5;">&nbsp;allows an Arduino board to control&nbsp;</span><span class="wikiword" style="text-align: left; font-size: 14px; line-height: 1.5;">LCDs</span><span style="text-align: left; font-size: 14px; line-height: 1.5;">&nbsp;that use the commonly employed Hitachi&nbsp;</span><span class="wikiword" style="text-align: left; font-size: 14px; line-height: 1.5;">HD44780</span><span style="text-align: left; font-size: 14px; line-height: 1.5;">&nbsp;or compatible controller.&nbsp;The library can use either 4 or 8 data lines in addition to the </span><em style="text-align: left; font-size: 14px; line-height: 1.5;">rs</em><span style="text-align: left; font-size: 14px; line-height: 1.5;">, </span><em style="text-align: left; font-size: 14px; line-height: 1.5;">enable</em><span style="text-align: left; font-size: 14px; line-height: 1.5;">&nbsp;and optional&nbsp;</span><em style="text-align: left; font-size: 14px; line-height: 1.5;">rw</em><span style="text-align: left; font-size: 14px; line-height: 1.5;"> control lines. &nbsp;In this example we use Arduino pins 12,11,10, and 9 to connect to LCD pins 11,12,13 and 14, respectively (see Table 1). &nbsp;</span></div>
+<div class="field-item even" property="content:encoded" style="text-align: left;"></div>
+<div class="field-item even" property="content:encoded" style="text-align: left;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="txt step-body">
+<div class="instructions">
+<div style="text-align: left;"><code>/*<br>LiquidCrystal Library - Hello World<br><br>Demonstrates the use a 16x2 LCD display. The LiquidCrystal<br>library works with all LCD displays that are compatible with the <br>Hitachi HD44780 driver. There are many of them out there, and you<br>can usually tell them by the 16-pin interface.<br><br>This sketch prints "Hello LimeTrace!" to the LCD<br>and shows the time.<br><br>The circuit:<br>* LCD RS pin to digital pin 7<br>* LCD Enable pin to digital pin 8<br>* LCD D4 pin to digital pin 9<br>* LCD D5 pin to digital pin 10<br>* LCD D6 pin to digital pin 11<br>* LCD D7 pin to digital pin 12<br>* LCD R/W pin to ground<br>* 10K resistor:<br>* ends to +5V and ground<br>* wiper to LCD VO pin (pin 3)<br><br>Library originally added 18 Apr 2008<br>by David A. Mellis<br>library modified 5 Jul 2009<br>by Limor Fried (http://www.ladyada.net)<br>example added 9 Jul 2009<br>by Tom Igoe<br>modified 22 Nov 2010<br>by Tom Igoe</code></div>
+<div style="text-align: left;"><code>This example code is in the public domain.<br><br>http://www.arduino.cc/en/Tutorial/LiquidCrystal<br>*/<br><br>// include the library code:<br>#include &lt;LiquidCrystal.h&gt;<br><br>// Initialize the library with the interface&nbsp;</code><code>pins</code></div>
+<div style="text-align: left;"><code>LiquidCrystal lcd(7, 8, 9, 10, 11, 12);<br><br>void <strong>setup</strong>() {</code></div>
+<div style="text-align: left;"><code>// set up the LCD's number of columns and rows&nbsp;<br>lcd.begin(16, 2);<br>// Print a message to the LCD<br>lcd.print("hello LimeTrace!");<br>}<br><br>void <strong>loop</strong>() {<br>// set the cursor to column 0, line 1<br>// (line 1 is the second row, since counting begins with 0)<br>lcd.setCursor(0, 1);<br>// print the number of seconds since reset:<br>lcd.print(millis()/1000);<br>}<br><br></code></div>
+<div class="line number86 index85 alt1">
+<div id="content">
+<div class="region region region-content">
+<div id="block-system-main" class="block block-system">
+<div class="content">
+<div id="node-19" class="node node-article" about="/?q=diy-tutorials" typeof="sioc:Item foaf:Document">
+<div class="node-container">
+<div class="nodecontent">
+<div class="field field-name-body field-type-text-with-summary field-label-hidden">
+<div class="field-items">
+<div class="field-item even" property="content:encoded">
+<p style="text-align: left;">&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+      </div>
+
+      <div class="article-footer clearfix">
+        <p class="author">Written by LimeTrace Admin</p>
+      </div>
+      
+    </div><!-- /.article -->
+    
+    
+
+
+      
+
+
+    <form method="post" action="http://www.limetrace.co.uk/blogs/electronics-tutorials/8795313-how-to-connect-an-lcd-to-the-arduino/comments" id="article-8795313-comment-form" class="comment-form" accept-charset="UTF-8"><input name="form_type" type="hidden" value="new_comment"><input name="utf8" type="hidden" value="✓"> 
+    <div class="comment_form" id="comment-form">
+
+      <h2 class="title">Leave a comment</h2>
+
+            
+
+      
+        <p class="notice">Comments have to be approved before showing up.</p>
+            
+
+      <div class="clearfix">
+        <label for="comment_author">Name <strong class="req">*</strong></label>
+        <input type="text" id="comment_author" name="comment[author]" size="40" value="" class="text ">
+      </div>
+      <div class="clearfix">
+        <label for="comment_email">Email <strong class="req">*</strong></label>
+        <input type="text" id="comment_email" name="comment[email]" size="40" value="" class="text ">
+      </div>
+      <div class="clearfix">
+        <label for="comment_body">Comment <strong class="req">*</strong></label>
+        <textarea id="comment_body" name="comment[body]" cols="40" rows="5" class="text "></textarea>
+      </div> 
+
+      <input type="submit" value="Post comment" id="comment-submit" class="btn">
+
+    
+    </div></form> <!-- end div.comment_form -->
+
+
+    
+    
+    
+  </div><!-- /.articles --> 
+</div><!-- /.col-content -->
+  
+<div class="col-browse">
+  
+<!-- Widget: list all collections -->
+<div class="widget widget-linklist" id="widget-allcollections">
+	<div class="widget-header">
+		<h3><a href="http://www.limetrace.co.uk/collections">Product Categories</a></h3>
+	</div>
+	<div class="widget-content">
+		<ul>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/arduino" title="Arduino">Arduino<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/bare-conductive" title="Bare Conductive">Bare Conductive<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/batteries-and-power" title="Batteries and Power">Batteries and Power<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/breakout-boards" title="Breakout Boards">Breakout Boards<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/components" title="Components">Components<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/connectors-and-sockets" title="Connectors &amp; Sockets">Connectors &amp; Sockets<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/dangerous-prototypes" title="Dangerous ProtoTypes">Dangerous ProtoTypes<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/frontpage" title="Frontpage">Frontpage<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/leds" title="Leds &amp; Accessories">Leds &amp; Accessories<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/new-products" title="New Products">New Products<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/prototyping" title="Prototyping">Prototyping<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/raspberry-pi" title="Raspberry Pi">Raspberry Pi<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/storage" title="Storage">Storage<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/tools" title="Tools">Tools<span class="arrow"></span></a></li>
+		
+		</ul>
+	</div>		
+</div><!-- /.widget -->
+
+
+
+	<!-- Widget: Custom linklist -->
+<div class="widget widget-linklist" id="widget-main-menu">
+	<div class="widget-header">
+		<h3>Main Menu</h3>
+	</div>
+	<div class="widget-content">
+		<ul>
+		
+			<li><a href="http://www.limetrace.co.uk/" title="Home">Home<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/collections/all" title="Catalog">Catalog<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/blogs/news" title="News">News<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/blogs/electronics-tutorials" title="Tutorials">Tutorials<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/pages/about-us" title="About Us">About Us<span class="arrow"></span></a></li>
+		
+			<li><a href="http://www.limetrace.co.uk/pages/contact-us" title="Contact Us">Contact Us<span class="arrow"></span></a></li>
+		
+		</ul>
+	</div>		
+</div><!-- /.widget -->
+
+
+
+
+
+
+  
+<div id="widget-socialmedia" class="widget widget-linklist">
+  <ul>
+    <li id="sm-facebook"><a href="https://www.facebook.com/limetrace">Become a fan on Facebook</a></li>
+    <li id="sm-twitter"><a href="https://twitter.com/limetrace">Follow us on Twitter</a></li>
+    
+    <li id="sm-flickr"><a href="http://www.flickr.com/photos/limetrace">View our photo stream on Flickr</a></li>
+  </ul>
+</div>
+   
+  
+
+
+
+
+
+
+</div><!-- /#col-browse --> 
+
+        
+        
+      </div><!-- /.content -->
+    </div><!-- /#main -->
+  
+  </div><!-- /#main-wrapper -->
+
+
+
+  <!-- Footer -->
+  <div id="footer-wrapper">
+    <div id="footer" class="wrapper clearfix">
+            
+      <div class="join-newsletter footer-col">
+        <h3>Join our Mailing List</h3> 
+        <form method="post" action="http://www.limetrace.co.uk/contact" class="contact-form" accept-charset="UTF-8"><input name="form_type" type="hidden" value="customer"><input name="utf8" type="hidden" value="✓"> 
+        
+          
+
+          
+        
+          <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
+          <div id="newsletter-signup">
+            <input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Subscriber">
+            <input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Newsletter">
+            <label for="newsletter-email">Email address:</label>
+            <input type="email" class="email" id="newsletter-email" name="contact[email]">
+            <input type="submit" class="submit btn" value="Join">
+          </div>
+        </form>     
+      </div>
+      
+      <div class="footer-linklists footer-col">
+        	
+<div class="footer-linklist">				
+	<h3>Main Menu</h3>
+	<ul>
+		
+      <li class="first">
+				<a href="http://www.limetrace.co.uk/"><span class="arrow"></span>Home</a>
+			</li>
+    
+      <li>
+				<a href="http://www.limetrace.co.uk/collections/all"><span class="arrow"></span>Catalog</a>
+			</li>
+    
+      <li>
+				<a href="http://www.limetrace.co.uk/blogs/news"><span class="arrow"></span>News</a>
+			</li>
+    
+      <li>
+				<a href="http://www.limetrace.co.uk/blogs/electronics-tutorials"><span class="arrow"></span>Tutorials</a>
+			</li>
+    
+      <li>
+				<a href="http://www.limetrace.co.uk/pages/about-us"><span class="arrow"></span>About Us</a>
+			</li>
+    
+      <li class="last">
+				<a href="http://www.limetrace.co.uk/pages/contact-us"><span class="arrow"></span>Contact Us</a>
+			</li>
+    	
+	</ul>
+</div>
+       
+        	
+<div class="footer-linklist">				
+	<h3>Footer</h3>
+	<ul>
+		
+      <li class="first">
+				<a href="http://www.limetrace.co.uk/search"><span class="arrow"></span>Search</a>
+			</li>
+    
+      <li>
+				<a href="http://www.limetrace.co.uk/pages/about-us"><span class="arrow"></span>About Us</a>
+			</li>
+    
+      <li class="last">
+				<a href="http://www.limetrace.co.uk/blogs/news"><span class="arrow"></span>News</a>
+			</li>
+    	
+	</ul>
+</div>
+       
+        	
+<div class="footer-linklist">				
+	<h3></h3>
+	<ul>
+			
+	</ul>
+</div>
+                 
+      </div>      
+      
+      <div class="footer-text footer-col">
+        <p>© Limetrace 2013</p>
+        <p class="poweredby"><a href="http://www.shopify.co.uk/website/templates" target="_blank">Website template by Shopify</a></p>        
+      </div>
+
+    
+    <div id="footer-payment-methods">
+      <p>Payment methods we accept</p>
+      
+      
+             <img src="./How to connect an LCD to the Arduino   LimeTrace_files/cc-visa.png" alt="">      
+       <img src="./How to connect an LCD to the Arduino   LimeTrace_files/cc-mastercard.png" alt="">      
+          <img src="./How to connect an LCD to the Arduino   LimeTrace_files/cc-maestro.png" alt=""> 
+       
+           <img src="./How to connect an LCD to the Arduino   LimeTrace_files/cc-paypal.png" alt=""> 
+           <img src="./How to connect an LCD to the Arduino   LimeTrace_files/cc-google.png" alt="">      
+    </div>
+    
+
+
+    
+    </div><!-- /#footer -->
+  </div><!-- /#footer-wrapper -->
+  
+    
+
+  <script src="./How to connect an LCD to the Arduino   LimeTrace_files/jquery.js"></script>
+  <script src="./How to connect an LCD to the Arduino   LimeTrace_files/jquery.hoverintent.js" type="text/javascript"></script>    
+  <script src="./How to connect an LCD to the Arduino   LimeTrace_files/jquery.tools.min.js" type="text/javascript"></script>  
+  <script src="./How to connect an LCD to the Arduino   LimeTrace_files/facebox.js" type="text/javascript"></script>
+  
+  
+        
+  
+
+  <script src="./How to connect an LCD to the Arduino   LimeTrace_files/theme.js" type="text/javascript"></script>
+  
+  
+   
+   <a href="https://plus.google.com/112360185317994604163" rel="publisher"></a>
+  
+  <!-- Currencies Mod 17/06/13 -->
+  <script src="./How to connect an LCD to the Arduino   LimeTrace_files/currencies.js" type="text/javascript"></script>
+<script src="./How to connect an LCD to the Arduino   LimeTrace_files/jquery.currencies.min.js" type="text/javascript"></script>
+
+<script>
+
+// Pick your format here: 
+// money_format or money_with_currency_format
+Currency.format = 'money_format';
+
+var shopCurrency = 'GBP';
+var cookieCurrency = Currency.cookie.read();
+
+/* Fix for customer account pages */
+jQuery('span.money span.money').each(function() {
+  jQuery(this).parents('span.money').removeClass('money');
+});
+
+jQuery('span.money').each(function() {
+  jQuery(this).attr('data-currency-GBP', jQuery(this).html());
+});
+
+// Select all your currencies buttons.
+// In theory there could be more than 2.
+var buttons = jQuery('#currencies span');
+
+// When the page loads.
+if (cookieCurrency == null || cookieCurrency == shopCurrency) {
+  Currency.currentCurrency = shopCurrency;
+}
+else {
+  Currency.currentCurrency = cookieCurrency;
+  Currency.convertAll(shopCurrency, cookieCurrency);
+  buttons.removeClass('selected');
+  jQuery('#currencies span[data-currency=' + cookieCurrency + ']').addClass('selected');
+}
+
+// When customer clicks on a currency button.
+buttons.click(function() {
+  buttons.removeClass('selected');
+  jQuery(this).addClass('selected');
+  var newCurrency =  jQuery(this).attr('data-currency');
+  Currency.convertAll(Currency.currentCurrency, newCurrency);
+});
+
+// For options.
+var original_selectCallback = window.selectCallback;
+var selectCallback = function(variant, selector) {
+  original_selectCallback(variant, selector);
+  Currency.convertAll(shopCurrency, jQuery('#currencies span.selected').attr('data-currency'));
+  jQuery('.selected-currency').text(Currency.currentCurrency);
+};
+
+jQuery('.selected-currency').text(Currency.currentCurrency);
+
+</script>
+  <!-- End Currencies Mod 17/06/13 -->
+ 
+
+
+<script src="./How to connect an LCD to the Arduino   LimeTrace_files/p"></script></body></html>

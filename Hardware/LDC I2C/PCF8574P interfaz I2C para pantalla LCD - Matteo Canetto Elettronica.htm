@@ -1,0 +1,950 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0083)http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" prefix="og: http://ogp.me/ns#" dir="ltr" class="wf-pontanosans-n4-active wf-active"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica</title>
+    <link rel="pingback" href="http://www.mauroalfieri.it/xmlrpc.php"> 
+    
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.4.19 - http://yoast.com/wordpress/seo/ -->
+<meta name="robots" content="noodp">
+<meta name="description" content="In questo tutorial Matteo Canetto, appassionato di domotica ed arduino, ti mostra come usare il PCF8574 per scriver su un display LCD con i2c">
+<link rel="canonical" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica.htm">
+<link rel="publisher" href="https://plus.google.com/113655739528216998207">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="artículo">
+<meta property="og:title" content="PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica">
+<meta property="og:description" content="In questo tutorial Matteo Canetto, appassionato di domotica ed arduino, ti mostra come usare il PCF8574 per scriver su un display LCD con i2c">
+<meta property="og:url" content="http://www.mauroalfieri.it/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html">
+<meta property="og:site_name" content="Mauro Alfieri">
+<meta property="article:tag" content="Arduino I2C">
+<meta property="article:tag" content="pantalla lcd">
+<meta property="article:tag" content="lcd">
+<meta property="article:tag" content="PCF8574">
+<meta property="article:section" content="Electrónica">
+<meta property="article:section" content="Robótica y Domótica">
+<meta property="article:published_time" content="2013-04-05T08:35:01+00:00">
+<meta property="article:modified_time" content="2013-04-04T08:36:14+00:00">
+<meta property="og:image" content="http://www.mauroalfieri.it/wp-content/uploads/2013/04/PCF8574P-pinout.jpg">
+<meta property="og:image" content="http://www.mauroalfieri.it/wp-content/uploads/2013/04/pcf8574-foto-dip.jpg">
+<meta property="og:image" content="http://www.mauroalfieri.it/wp-content/uploads/2013/04/PCF8574P-2004A-B-W102-400x235.jpg">
+<meta property="og:image" content="http://www.mauroalfieri.it/wp-content/uploads/2013/04/schema-400x302.jpg">
+<meta property="og:image" content="http://www.mauroalfieri.it/wp-content/uploads/2013/04/PCF8574P-i2c-lcd-schema-400x181.png">
+<meta property="og:image" content="http://www.mauroalfieri.it/wp-content/uploads/2013/04/PCF8574P-configurazione-indirizzo-400x193.png">
+<meta property="og:image" content="http://www.mauroalfieri.it/wp-content/uploads/2013/04/DomoticOne2-400x299.jpg">
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="Mauro Alfieri » Feed" href="http://www.mauroalfieri.it/es/feed">
+<link rel="alternate" type="application/rss+xml" title="Mauro Alfieri » Feed dei commenti" href="http://www.mauroalfieri.it/es/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Mauro Alfieri » PCF8574P interfaz I2C para pantalla LCD Feed dei commenti" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html/feed">
+	<script src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/cb=gapi.loaded_1" async=""></script><script type="text/javascript" async="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/widgets.js"></script><script type="text/javascript" async="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/ga.js"></script><script src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/plusone.js" gapi_processed="true"></script><script src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/webfont.js" type="text/javascript" async=""></script><script type="text/javascript">
+	WebFontConfig = {
+		google: { families: ['Pontano+Sans::latin'] }
+	};
+	(function() {
+		var wf = document.createElement('script');
+		wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+		wf.type = 'text/javascript';
+		wf.async = 'true';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(wf, s);
+	})(); 
+    </script>
+    <link rel="stylesheet" id="bawlb3_css-css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/lightbox.css" type="text/css" media="all">
+<link rel="stylesheet" id="sociablecss-css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/sociable.css" type="text/css" media="all">
+<link rel="stylesheet" id="events-manager-css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/events_manager.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-syntax-css-css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/wp-syntax.css" type="text/css" media="all">
+<link rel="stylesheet" id="graphene-stylesheet-css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/style.css" type="text/css" media="screen">
+<link rel="stylesheet" id="mailchimp-for-wp-css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/css.php" type="text/css" media="all">
+<link rel="stylesheet" id="flags_tpw_flags-css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/tpw_flags.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-pagenavi-css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/pagenavi-css.css" type="text/css" media="all">
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/prototype.js"></script><style type="text/css" style="display: none !important;">object:not([type]),object[classid$=":D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid$=":d27cdb6e-ae6d-11cf-96b8-444553540000"],object[codebase*="swflash.cab"],object[data*=".swf"],embed[type="application/x-shockwave-flash"],embed[src*=".swf"],object[type="application/x-shockwave-flash"],object[src*=".swf"],object[codetype="application/x-shockwave-flash"],iframe[type="application/x-shockwave-flash"],object[classid$=":166B1BCA-3F9C-11CF-8075-444553540000"],object[codebase*="sw.cab"],object[data*=".dcr"],embed[type="application/x-director"],embed[src*=".dcr"],object[type="application/x-director"],object[src*=".dcr"],object[classid$=":15B782AF-55D8-11D1-B477-006097098764"],object[codebase*="awswaxf.cab"],object[data*=".aam"],embed[type="application/x-authorware-map"],embed[src*=".aam"],object[type="application/x-authorware-map"],object[src*=".aam"],object[classid*="32C73088-76AE-40F7-AC40-81F62CB2C1DA"],object[type="application/ag-plugin"],object[type="application/x-silverlight"],object[type="application/x-silverlight-2"],object[source*=".xaml"],object[sourceelement*="xaml"],embed[type="application/ag-plugin"],embed[source*=".xaml"]{display: none !important;}</style><style type="text/css"></style>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/scriptaculous.js"></script><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/builder.js"></script><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/effects.js"></script><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/dragdrop.js"></script><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/controls.js"></script><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/slider.js"></script><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/sound.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/effects(1).js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/lightbox-resize.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/sociable.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/vuible.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/addtofavorites.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.position.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.mouse.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.sortable.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.menu.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.autocomplete.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.resizable.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.draggable.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.button.min.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.ui.dialog.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var EM = {"ajaxurl":"http:\/\/www.mauroalfieri.it\/wp-admin\/admin-ajax.php","locationajaxurl":"http:\/\/www.mauroalfieri.it\/wp-admin\/admin-ajax.php?action=locations_search","firstDay":"1","locale":"es","dateFormat":"dd\/mm\/yy","ui_css":"http:\/\/www.mauroalfieri.it\/wp-content\/plugins\/events-manager\/includes\/css\/ui-lightness.css","show24hours":"1","is_ssl":"","bookingInProgress":"\u0001Por favor, espera mientras la reserva se env\u00eda.\u0003","tickets_save":"\u0001Guardar ticket\u0003","bookingajaxurl":"http:\/\/www.mauroalfieri.it\/wp-admin\/admin-ajax.php","bookings_export_save":"\u0001Exportar reservas\u0003","bookings_settings_save":"\u0001Guardar configuraci\u00f3n\u0003","booking_delete":"\u0001\u00bfEst\u00e1s seguro que quieres borrar?\u0003","bb_full":"Evento completo, non puoi prenotarti","bb_book":"Prenota ora","bb_booking":"Prenotazione in corso ...","bb_booked":"Prenotazione Submitted","bb_error":"Prenotazione Error. Vuoi Riprovare?","bb_cancel":"Annullare","bb_canceling":"Cancellazione in corso ...","bb_cancelled":"Cancellato","bb_cancel_error":"Errore cancellazione. Vuoi riprovare?","txt_search":"Cerca","txt_searching":"\u0001Buscando...\u0003","txt_loading":"\u0001Cargando...\u0003","locale_data":{"closeText":"Cerrar","prevText":"<Ant","nextText":"Sig>","currentText":"Hoy","monthNames":["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],"monthNamesShort":["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],"dayNames":["Domingo","Lunes","Martes","Mi\u00e9rcoles","Jueves","Viernes","S\u00e1bado"],"dayNamesShort":["Dom","Lun","Mar","Mi\u00e9","Juv","Vie","S\u00e1b"],"dayNamesMin":["Do","Lu","Ma","Mi","Ju","Vi","S\u00e1"],"weekHeader":"Sm","dateFormat":"dd\/mm\/yy","firstDay":1,"isRTL":false,"showMonthAfterYear":false,"yearSuffix":""}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/events-manager.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery.tools.min.js"></script>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Pontano+Sans&subset=latin"><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/comment-reply.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var grapheneJS = {"templateUrl":"http:\/\/www.mauroalfieri.it\/wp-content\/themes\/graphene","isSingular":"1","shouldShowComments":"1","commentsOrder":"newest","sliderDisable":"","sliderAnimation":"horizontal-slide","sliderTransSpeed":"400","sliderInterval":"7000","sliderDisplay":"thumbnail-excerpt","infScroll":"","infScrollClick":"","infScrollComments":"","totalPosts":"1","postsPerPage":"10","isPageNavi":"1","infScrollMsgText":"\u0001Obteniendo otro \u0002window.grapheneInfScrollItemsPerPage\u0004 elemento de los \u0002window.grapheneInfScrollItemsLeft\u0004 que quedan...\u0003","infScrollMsgTextPlural":"\u0001Obteniendo otros \u0002window.grapheneInfScrollItemsPerPage\u0004 elementos de los \u0002window.grapheneInfScrollItemsLeft\u0004 que quedan...\u0003","infScrollFinishedText":"\u0001No hay m\u00e1s elementos\u0003","commentsPerPage":"50","totalComments":"5","infScrollCommentsMsg":"\u0001Obteniendo otro \u0002window.grapheneInfScrollCommentsPerPage\u0004 comentario de nivel superior de los \u0002window.grapheneInfScrollCommentsLeft\u0004 que quedan...\u0003","infScrollCommentsMsgPlural":"\u0001Obteniendo otros \u0002window.grapheneInfScrollCommentsPerPage\u0004 comentarios de nivel superior m\u00e1s de los \u0002window.grapheneInfScrollCommentsLeft\u0004 que quedan...\u0003","infScrollCommentsFinishedMsg":"\u0001No hay m\u00e1s comentarios\u0003"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/graphene.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var t_jp = {"ajaxurl":"http:\/\/www.mauroalfieri.it\/wp-admin\/admin-ajax.php","plugin_url":"\/\/www.mauroalfieri.it\/wp-content\/plugins\/transposh-translation-filter-for-wordpress","lang":"es","olang":"it","prefix":"tr_","preferred":"1","msn":"1","google":"1","progress":"1","theme":"cupertino","jQueryUI":"\/\/ajax.googleapis.com\/ajax\/libs\/jqueryui\/1.9.2\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/transposh.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.mauroalfieri.it/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.mauroalfieri.it/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 3.7.1">
+<link rel="shortlink" href="http://www.mauroalfieri.it/?p=3800">
+
+<!-- This site is using AdRotate v3.8.9 to display their advertisements - http://www.adrotateplugin.com/ -->
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-43502311-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">var base_url_sociable = 'http://www.mauroalfieri.it/wp-content/plugins/sociable/'</script><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/plusone(1).js" gapi_processed="true"></script><link rel="alternate" hreflang="it" href="http://www.mauroalfieri.it/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html"><link rel="alternate" hreflang="en" href="http://www.mauroalfieri.it/en/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html"><link rel="alternate" hreflang="fr" href="http://www.mauroalfieri.it/fr/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html"><script type="text/javascript">
+	window._wp_rp_static_base_url = 'http://dtmvdvtzf8rz0.cloudfront.net/static/';
+	window._wp_rp_wp_ajax_url = "http://www.mauroalfieri.it/wp-admin/admin-ajax.php";
+	window._wp_rp_plugin_version = '2.9';
+	window._wp_rp_post_id = '3800';
+	window._wp_rp_num_rel_posts = '5';
+</script>
+<meta name="keywords" content="Arduino I2C, pantalla lcd, lcd, PCF8574">
+
+<meta name="keywords" content="electrónica,  Arduino,  informática,  linux,  tutorial,  Arduino tutorial,  cocina,  recetas,  DIY,  fibre ottiche,  llevó, comunicazione i2c arduino, pantalla lcd, lcd, pcf8574">
+<meta name="description" content="PCF8574P interfaz I2C para pantalla LCD - Qualche giorno fa Matteo Canetto mi ha scritto un’email raccontandomi il suo progetto e di alcuni test eseguiti con il PCF8574P interfaccia I2C per ...">
+
+<!-- WP Youtube Player 1.7 by unijimpe -->
+<style type="text/css">
+body{background-image:none}.header_title, .header_title a, .header_title a:visited, .header_title a:hover, .header_desc {color:#blank}#sidebar_bottom .sidebar-wrap{width:920px}#nav li ul{width:200px} #nav li ul ul{margin-left:200px}#header-menu ul li a, #secondary-menu ul li a{width:180px}#header{height:180px}#header_img_link{width:960px; height:180px}
+</style>
+		<link rel="icon" href="http://www.mauroalfieri.it/favicon.ico" type="image/x-icon">
+		<!--[if lte IE 7]>
+      <style type="text/css" media="screen">
+      	#footer, div.sidebar-wrap, .block-button, .featured_slider, #slider_root, #nav li ul, .pie{behavior: url(http://www.mauroalfieri.it/wp-content/themes/graphene/js/PIE.php);}
+        .featured_slider{margin-top:0 !important;}
+        #header-menu-wrap {z-index:5}
+      </style>
+    <![endif]-->
+    <style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #102f4f; }
+</style>
+<link rel="stylesheet" type="text/css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shCore.css"><link rel="stylesheet" type="text/css" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+<meta name="translation-stats" content="{&quot;total_phrases&quot;:416,&quot;translated_phrases&quot;:253,&quot;human_translated_phrases&quot;:null,&quot;hidden_phrases&quot;:74,&quot;hidden_translated_phrases&quot;:67,&quot;hidden_translateable_phrases&quot;:7,&quot;meta_phrases&quot;:64,&quot;meta_translated_phrases&quot;:40,&quot;time&quot;:null}">
+<script src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/nonSecureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1384010772737_0 a#li_ui_li_gen_1384010772737_0-link{height:1% !important;}#li_ui_li_gen_1384010772737_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1384010772737_0 a#li_ui_li_gen_1384010772737_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1384010772737_0 a#li_ui_li_gen_1384010772737_0-link:link, #li_ui_li_gen_1384010772737_0 a#li_ui_li_gen_1384010772737_0-link:visited, #li_ui_li_gen_1384010772737_0 a#li_ui_li_gen_1384010772737_0-link:hover, #li_ui_li_gen_1384010772737_0 a#li_ui_li_gen_1384010772737_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1384010772737_0 a#li_ui_li_gen_1384010772737_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-logo{background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -276px no-repeat !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;}#li_ui_li_gen_1384010772737_0.hovered #li_ui_li_gen_1384010772737_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-logo, #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-logo{}#li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1384010772737_0.hovered #li_ui_li_gen_1384010772737_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-title, #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title{}.IN-shadowed #li_ui_li_gen_1384010772737_0.hovered #li_ui_li_gen_1384010772737_0-title{}.IN-shadowed #li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-title, .IN-shadowed #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-title{}#li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title-text, #li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1384010772737_0.hovered #li_ui_li_gen_1384010772737_0-title-text, #li_ui_li_gen_1384010772737_0.hovered #li_ui_li_gen_1384010772737_0-title-text *{color:#000 !important;}#li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-title-text, #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-title-text, #li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-title-text *, #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-title-text *{color:#666 !important;}#li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title #li_ui_li_gen_1384010772737_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title-text, .success #li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1384010772737_0 #li_ui_li_gen_1384010772737_0-title{}.success #li_ui_li_gen_1384010772737_0.hovered #li_ui_li_gen_1384010772737_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1384010772737_0.hovered #li_ui_li_gen_1384010772737_0-title-text, .success #li_ui_li_gen_1384010772737_0.hovered #li_ui_li_gen_1384010772737_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-title, .success #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-title-text, .success #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-title-text, .success #li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-title-text *, .success #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1384010772737_0.clicked #li_ui_li_gen_1384010772737_0-title, .IN-shadowed .success #li_ui_li_gen_1384010772737_0.down #li_ui_li_gen_1384010772737_0-title{}#li_ui_li_gen_1384010772847_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1384010772847_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) right -100px no-repeat !important;}#li_ui_li_gen_1384010772847_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -60px no-repeat !important;}#li_ui_li_gen_1384010772847_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1384010772847_1-container.IN-hovered #li_ui_li_gen_1384010772847_1.IN-right, #li_ui_li_gen_1384010772847_1-container.IN-clicked #li_ui_li_gen_1384010772847_1.IN-right, #li_ui_li_gen_1384010772847_1-container.IN-down #li_ui_li_gen_1384010772847_1.IN-right {background-position-y:-120px !important;}#li_ui_li_gen_1384010772847_1-container.IN-hovered #li_ui_li_gen_1384010772847_1-inner.IN-right, #li_ui_li_gen_1384010772847_1-container.IN-clicked #li_ui_li_gen_1384010772847_1-inner.IN-right, #li_ui_li_gen_1384010772847_1-container.IN-down #li_ui_li_gen_1384010772847_1-inner.IN-right {background-position-y:-80px !important;}#li_ui_li_gen_1384010772847_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1384010772847_1-container.IN-hidden #li_ui_li_gen_1384010772847_1 {display:none !important;}</style><script type="text/javascript" charset="UTF-8" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery-ui.min.js" id="lazy-loaded-1384010775185"></script><link rel="stylesheet" type="text/css" media="all" href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/jquery-ui.css" id="lazy-loaded-1384010775189"></head>
+<body class="single single-post postid-3800 single-format-standard custom-background two_col_left two-columns" style="" data-twttr-rendered="true">
+
+
+
+<div id="container" class="container_16">
+    
+    
+        <div id="header">
+    	
+        <a href="http://www.mauroalfieri.it/es/" id="header_img_link" title="Volver a la página de inicio"><img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/testata_blog.png" alt="" width="960" height="180" class="header-img"></a>        	       
+        		
+                
+		    </div>
+    <div id="nav">
+                <div id="header-menu-wrap" class="clearfix">
+			<ul id="header-menu" class="menu clearfix grid_12"><li id="menu-item-3948" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-ancestor"><a href="http://www.mauroalfieri.it/es/chi-sono.html"><strong>¿Quién soy yo</strong></a>
+<ul class="sub-menu">
+	<li id="menu-item-3947" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://www.mauroalfieri.it/es/interessi.html">Intereses</a></li>
+</ul>
+</li>
+<li id="menu-item-3944" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-ancestor"><a href="http://www.mauroalfieri.it/es/sostienimi.html"><strong>Sostener</strong></a>
+<ul class="sub-menu">
+	<li id="menu-item-3949" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://www.mauroalfieri.it/es/collabora.html">Colaborar para tu blog</a></li>
+</ul>
+</li>
+<li id="menu-item-3945" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-ancestor"><a href="http://www.mauroalfieri.it/es/corso-arduino-on-line.html"><strong>Corso on-line</strong></a>
+<ul class="sub-menu">
+	<li id="menu-item-3956" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://www.mauroalfieri.it/es/corso-arduino-on-line.html#percorso-base">Base Camino Arduino</a></li>
+	<li id="menu-item-3955" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://www.mauroalfieri.it/es/corso-arduino-on-line.html#percorso-avanzato">Advanced Course Arduino</a></li>
+	<li id="menu-item-3957" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://www.mauroalfieri.it/es/corso-arduino-on-line.html#percorso-professionale">Trayectoria Profesional Arduino</a></li>
+</ul>
+</li>
+<li id="menu-item-4087" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://www.mauroalfieri.it/es/corso-arduino.html"><strong>Aula</strong></a></li>
+<li id="menu-item-3946" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://www.mauroalfieri.it/es/contatti.html"><strong>Contactos</strong></a></li>
+</ul>            
+            <div class="clear"></div>
+            
+			                <div id="top_search" class="grid_4">
+                    <form id="searchform" class="searchform" method="get" action="http://www.mauroalfieri.it/">
+    <p class="clearfix default_searchform">
+        <input type="text" name="s" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Buscar&#39;;}" onfocus="if (this.value == &#39;Buscar&#39;) {this.value = &#39;&#39;;}" value="Buscar">
+        <button type="submit"><span>Buscar</span></button>
+    </p>
+    </form>                                    </div>
+                        
+                    
+        </div>
+		
+                
+        <div class="menu-bottom-shadow"><span class="tr_" id="tr_1" data-token="Jm5ic3A7" data-source="1">&nbsp;</span></div>
+
+
+        
+    </div>
+
+    
+    <div id="content" class="clearfix hfeed">
+                
+                
+        <div id="content-main" class="clearfix grid_11">
+        
+	
+	<div class="post-nav clearfix">
+		<p class="previous">« <a href="http://www.mauroalfieri.it/es/elettronica/accelerometro-mma7361l-3-axis.html" rel="prev">Acelerómetro MMA7361L 3-ejes ± 1,5 g / ± 6 g</a></p>
+		<p class="next-post"><a href="http://www.mauroalfieri.it/es/elettronica/sei-servo-con-movimento-armonico-arduino.html" rel="next">Usted es un siervo movimiento armónico con arduino</a> »</p>
+			</div>
+	        
+<div id="post-3800" class="post-3800 post type-post status-publish format-standard hentry category-elettronica category-robotica-domotica tag-comunicazione-i2c-arduino tag-display-lcd tag-lcd tag-pcf8574 clearfix post">
+	
+		
+	<div class="entry clearfix">
+    	
+                    	<div class="date updated alpha ">
+        	<span class="value-title" title="2013-04-05T08:35">
+            <p class="default_date">
+            	<span class="month">apr</span>
+                <span class="day">05</span>
+                            </p>
+                    </span></div>
+    		
+                
+                
+                
+		        <h1 class="post-title entry-title">
+			PCF8574P interfaz I2C para pantalla LCD			        </h1>
+		
+				<div class="post-meta clearfix">
+			
+									<span class="printonly">Categorías: </span>
+			<p class="meta_categories"><a href="http://www.mauroalfieri.it/es/category/elettronica" title="Visualizza tutti gli articoli in Electrónica" rel="category tag">Electrónica</a>, <a href="http://www.mauroalfieri.it/es/category/robotica-domotica" title="Visualizza tutti gli articoli in Robótica y Domótica" rel="category tag">Robótica y Domótica</a></p>
+						
+									
+									
+									<p class="post-author author vcard">
+				por <span class="fn nickname"><a href="http://www.mauroalfieri.it/es/author/matteo" class="url">matthew</a></span>			</p>
+											
+						
+					</div>
+		
+				<div class="entry-content clearfix">
+							
+										
+						<p>Hace Canetto Mateo unos días me escribió un correo electrónico a hablarme de su proyecto y algunas pruebas con la interfaz I2C PCF8574P de pantalla LCD paralela.</p>
+<p><a href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P-pinout.jpg" rel="lightbox[3800]"><img class="aligncenter size-full wp-image-3802" title="PCF8574P pinout" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P-pinout.jpg" alt="PCF8574P pinout" width="400" height="400"></a></p>
+<p>Le pregunté a Mateo que contar y compartir su experiencia y recibí su email usuarios guía PCF8574P, Pantalla LCD y todas las imágenes que se encuentran en este artículo.</p>
+<p><span class="tr_" id="tr_2" data-token="TWF0dGVvIHN0YSBsYXZvcmFuZG8gYWQgdW4gcHJvZ2V0dG8gYmVuIHBpw7kgY29tcGxlc3NvIGRlbCBzZW1wbGljZSBjb250cm9sbG8gZGkgdW4gZGlzcGxheSBMQ0QgcGFyYWxsZWxvIG1lZGlhbnRlIGNvbm5lc3Npb25lIGkyYw,," data-source="1">Mateo está trabajando en un proyecto mucho más complejo que el simple control de una conexión en paralelo LCD con i2c</span>, <span class="tr_" id="tr_3" data-token="bG8gaGEgY2hpYW1hdG8gRG9tb3RpY09uZSBlIHNwZXJvIHByZXN0byBwb3NzYSB1bHRpbWFybG8gZSBpbnZpYXJlIGZvdG8," data-source="1">DomoticOne lo llamó y espero pronto para terminar y enviar fotos</span>, <span class="tr_" id="tr_4" data-token="dmlkZW8gZSBza2V0Y2ggZGVsIHN1byBwcm9nZXR0bw,," data-source="1">video y boceto de su proyecto</span>.</p>
+<h2><span class="tr_" id="tr_5" data-token="SWwgcHJvZ2V0dG8gZGkgTWF0dGVvIGNvbiBpbCBQQ0Y4NTc0UA,," data-source="1">El proyecto de Mateo con el PCF8574P</span></h2>
+<p><span class="tr_" id="tr_6" data-token="TGEgZ3VpZGEgc2NyaXR0YSBkYSBNYXR0ZW8gw6ggY29zw6wgYmVuIGZhdHRhIGNoZSBsYSByaXBvcnRvIHNlbnphIGludGVydmVudGk," data-source="1">La guía escrita por Matthew está tan bien hecho que no llevan las intervenciones</span>, buena lectura.</p>
+<p><span class="tr_" id="tr_7" data-token="T2dnaSBhbmRyZW1vIGEgY29ub3NjZSBsJiM4MjE3O2ludGVncmF0byBQY2Y4NTc0" data-source="1">Hoy vamos a conocer el integrado PCF8574</span>:</p>
+<p><a href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/pcf8574-foto-dip.jpg" rel="lightbox[3800]"><img class="aligncenter size-full wp-image-3801" title="pcf8574 foto dip" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/pcf8574-foto-dip.jpg" alt="pcf8574" width="400" height="266"><span class="tr_" id="tr_132" data-token="cGNmODU3NCBmb3RvIGRpcA,," data-source="1" data-orig="pcf8574 foto dip" data-hidden="y" data-trans="PCF8574 foto dip"></span></a></p>
+<p><span class="tr_" id="tr_8" data-token="bW9sdG8gc3Blc3NvIHN1bCBub3N0cm8gbWljcm9jb250cm9sbG9yZSBzaWFtbyBhIGNvcnRvIGRpIHBpbg,," data-source="1">muy a menudo en nuestro microcontrolador nos faltan pin</span>.</p>
+<p><span class="tr_" id="tr_9" data-token="UGVyIHJpc29sdmVyZSBxdWVzdG8gcHJvYmxlbWEgY2kgc29ubyB2YXJpIG1vZGk," data-source="1">Para resolver este problema hay varias maneras</span>,<span class="tr_" id="tr_10" data-token="dW5hIGJ1b25hIHNvbHV6aW9uZSDDqCByaWNvcnJlcmUgYSBxdWVpIGNpcmN1aXRpIGludGVncmF0aSBjaGlhbWF0aSBJTyBFeHBhbmRlciBsYSBjdWkgZnVuemlvbmUgw6ggcXVlbGxhIGRpIGF1bWVudGFyZSBpbCBudW1lcm8gZGkgSS9PIGEgZGlzcG9zaXppb25l" data-source="1">una buena solución es recurrir a esos chips llamado IO Expander cuya función es aumentar el número de E / S disponibles</span>.</p>
+<p><span class="tr_" id="tr_11" data-token="SWwgUENGODU3NCDDqCB1bg,," data-source="1">El PCF8574 es un</span> 8 <span class="tr_" id="tr_12" data-token="Yml0IGUgdXRpbGl6emEgaWwgcHJvdG9jb2xsbyBJMkM," data-source="1">bits y utiliza el protocolo I2C</span>, <span class="tr_" id="tr_13" data-token="Y2hlIGNvbXVuaWNhIHV0aWxpenphbmRvIHVuJiM4MjE3O2ludGVyZmFjY2lhIGE," data-source="1">utilizando una interfaz que comunica a</span> 2 <span class="tr_" id="tr_14" data-token="ZmlsaSBzZXJpYWxl" data-source="1">Serie del alambre</span>, <span class="tr_" id="tr_15" data-token="aW4gY3VpIHVuIGZpbG8gw6ggdW4gY2xvY2sgc2VyaWFsZQ,," data-source="1">en la que un alambre es un reloj de serie</span> (SCL) <span class="tr_" id="tr_16" data-token="ZSBsJiM4MjE3O2FsdHJvIHBlciBpIGRhdGkgc2VyaWFsaQ,," data-source="1">y el otro para los datos en serie</span> (SDA).</p>
+<p><span class="tr_" id="tr_17" data-token="Q29uIHF1ZXN0byBJQw,," data-source="1">Con este circuito integrado</span>, <span class="tr_" id="tr_18" data-token="w6ggcG9zc2liaWxlIHV0aWxpenphcmUgc29sbw,," data-source="1">Sólo se puede utilizar</span> 2 <span class="tr_" id="tr_19" data-token="cGluIGRpIEFyZHVpbm8gcGVyIGNvbnRyb2xsYXJlIGZpbm8gYQ,," data-source="1">Arduino pin para controlar hasta</span> 8 <span class="tr_" id="tr_20" data-token="aW5ncmVzc2kgbyB1c2NpdGUgZGlnaXRhbGk," data-source="1">entradas o salidas digitales</span>.</p>
+<p><a href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P-pinout.jpg" rel="lightbox[3800]"><img class="aligncenter size-full wp-image-3802" title="PCF8574P pinout" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P-pinout.jpg" alt="PCF8574P pinout" width="400" height="400"></a></p>
+<p><span class="tr_" id="tr_21" data-token="SW4gcXVlc3RvIHR1dG9yaWFsIHZlZHJlbW8gY29tZSBmYXIgY29tdW5pY2FyZSBpbCBub3N0cm8gZGlzcGxheSBsY2Q," data-source="1">En este tutorial veremos cómo comunicar nuestra pantalla lcd</span> ( <span class="tr_" id="tr_22" data-token="aW8gdXNvIHVuIDIw" data-source="1">Yo uso una 20</span>×4  <span class="tr_" id="tr_23" data-token="Y29tcGF0aWJpbGUgY29tZSAgaSBjbGFzc2ljaSAxNg,," data-source="1">compatible como el clásico 16</span>×2 <span class="tr_" id="tr_24" data-token="aGQ0NDc4MA,," data-source="1">HD44780</span> )</p>
+<p><a href="http://www.mauroalfieri.it/wp-content/uploads/2013/04/PCF8574P-2004A-B-W102.jpg" rel="lightbox[3800]"><img class="aligncenter size-medium wp-image-3803" title="PCF8574P 2004A-B-W102" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P-2004A-B-W102-400x235.jpg" alt="PCF8574P 2004A-B-W102" width="400" height="235"><span class="tr_" id="tr_133" data-token="UENGODU3NFAgMjAwNEEtQi1XMTAy" data-source="1" data-orig="PCF8574P 2004A-B-W102" data-hidden="y" data-trans="PCF8574P 2004A-B-W102"></span></a></p>
+<p><span class="tr_" id="tr_25" data-token="UGVyIGZhcmUgdHV0dG8gY2nDsiBhYmJpYW1vIGJpc29nbm8gZGVsbGU," data-source="1">Para hacer todo esto necesitamos la</span> <a title="libreria Liquid Crystal I2C" href="http://hmario.home.xs4all.nl/arduino/LiquidCrystal_I2C/LiquidCrystal_I2C.zip" target="_blank">bibliotecas</a><span class="tr_" id="tr_134" data-token="bGlicmVyaWEgTGlxdWlkIENyeXN0YWwgSTJD" data-source="1" data-orig="libreria Liquid Crystal I2C" data-hidden="y" data-trans="libreria Liquid Crystal I2C"></span> <span class="tr_" id="tr_26" data-token="YXBwcm9wcmlhcmUgY2hpYW1hdGUgIExpcXVpZENyeXN0YWxfSTJD" data-source="1">llamadas asignados LiquidCrystal_I2C</span>, <span class="tr_" id="tr_27" data-token="ZG92ZSBhbGwmIzgyMTc7aW50ZXJubyB0cm92ZXJlbW8gdHV0dG8gaWwgbmVjZXNzYXJpbyBwZXIgY29sbGVnYXJlIGlsIGRpc3BsYXkgbGNkIGRhbCBkYXRhc2hlZXQgZGVpIGNvbXBvbmVudGkgYWxsbyBzY2hlbWEgZGkgbW9udGFnZ2lv" data-source="1">en cuyo interior encontraremos todo lo necesario para conectar la pantalla LCD de la ficha técnica de los componentes en el diagrama de montaje</span>, <span class="tr_" id="tr_28" data-token="YWQgYWxjdW5pIGVzZW1waSBwZXIgbG8gc2tldGNo" data-source="1">algunos ejemplos para esbozar</span>.</p>
+<p><strong>Componentes:</strong></p>
+<ul>
+<li><span style="font-size: 12px; line-height: 18px;"><span class="tr_" id="tr_29" data-token="ZGkgY2VydG8gbm9uIGRldmUgbWFuY2FyZSBsYSBub3N0cmEgc2NoZWRhIGFyZHVpbm8," data-source="1">luego, no se pierda nuestros Arduino</span></span></li>
+<li><span style="font-size: 12px; line-height: 18px;"><span class="tr_" id="tr_30" data-token="bCYjODIxNztpbnRlZ3JhdG8gZGVsbGEgZmFtaWdsaWEgUENGODU3NDM," data-source="1">la familia integrada PCF85743</span></span></li>
+<li><span style="font-size: 12px; line-height: 18px;"><span class="tr_" id="tr_31" data-token="dW4gdHJhbnNpc3RvciBCQzU1NyBjb24gb3Bwb3J0dW5lIHJlc2lzdGVuemU," data-source="1">un transistor BC557 con resistencias apropiadas</span> ( <span class="tr_" id="tr_32" data-token="bGEgcHJpbWEgY29sbGVnYXRhIGFsIHBpZWRpbm8gYiBkYSAxS1cgZSBsYSBzZWNvbmRhIGRpcGVuZGUgZGFsbG8gc2NoZW1hIGRlbCBsY2Q," data-source="1">la primera conectada a la patilla b 1KW y el segundo depende del esquema de la pantalla LCD</span>)</span></li>
+<li><span style="font-size: 12px; line-height: 18px;"><span class="tr_" id="tr_33" data-token="SWwgY2xhc3NpY28gcG90ZW56aW9tZXRybyB1c2F0byBwZXIgcmVnb2xhcmUgaWwgY29udHJhc3RvIGRlbCBkaXNwbGF5" data-source="1">El potenciómetro clásico se utiliza para ajustar el contraste de la pantalla</span></span></li>
+</ul>
+<div><strong><span class="tr_" id="tr_34" data-token="U2NoZW1hIGRpIG1vbnRhZ2dpbw,," data-source="1">Esquema del montaje</span>:</strong></div>
+<div><strong></strong><span class="tr_" id="tr_35" data-token="cXVlc3RvIMOoIGxvIHNjaGVtYSBwcmVzZW50ZSBuZWxsYSBsaWJyZXJpYQ,," data-source="1">este es el patrón en la biblioteca</span>, <span class="tr_" id="tr_36" data-token="Y29uIHVuYSBwcm92YSBkaSBtb250YWdnaW8gZmF0dGEgZGEgbWU," data-source="1">con una prueba de instalación hecha por mí</span>:</div>
+<div><a href="http://www.mauroalfieri.it/wp-content/uploads/2013/04/schema.jpg" rel="lightbox[3800]"><img class="aligncenter size-medium wp-image-3804" title="PCF8574 schema LCD" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/schema-400x302.jpg" alt="PCF8574 LCD" width="400" height="302"><span class="tr_" id="tr_135" data-token="UENGODU3NCBzY2hlbWEgTENE" data-source="1" data-orig="PCF8574 schema LCD" data-hidden="y" data-trans="Esquema PCF8574 LCD"></span></a></div>
+<div><span class="tr_" id="tr_37" data-token="TWVudHJlIHF1ZXN0byBwZXIgc2VtcGxpZmljYXJlIGFuY29yYSBkaSBwacO5IGxlIGNvc2UgbCYjODIxNztobyBjcmVhdG8gaW8gY29uIEZyaXR6aW5nIGUgY29uIHVuIGVkaXRvciBkaSBpbW1hZ2luaQ,," data-source="1">Si bien se trata de simplificar aún más las cosas que he creado con Fritzing y con un editor de imágenes</span>:</div>
+<div></div>
+<div><a href="http://www.mauroalfieri.it/wp-content/uploads/2013/04/PCF8574P-i2c-lcd-schema.png" rel="lightbox[3800]"><img class="aligncenter size-medium wp-image-3805" title="PCF8574P i2c lcd schema" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P-i2c-lcd-schema-400x181.png" alt="PCF8574P i2c lcd schema" width="400" height="181"><span class="tr_" id="tr_136" data-token="UENGODU3NFAgaTJjIGxjZCBzY2hlbWE," data-source="1" data-orig="PCF8574P i2c lcd schema" data-hidden="y" data-trans="PCF8574P i2c lcd esquemática"></span></a></div>
+<div><span style="font-size: 12px; line-height: 18px;"><span class="tr_" id="tr_38" data-token="Q29tZSBwb3RldGUgbm90YXJlIGxlIGR1ZSBpbW1hZ2luaSBzb25vIG5ldHRhbWVudGUgZGlmZmVyZW50aQ,," data-source="1">Como se puede ver las dos imágenes son muy diferentes</span>, <span class="tr_" id="tr_39" data-token="bWEgcG9ydGFubyBhbGxvIHN0ZXNzbyBzY29wbw,," data-source="1">pero llevar a la misma finalidad</span>.</span></div>
+<div>
+<p><span class="tr_" id="tr_40" data-token="Umlhc3N1bWVuZG8gbG8gc2NoZW1hIHZlZGlhbW8gY2hlIGwmIzgyMTc7aW50ZWdyYXRvIGFpIHBpbg,," data-source="1">En resumen, vemos que el sistema integrado con pin</span> 1-2-3-8 <span class="tr_" id="tr_41" data-token="w6ggY29sbGVnYXRvIGEgR05E" data-source="1">está conectado a GND</span>, mientras 4-5-6-7 <span class="tr_" id="tr_42" data-token="c29ubyBjb2xsZWdhdGkgYWwgZGlzcGxheSBhaSBwaW4," data-source="1">están conectados a la pantalla para el pasador</span> 11-12-13-14, <span class="tr_" id="tr_43" data-token="ZGkgc2VndWl0byBhYmJpYW1vIHBpbg,," data-source="1">abajo Ciframos</span> 9-10-11 <span class="tr_" id="tr_44" data-token="c2VtcHJlIGNvbGxlZ2F0aSBhbCBkaXNwbGF5IGNvbiBpIHBpbg,," data-source="1">siempre conectado a la pantalla con los pasadores</span> 6-5-4.</p>
+<p><span class="tr_" id="tr_45" data-token="Q29sbGVnaGlhbW8gaWwgcGlu" data-source="1">Conectamos el pin</span> 12 <span class="tr_" id="tr_46" data-token="YWxsYSByZXNpc3RlbnphIGRhIHVuIDFLVw,," data-source="1">a la resistencia por un 1KW</span>, <span class="tr_" id="tr_47" data-token="YSBzdWEgdm9sdGEgY29sbGVnYXRhIGNvbCB0cmFuc2lzdG9yIHRyYW1pdGUgaWwgcGluIGIgY29uIGlsIHBpbiBjIGEgKzVWIGUgaWwgcGluIGUgY29sIHBpbg,," data-source="1">a su vez conectado con el transistor a través del pin a pin b ca +5 V y el pin con el pasador y</span> 15 Mostrar. <span class="tr_" id="tr_48" data-token="UGVyIGxhIGNvbXVuaWNhemlvbmUgdXNpYW1vIGkgcGlu" data-source="1">Para la comunicación se utiliza pin</span> 14 y 15 <span class="tr_" id="tr_49" data-token="Y29sbGVnYXRpIGFkIGFyZHVpbm8gc3UgZ2xpIGluZ3Jlc3NpIGFuYWxvZ2ljaSBBNSBlIEE0" data-source="1">conectado a las entradas analógicas de Arduino A5 y A4</span>, <span class="tr_" id="tr_50" data-token="aWwgcG90ZW56aW9tZXRybyBjb2xsZWdhdG8gYWwgcGlu" data-source="1">potenciómetro conectado a la clavija</span> 3 Mostrar,<span class="tr_" id="tr_51" data-token="ZSBjb25jbHVkaWFtbyBjb24gaWwgcGlu" data-source="1">y concluir con el pin</span> 16 <span class="tr_" id="tr_52" data-token="ZGVsIFBDRiBhICs1diBlIHBpbg,," data-source="1">el PCF a +5 v y el pin</span> 16 <span class="tr_" id="tr_53" data-token="ZGVsIGRpc3BsYXkgY29sbGVnYXRvIGEgR05E" data-source="1">mostrar conectado a GND</span>.</p>
+<p><span class="tr_" id="tr_54" data-token="Q29uIHF1ZXN0YSBjb25maWd1cmF6aW9uZSBvdHRlcnJlbW8," data-source="1">Con esta configuración, obtendremos</span> (<span class="tr_" id="tr_55" data-token="Y29uIHVuIGNsYXNzaWNvIFBDRjg1NzRB" data-source="1">con un PCF8574A clásica</span>) <span class="tr_" id="tr_56" data-token="bCYjODIxNzthZGRyZXNzIDA," data-source="1">l'dirección 0</span>×20, <span class="tr_" id="tr_57" data-token="bWVudHJlIGNvbiB1biBQQ0Y4NTc0QVA," data-source="1">mientras que con un PCF8574AP</span> (<span class="tr_" id="tr_58" data-token="Y29tZSBxdWVsbG8gZGkgcXVlc3RhIGd1aWRh" data-source="1">como el de esta guía</span>) <span class="tr_" id="tr_59" data-token="YXZyZW1tbyAw" data-source="1">0 haría</span>×38.</p>
+<p><span class="tr_" id="tr_60" data-token="TCYjODIxNzthZGRyZXNzIGNpIHNlcnZlIHBlciBpbmRpdmlkdWFyZSBpbCBub3N0cm8gaW50ZWdyYXRv" data-source="1">La dirección que tenemos que buscar nuestra integrado</span>, <span class="tr_" id="tr_61" data-token="cGVyY2jDqSB2b2xlbmRvIHBvc3NpYW1vIGNvbGxlZ2FyZQ,," data-source="1">querer porque podemos conectar</span> 8 <span class="tr_" id="tr_62" data-token="UENGIHR1dHRpIGFzc2llbWUgb2dudW5vIGNvbg,," data-source="1">PCF juntos cada uno con</span> 8 <span class="tr_" id="tr_63" data-token="aW5ncmVzc2kgbyB1c2NpdGU," data-source="1">Entradas y salidas</span>, <span class="tr_" id="tr_64" data-token="cGVyIHVuIGNvbXBsZXNzaXZvIGRpIGJlbg,," data-source="1">para un total de así</span> 64 <span class="tr_" id="tr_65" data-token="cGluIGRpZ2l0YWxpIEkvTyBpbiBwacO5IHN1bCBub3N0cm8gYXJkdWlubw,," data-source="1">pin E / S digital en más en nuestra arduino</span>!!</p>
+<p><span class="tr_" id="tr_66" data-token="Q2hlIG5lIGRpdGU," data-source="1">¿Qué tal</span>?</p>
+<p><span class="tr_" id="tr_67" data-token="Q29tZSBpbnRlZ3JhdG8gw6ggbW9sdG8gdXRpbGU," data-source="1">Cómo integrada es muy útil</span>.</p>
+<p><span class="tr_" id="tr_68" data-token="VW4gcGljY29sbyBjb25zaWdsaW8gcGVyIGwmIzgyMTc7YWNxdWlzdG8," data-source="1">Un pequeño consejo para la compra</span>, <span class="tr_" id="tr_69" data-token="dHJvdmVyZXRlIGRpdmVyc2Ugc2lnbGUgc3VpIFBDRiBh" data-source="1">usted encontrará distintos símbolos en el PCF para</span> 16 <span class="tr_" id="tr_70" data-token="cGluIGNvbWUgYXBwdW50byBBLUFQLU4tUCBlY2M," data-source="1">pin al igual que el A-AP-N-P etc</span>, <span class="tr_" id="tr_71" data-token="cHJhdGljYW1lbnRlIHNvbm8gdHV0dGkgdWd1YWxp" data-source="1">son prácticamente todos de la misma</span>, <span class="tr_" id="tr_72" data-token="c29sbyBwaWNjb2xlIHZhcmlhemlvbmkgdHJhIGNvc3RydXR0b3JpIHJpcG9ydGF0aSBzdWkgZGF0YXNoZWV0" data-source="1">sólo pequeñas variaciones entre los fabricantes que aparecen en la ficha técnica</span>.</p>
+<p><span class="tr_" id="tr_73" data-token="VW4gaW1tYWdpbmUgY2hlIHB1w7IgdG9ybmFyZSB1dGlsZSDDqCBxdWVsbGEgcXVhIHNvdHRvIHNlIHNpIHZ1b2xlIGNvbm9zY2VyZSBpIHZhcmkgYWRkcmVzcw,," data-source="1">Una imagen que puede ser útil es inferior, si usted quiere saber acerca de las diferentes direcciones</span>, <span class="tr_" id="tr_74" data-token="Y29tZSBub3RlcmV0ZSBsYSBub3N0cmEgY29uZmlndXJhemlvbmUgw6ggTC1MLUwgcGVyIG90dGVuZXJlIDA," data-source="1">como se puede ver nuestra configuración es conseguir LLL 0</span>×20 <span class="tr_" id="tr_75" data-token="b3BwdXJlIDA," data-source="1">o 0</span>×38 <span class="tr_" id="tr_76" data-token="YSBzZWNvbmRhIGRlbGwmIzgyMTc7aW50ZWdyYXRv" data-source="1">dependiendo de la integral</span>.</p>
+<p><span class="tr_" id="tr_77" data-token="RmFjY2lvIG5vdGFyZSBjaGUgTCBzdGEgcGVyIEdORCBtZW50cmUgSCBzdGEgcGVyICs1Vg,," data-source="1">Tomo nota de que la L significa GND +5 V y H representa</span>.</p>
+<p><a href="http://www.mauroalfieri.it/wp-content/uploads/2013/04/PCF8574P-configurazione-indirizzo.png" rel="lightbox[3800]"><img class="aligncenter size-medium wp-image-3806" title="PCF8574P configurazione indirizzo" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P-configurazione-indirizzo-400x193.png" alt="PCF8574P configurazione indirizzo" width="400" height="193"><span class="tr_" id="tr_137" data-token="UENGODU3NFAgY29uZmlndXJhemlvbmUgaW5kaXJpenpv" data-source="1" data-orig="PCF8574P configurazione indirizzo" data-hidden="y" data-trans="Configuración de la dirección PCF8574P"></span></a></p>
+<p>Vamos a esbozar el, <span class="tr_" id="tr_78" data-token="Y29tZSBkZXR0byBwcmltYSBhYmJpYW1vIHZhcmkgZXNlbXBpIGFsbCYjODIxNztpbnRlcm5vIGRlbGxhIGxpYnJlcmlh" data-source="1">como se ha mencionado antes de que tengamos diversos ejemplos dentro de la biblioteca</span>, <span class="tr_" id="tr_79" data-token="bm9pIHByZW5kZXJlbW8gcXVlbGxvIGNoaWFtYXRv" data-source="1">tomaremos el llamado</span> “Hello World” <span class="tr_" id="tr_80" data-token="ZSBzZSBuZWNlc3NhcmlvIHZpIGFwcG9ydGVyZW1vIHZhcmllIG1vZGlmaWNoZSBjb21lIGFwcHVudG8gbCYjODIxNzthZGRyZXNzIG8gaWwgdGlwbyBkZWwgZGlzcGxheQ,," data-source="1">y si es necesario, hará varios cambios al igual que la dirección o el tipo de visualización</span>, <span class="tr_" id="tr_81" data-token="Y29tZSBub3RlcmV0ZSDDqCBhc3NhaSBzZW1wbGljZQ,," data-source="1">como se puede ver es muy sencillo</span>:</p>
+<div><div id="highlighter_65504" class="syntaxhighlighter  cpp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">01</div><div class="line number2 index1 alt1">02</div><div class="line number3 index2 alt2">03</div><div class="line number4 index3 alt1">04</div><div class="line number5 index4 alt2">05</div><div class="line number6 index5 alt1">06</div><div class="line number7 index6 alt2">07</div><div class="line number8 index7 alt1">08</div><div class="line number9 index8 alt2">09</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp preprocessor">#incluir &lt;Wire.h&gt;</code></div><div class="line number2 index1 alt1"><code class="cpp preprocessor">#incluir &lt;LiquidCrystal_I2C.h&gt;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="cpp plain">LiquidCrystal_I2C lcd(0&lt;span </code><code class="cpp keyword bold">class</code><code class="cpp plain">=</code><code class="cpp string">"tr_"</code> <code class="cpp plain">id=</code><code class="cpp string">"tr_82"</code> <code class="cpp plain">data-token=</code><code class="cpp string">"eDIwLDE2LDI,"</code> <code class="cpp plain">data-source=</code><code class="cpp string">""</code><code class="cpp plain">&gt;x20,16,2&lt;/span&gt;);&nbsp; </code><code class="cpp comments">//&nbsp;&nbsp;&nbsp; 16&lt;span class="tr_" id="tr_83" data-token="eDIgZSBpbCB0aXBvIGRlbCBsY2Q," data-source=""&gt;x2 e il tipo del lcd&lt;/span&gt; - &lt;span class="tr_" id="tr_84" data-token="YWRkcmVzcyAweDIwIA0KDQp2b2lkIHNldHVw" data-source=""&gt;address 0x20 </code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="cpp keyword bold">void</code> <code class="cpp plain">setup&lt;/span&gt;()</code></div><div class="line number7 index6 alt2"><code class="cpp plain">{</code></div><div class="line number8 index7 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">lcd.init();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// &lt;span class="tr_" id="tr_85" data-token="aW5pemlhbGl6emEgIGxjZA,," data-source=""&gt;inizializza&nbsp; lcd&lt;/span&gt; </code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp comments">// &lt;span class="tr_" id="tr_86" data-token="U3RhbXBhIGlsIG1lc3NhZ2dpbyBzdSBMQ0Q," data-source=""&gt;Stampa il messaggio su LCD&lt;/span&gt;.</code></div><div class="line number11 index10 alt2"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">lcd.backlight();</code></div><div class="line number12 index11 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">lcd.print(</code><code class="cpp string">"¡Hola, mundo!"</code><code class="cpp plain">);</code></div><div class="line number13 index12 alt2"><code class="cpp plain">}</code></div><div class="line number14 index13 alt1"><code class="cpp keyword bold">void</code> <code class="cpp plain">loop()</code></div><div class="line number15 index14 alt2"><code class="cpp plain">{</code></div><div class="line number16 index15 alt1"><code class="cpp plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Bien, <span class="tr_" id="tr_87" data-token="c2lhbW8gYWwgdGVybWluZSBkaSBxdWVzdG8gdHV0b3JpYWw," data-source="1">estamos en el final de este tutorial</span>, <span class="tr_" id="tr_88" data-token="Y29tZSB2ZWRldGUgaWwgUENGODU3NCDDqCB1biBpbnRlZ3JhdG8gbW9sdG8gdmVyc2F0aWxlIHV0aWxlIGUgY29tcGF0dG8," data-source="1">al ver que el PCF8574 es un sistema integrado muy útil y versátil compacto</span>.</p>
+<p><span class="tr_" id="tr_89" data-token="SG8gcmVhbGl6emF0byB1bmEgcGljY29sYSBzaGllbGQgcGVyIHVuIG1pbyBwcm9nZXR0bw,," data-source="1">Hice un pequeño escudo para mi proyecto</span> (<span class="tr_" id="tr_90" data-token="aWwgRG9tb3RpY09ORQ,," data-source="1">el DomoticONE</span>, <span class="tr_" id="tr_91" data-token="cHJvZ2V0dG8gYW5jb3JhIGRhIGZpbmlyZQ,," data-source="1">proyecto inacabado</span>), <span class="tr_" id="tr_92" data-token="bCYjODIxNztpbnRlcm8gY2lyY3VpdG8gw6ggcmFjY2hpdXNvIGluIGFwcGVuYSA1eDRjbSBtYSB2b2xlbmRvIHNpIGZhIHB1w7IgcmltcGljY2lvbGlyZQ,," data-source="1">todo el circuito está cerrado en apenas 5x4cm pero si lo desea puede hacer zoom hace</span>:</p>
+<p><a href="http://www.mauroalfieri.it/wp-content/uploads/2013/04/DomoticOne2.jpg" rel="lightbox[3800]"><img class="aligncenter size-medium wp-image-3808" title="DomoticOne di Matteo Canetto" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/DomoticOne2-400x299.jpg" alt="DomoticOne" width="400" height="299"><span class="tr_" id="tr_138" data-token="RG9tb3RpY09uZSBkaSBNYXR0ZW8gQ2FuZXR0bw,," data-source="1" data-orig="DomoticOne di Matteo Canetto" data-hidden="y" data-trans="DomoticOne de Mateo Canetto"></span></a></p>
+<p><span class="tr_" id="tr_93" data-token="U3Blcm8gZGkgZXNzZXJlIHN0YXRvIHV0aWxlIGEgdHV0dGkgdm9p" data-source="1">Espero haber sido útil a todos</span>, <span class="tr_" id="tr_94" data-token="bWkgcmVzdGEgc29sbyBjaGUgYXVndXJhcnZpIGRpIGZhcmUgYW5jb3JhIHVuYSBvdHRpbWEgZXNwZXJpZW56YSBjb2wgbm9zdHJvIGFyZHVpbm8gZSBjb24gaSBQQ0Y4NTc0" data-source="1">Sólo deseo que usted tenga una gran experiencia con nuestra arduino y con PCF8574</span>.</p>
+</div>
+<!-- Start Sociable --><div class="sociable"><div class="sociable_tagline">Be Sociable, Participación!</div><ul class="clearfix"><li><a title="Facebook" class="option1_32" style="background-position:-96px 0px" rel="nofollow" target="_blank" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&t=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD"></a></li><li><a title="email" class="option1_32" style="background-position:-160px 0px" rel="nofollow" target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&to&su=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&body=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&ui=2&tf=1&shva=1"></a></li><li><a class="option1_32" style="cursor:pointer;background-position:-128px 0px" rel="nofollow" title="Añadir a Favoritos - no funciona en Chrome" onclick="javascript:AddToFavorites();"></a></li><li><a title="StumbleUpon" class="option1_32" style="background-position:-224px -32px" rel="nofollow" target="_blank" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD"></a></li><li><a title="Delicioso" class="option1_32" style="background-position:-32px 0px" rel="nofollow" target="_blank" href="http://delicious.com/post?url=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&notes=Qualche%20giorno%20fa%20Matteo%20Canetto%20mi%20ha%20scritto%20un%27email%20raccontandomi%20il%20suo%20progetto%20e%20di%20alcuni%20test%20eseguiti%20con%20il%C2%A0PCF8574P%20interfaccia%20I2C%20per%20display%20LCD%20paralleli.%0D%0A%0D%0A%0D%0A%0D%0AHo%20chiesto%20a%20Matteo%20di%20raccontare%20e%20condividere%20la%20sua%20esperienza%20ed%20ho"></a></li><li><a title="Google Reader" class="option1_32" style="background-position:-224px 0px" rel="nofollow" target="_blank" href="http://www.google.com/reader/link?url=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&srcURL=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&srcTitle=Mauro+Alfieri+appunti%2C+tutorial+e+altro+...+sui+miei+interessi"></a></li><li><a title="LinkedIn" class="option1_32" style="background-position:-288px 0px" rel="nofollow" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&source=Mauro+Alfieri+appunti%2C+tutorial+e+altro+...+sui+miei+interessi&summary=Qualche%20giorno%20fa%20Matteo%20Canetto%20mi%20ha%20scritto%20un%27email%20raccontandomi%20il%20suo%20progetto%20e%20di%20alcuni%20test%20eseguiti%20con%20il%C2%A0PCF8574P%20interfaccia%20I2C%20per%20display%20LCD%20paralleli.%0D%0A%0D%0A%0D%0A%0D%0AHo%20chiesto%20a%20Matteo%20di%20raccontare%20e%20condividere%20la%20sua%20esperienza%20ed%20ho"></a></li><li><a style="cursor:pointer" rel="nofollow" onmouseout="fixOnMouseOut(document.getElementById(&#39;sociable-post-3800&#39;), event, &#39;post-3800&#39;)" onmouseover="more(this,&#39;post-3800&#39;)"><img style="margin-top:9px" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/more.png"></a></li></ul><div onmouseout="fixOnMouseOut(this,event,&#39;post-3800&#39;)" id="sociable-post-3800" style="display:none;">   
+
+    <div style="top: auto; left: auto; display: block;" id="sociable">
+
+
+
+		<div class="popup">
+
+			<div class="content">
+
+				<ul><li style="heigth:32px;width:32px"><a title="Myspace" class="option1_32" style="background-position:0px -32px" rel="nofollow" target="_blank" href="http://www.myspace.com/Modules/PostTo/Pages/?u=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&t=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD"></a></li><li style="heigth:32px;width:32px"><a title="Gorjeo" class="option1_32" style="background-position:-288px -32px" rel="nofollow" target="_blank" href="http://twitter.com/intent/tweet?text=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD%20-%20http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html%20%20%20SHARETAG"></a></li><li style="heigth:32px;width:32px"><a title="Digg" class="option1_32" style="background-position:-64px 0px" rel="nofollow" target="_blank" href="http://digg.com/submit?phase=2&url=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&bodytext=Qualche%20giorno%20fa%20Matteo%20Canetto%20mi%20ha%20scritto%20un%27email%20raccontandomi%20il%20suo%20progetto%20e%20di%20alcuni%20test%20eseguiti%20con%20il%C2%A0PCF8574P%20interfaccia%20I2C%20per%20display%20LCD%20paralleli.%0D%0A%0D%0A%0D%0A%0D%0AHo%20chiesto%20a%20Matteo%20di%20raccontare%20e%20condividere%20la%20sua%20esperienza%20ed%20ho"></a></li><li style="heigth:32px;width:32px"><a title="Reddit" class="option1_32" style="background-position:-128px -32px" rel="nofollow" target="_blank" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD"></a></li><li style="heigth:32px;width:32px"><a title="Google Bookmarks" class="option1_32" style="background-position:-192px 0px" rel="nofollow" target="_blank" href="http://www.google.com/bookmarks/mark?op=edit&bkmk=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&annotation=Qualche%20giorno%20fa%20Matteo%20Canetto%20mi%20ha%20scritto%20un%27email%20raccontandomi%20il%20suo%20progetto%20e%20di%20alcuni%20test%20eseguiti%20con%20il%C2%A0PCF8574P%20interfaccia%20I2C%20per%20display%20LCD%20paralleli.%0D%0A%0D%0A%0D%0A%0D%0AHo%20chiesto%20a%20Matteo%20di%20raccontare%20e%20condividere%20la%20sua%20esperienza%20ed%20ho"></a></li><li style="heigth:32px;width:32px"><a title="HackerNews" class="option1_32" style="background-position:-256px 0px" rel="nofollow" target="_blank" href="http://news.ycombinator.com/submitlink?u=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&t=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD"></a></li><li style="heigth:32px;width:32px"><a title="MSNReporter" class="option1_32" style="background-position:-352px 0px" rel="nofollow" target="_blank" href="http://reporter.es.msn.com/?fn=contribute&Title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&URL=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&cat_id=6&tag_id=31&Remark=Qualche%20giorno%20fa%20Matteo%20Canetto%20mi%20ha%20scritto%20un%27email%20raccontandomi%20il%20suo%20progetto%20e%20di%20alcuni%20test%20eseguiti%20con%20il%C2%A0PCF8574P%20interfaccia%20I2C%20per%20display%20LCD%20paralleli.%0D%0A%0D%0A%0D%0A%0D%0AHo%20chiesto%20a%20Matteo%20di%20raccontare%20e%20condividere%20la%20sua%20esperienza%20ed%20ho"></a></li><li style="heigth:32px;width:32px"><a title="BlinkList" class="option1_32" style="background-position:0px 0px" rel="nofollow" target="_blank" href="http://www.blinklist.com/index.php?Action=Blink/addblink.php&Url=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&Title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD"></a></li><li style="heigth:32px;width:32px"><a title="Sphinn" class="option1_32" style="background-position:-192px -32px" rel="nofollow" target="_blank" href="http://sphinn.com/index.php?c=post&m=submit&link=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html"></a></li><li style="heigth:32px;width:32px"><a title="Posterous" class="option1_32" style="background-position:-64px -32px" rel="nofollow" target="_blank" href="http://posterous.com/share?linkto=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&title=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&selection=Qualche%20giorno%20fa%20Matteo%20Canetto%20mi%20ha%20scritto%20un%27email%20raccontandomi%20il%20suo%20progetto%20e%20di%20alcuni%20test%20eseguiti%20con%20il%C2%A0PCF8574P%20interfaccia%20I2C%20per%20display%20LCD%20paralleli.%0D%0A%0D%0A%0D%0A%0D%0AHo%20chiesto%20a%20Matteo%20di%20raccontare%20e%20condividere%20la%20sua%20esperienza%20ed%20ho"></a></li><li style="heigth:32px;width:32px"><a title="Tumblr" class="option1_32" style="background-position:-256px -32px" rel="nofollow" target="_blank" href="http://www.tumblr.com/share?v=3&u=http%3A%2F%2Fwww.mauroalfieri.it%2Felettronica%2Fpcf8574p-interfaccia-i2c-display-lcd.html&t=PCF8574P%20interfaccia%20i2C%20per%20display%20LCD&s=Qualche%20giorno%20fa%20Matteo%20Canetto%20mi%20ha%20scritto%20un%27email%20raccontandomi%20il%20suo%20progetto%20e%20di%20alcuni%20test%20eseguiti%20con%20il%C2%A0PCF8574P%20interfaccia%20I2C%20per%20display%20LCD%20paralleli.%0D%0A%0D%0A%0D%0A%0D%0AHo%20chiesto%20a%20Matteo%20di%20raccontare%20e%20condividere%20la%20sua%20esperienza%20ed%20ho"></a></li></ul>			
+
+			</div>        
+
+		  <a style="cursor:pointer" onclick="hide_sociable(&#39;post-3800&#39;,true)" class="close">
+
+		  <img onclick="hide_sociable(&#39;post-3800&#39;,true)" title="cerrar" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/closelabel.png">
+
+		  </a>
+
+		</div>
+
+	</div> 
+
+  </div></div><div class="sociable" style="float:none"><ul class="clearfix"><li id="Twitter_Counter"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/tweet_button.1383953108.htm" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 121px; height: 20px;"></iframe><script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/widgets(1).js"></script></li><li id="Facebook_Counter"><iframe src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/like.htm" scrolling="no" frameborder="0" style="border:none; overflow:hidden;height:32px;width:100px" allowtransparency="true"></iframe></li><li id="Google_p"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1384010774660" name="I0_1384010774660" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/fastbutton.htm" data-gapiattached="true" title="+1"></iframe></div></li><li id="LinkedIn_Counter"><script src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/in.js" type="text/javascript"></script><span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1384010772737_0"><a id="li_ui_li_gen_1384010772737_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1384010772737_0-logo">in</span><span id="li_ui_li_gen_1384010772737_0-title"><span id="li_ui_li_gen_1384010772737_0-mark"></span><span id="li_ui_li_gen_1384010772737_0-title-text">Share</span></span></a></span></span><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1384010772847_1-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1384010772847_1" class="IN-right"><span id="li_ui_li_gen_1384010772847_1-inner" class="IN-right"><span id="li_ui_li_gen_1384010772847_1-content" class="IN-right">0</span></span></span></span></span></span><script type="IN/Share+init" data-url="http://www.mauroalfieri.it/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html" data-counter="right"></script></li><li id="StumbleUpon_Counter"><script src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/hostedbadge.php"></script><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/saved_resource.htm" width="65" height="18" id="iframe-stmblpn-widget-1" style="overflow: hidden; margin: 0px; padding: 0px; border: 0px;"></iframe> <script type="text/javascript">   (function() {     var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;     li.src = window.location.protocol + '//platform.stumbleupon.com/1/widgets.js';     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);   })(); </script></li></ul></div><!-- End Sociable -->
+<div class="wp_rp_wrap  wp_rp_plain" id="wp_rp_first"><div class="wp_rp_content"><h3 class="related_post_title">Puestos relacionados</h3><ul class="related_post wp_rp" style="visibility: visible"><li>15 giugno 2012 -- <a href="http://www.mauroalfieri.it/es/elettronica/tutorial-lcd-acm1602b-con-arduino.html" class="wp_rp_title">Tutorial: ACM1602B LCD con Arduino</a> (48)</li><li>23 ottobre 2013 -- <a href="http://www.mauroalfieri.it/es/elettronica/display-lcd-1602-i2c-pcf8574t.html" class="wp_rp_title">Pantalla lcd 1602 PCF8574T I2C</a> (0)</li><li>12 luglio 2013 -- <a href="http://www.mauroalfieri.it/es/elettronica/digital-meter-di-matteo-naldoni.html" class="wp_rp_title">Medidor digital de Mateo Naldoni</a> (2)</li><li>9 gennaio 2013 -- <a href="http://www.mauroalfieri.it/es/elettronica/mokarduino-moka-arduino.html" class="wp_rp_title">mokArduino: Moka + Arduino</a> (13)</li><li>27 febbraio 2013 -- <a href="http://www.mauroalfieri.it/es/elettronica/dolly-photo-terza-parte.html" class="wp_rp_title">Dolly archivo - parte tres</a> (2)</li></ul><div class="wp_rp_footer"><a class="wp_rp_backlink" target="_blank" href="http://www.zemanta.com/?wp-related-posts">Zemanta</a></div></div></div>
+			
+						
+						
+		</div>
+		
+				<div class="entry-footer clearfix">
+										<p class="post-tags">Etiquetas: <a href="http://www.mauroalfieri.it/es/tag/comunicazione-i2c-arduino" rel="tag">Arduino I2C</a>, <a href="http://www.mauroalfieri.it/es/tag/display-lcd" rel="tag">pantalla lcd</a>, <a href="http://www.mauroalfieri.it/es/tag/lcd" rel="tag">lcd</a>, <a href="http://www.mauroalfieri.it/es/tag/pcf8574" rel="tag">PCF8574</a></p>
+						
+						
+					</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="comments" class="clearfix">
+        	<h4 class="comments current"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#">9 comentarios</a></h4>
+	    	    <h4 class="pings"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#">1 ping a</a></h4>
+        
+        	<p class="comment-form-jump"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#respond">Ir al formulario de comentarios</a> ↓</p>
+	
+	
+	    <div class="comments-list-wrapper">
+        <ol class="clearfix" id="comments_list">
+            		<li id="comment-4953" class="comment even thread-even depth-1 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/b5e7533ce528bc819061761cd70006f3" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite>alberto</cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														5 aprile 2013, a las 10:48							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-4953">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=4953#respond" onclick="return addComment.moveForm(&quot;comment-4953&quot;, &quot;4953&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p>Hola mauro, <span class="tr_" id="tr_95" data-token="ZXJvIGRhIHRlbXBvIGNoZSBjZXJjYXZvIHVuYSBndWlkYSBkZWwgZ2VuZXJl" data-source="1">Estaba mucho tiempo que estaba buscando esa guía</span>, <span class="tr_" id="tr_96" data-token="b3JhIGNoZSBtYXR0ZW8gaGEgZmF0dG8gcXVlc3RhIGd1aWRhIHNvbm8gcml1c2NpdG8gYSByaXNvbHZlcmUgdW4gcHJvYmxlbWEgY2hlIGRhIGdpb3JuaSBhdmV2byBjb24gcG9jaGlzc2ltaSBzb2xkaSBlIHVuYSBncmFuZGUgZmFjaWxpdMOg" data-source="1">ahora que Mateo ha hecho esta guía me las arreglé para resolver un problema que tuve durante días con muy poco dinero y una gran facilidad</span>.<br>
+<span class="tr_" id="tr_97" data-token="U2FsdXRpIEFsYmVydG8," data-source="1">Saludos Alberto</span></p>
+												
+											</div>
+				</div>
+			
+				<ol class="children">
+		<li id="comment-4968" class="comment byuser comment-author-admin odd alt depth-2 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/f6cef12ece75d355eadef152b3249b1d" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite><a href="http://www.mauroalfieri.it/es/" rel="external">Mauro Alfieri</a></cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														5 aprile 2013, a las 20:27							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-4968">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=4968#respond" onclick="return addComment.moveForm(&quot;comment-4968&quot;, &quot;4968&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p><span class="tr_" id="tr_98" data-token="R3JhemllIEFsYmVydG8gcGVyIGlsIHR1byBjb21tZW50bw,," data-source="1">Gracias Alberto por tu comentario</span>.<br>
+<span class="tr_" id="tr_99" data-token="U29ubyBjZXJ0byBjaGUgTWF0dGVvIHNhcsOgIGNvbnRlbnRvIGRpIGxlZ2dlcmUgaSB0dW9pIGNvbXBsaW1lbnRp" data-source="1">Estoy seguro de que Mateo estará encantado de leer los elogios</span><br>
+<span class="tr_" id="tr_100" data-token="ZSBzdGltb2xhdG8gYSBzY3JpdmVyZSBkZWdsaSBhbHRyaSBhcnRpY29saSBpbnRlcmVzc2FudGk," data-source="1">y alentó a escribir otros artículos interesantes</span>.</p>
+<p>Mauro</p>
+												
+											</div>
+				</div>
+			
+				</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-5549" class="comment even thread-odd thread-alt depth-1 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/ca3edd7e1ff4869a2471e32dba673d0a" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite>Mateo</cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														6 maggio 2013, a las 23:05							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-5549">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=5549#respond" onclick="return addComment.moveForm(&quot;comment-5549&quot;, &quot;5549&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p>Hola Mauro,<br>
+<span class="tr_" id="tr_101" data-token="R3JhemllIHBlciBxdWVzdG8gZSBwZXIgdGFudGUgYWx0cmUgdXRpbGkgZ3VpZGUgY2hlIGhvIHRyb3ZhdG8gc3UgbWF1cm9hbGZpZXJpLml0" data-source="1">Gracias por esto y muchas otras guías útiles que he encontrado en mauroalfieri.it</span><br>
+<span class="tr_" id="tr_102" data-token="SG8gaW5pemlhdG8gdW4gcHJvZ2V0dG8gZGkgZG9tb3RpY2EgZSBnZXN0aW9uZSBjb24gYXJkdWlubw,," data-source="1">Empecé una gestión y domótica proyecto con Arduino</span> (<span class="tr_" id="tr_103" data-token="bWEgc29ubyBwcmluY2lwaWFudGUgYXNzb2x1dG8," data-source="1">pero son principiantes absolutos</span>) <span class="tr_" id="tr_104" data-token="ZSBncmF6aWUgYSB0ZSBobyB0cm92YXRvIGxhIHNvbHV6aW9uZSBhIGRpdmVyc2kgcHJvYmxlbWk," data-source="1">y gracias a ti he encontrado la solución a varios problemas</span>. Gracias!</p>
+<p>Mateo</p>
+												
+											</div>
+				</div>
+			
+				<ol class="children">
+		<li id="comment-5558" class="comment byuser comment-author-admin odd alt depth-2 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/f6cef12ece75d355eadef152b3249b1d" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite><a href="http://www.mauroalfieri.it/es/" rel="external">Mauro Alfieri</a></cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														7 maggio 2013, a las 07:47							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-5558">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=5558#respond" onclick="return addComment.moveForm(&quot;comment-5558&quot;, &quot;5558&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p><span class="tr_" id="tr_105" data-token="Y2lhbyBNYXR0ZW8," data-source="1">hola Mateo</span>,<br>
+    <span class="tr_" id="tr_106" data-token="SWwgYmxvZyDDqSBxdcOtIGFuY2hlIHBlciBxdWVzdG8," data-source="1">El blog también está aquí para este</span>.</p>
+<p>Mauro</p>
+												
+											</div>
+				</div>
+			
+				</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-7575" class="comment even thread-even depth-1 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/c0cf909c1fc283e77438eede5dc391fa" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite>Andrea</cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														24 ottobre 2013, a las 23:53							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-7575">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=7575#respond" onclick="return addComment.moveForm(&quot;comment-7575&quot;, &quot;7575&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p>¡Hola <img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/icon_smile.gif" alt=":)" class="wp-smiley">  <span class="tr_" id="tr_107" data-token="dm9ycmVpIHNhcGVyZSBzZSB1c2FuZG8gIGRpc3BsYXkgZGkgZGl2ZXJzYSBncmFuZGV6emE," data-source="1">Me gustaría saber si el uso de la pantalla de tamaño diferente</span>, <span class="tr_" id="tr_108" data-token="YWQgZXNlbXBpbyBpbA,," data-source="1">por ejemplo,</span> 20 x 4, <span class="tr_" id="tr_109" data-token="Y2hlIHRpcG8gZGkgaW5kaXJpenpvIGRpIHNlbGV6aW9uZSBJMkMgYmlzb2duYSBpbnNlcmlyZQ,," data-source="1">qué tipo de selección de la dirección I2C debe introducirse</span>. <span class="tr_" id="tr_110" data-token="U28gY2hlIGlsIDE2" data-source="1">Sé que el 16</span>×2 <span class="tr_" id="tr_111" data-token="w6ggaWwgMA,," data-source="1">0 es la</span>×20 <span class="tr_" id="tr_112" data-token="ZSBnbGkgYWx0cmkgdGlwaSBkaSBsY2Q," data-source="1">y otros tipos de lcd</span> ? <span class="tr_" id="tr_113" data-token="ZXNpdGUgdW5hIHRhYmVsbGE," data-source="1">esite una tabella</span> ?<br>
+Gracias <img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+												
+											</div>
+				</div>
+			
+				<ol class="children">
+		<li id="comment-7579" class="comment byuser comment-author-admin odd alt depth-2 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/f6cef12ece75d355eadef152b3249b1d" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite><a href="http://www.mauroalfieri.it/es/" rel="external">Mauro Alfieri</a></cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														25 ottobre 2013, a las 07:18							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-7579">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=7579#respond" onclick="return addComment.moveForm(&quot;comment-7579&quot;, &quot;7579&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p>Ciao Andrea,<br>
+     <span class="tr_" id="tr_114" data-token="c2UgbGVnZ2kgYmVuZSBsJiM4MjE3O2FydGljb2xvIHZlZHJhaSBjaGUgbCYjODIxNztpbmRpcml6em8gZGEgaW5zZXJpcmUgbm9uIGRpcGVuZGUgZGFsIHRpcG8gZGkgZGlzcGxheSBtYSBkYWxsYSBjb25maWd1cmF6aW9uZSBkZWkgcGluIEEwLEExIGUgQTIgcHJlc2VudGkgc3VsIFBDRjg1NzQ," data-source="1">si usted lee el artículo con cuidado, verá que la dirección que ingrese no depende del tipo de pantalla, pero la configuración de los pines A0, A1 y A2 en el PCF8574</span></p>
+<p>Mauro</p>
+												
+											</div>
+				</div>
+			
+				</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-7580" class="comment even thread-odd thread-alt depth-1 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/c0cf909c1fc283e77438eede5dc391fa" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite>Andrea</cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														25 ottobre 2013, a las 13:02							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-7580">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=7580#respond" onclick="return addComment.moveForm(&quot;comment-7580&quot;, &quot;7580&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p><span class="tr_" id="tr_115" data-token="YWhoaCBvayBvcmEgaG8gY2FwaXRv" data-source="1">ahhh ok ora ho capito</span>… <img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/icon_smile.gif" alt=":)" class="wp-smiley">  <span class="tr_" id="tr_116" data-token="bWEgcGVyIGlsIDE2" data-source="1">pero para el 16</span>×2 <span class="tr_" id="tr_117" data-token="w6ggb2JibGlnYXRvcmlvIGluc2VyaXJlIGlsIDA," data-source="1">debe introducir el 0</span>×20? Gracias <img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/icon_smile.gif" alt=":)" class="wp-smiley"><br>
+<span class="tr_" id="tr_118" data-token="TmllbnRlIG1pIHJpc3BvbmRvIGRhIHNvbG8g4oCm" data-source="1">Nada de lo que digo por mi cuenta ...</span>. <span class="tr_" id="tr_119" data-token="aG8gdmlzdG8gaWwgdHVvIGFydGljb2xv" data-source="1">Vi tu artículo</span> <img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/icon_smile.gif" alt=":)" class="wp-smiley">  <span class="tr_" id="tr_120" data-token="dm9sZXZvIGNoaWVkZXJ0aSBpbnZlY2Ugc2UgaGFpIG1haSB1c2F0byBsYSBzaGllbGQgRWFzeSBWUiBHcmF6aWU," data-source="1">en lugar de eso quería preguntar si alguna vez ha utilizado el escudo fácil gracias VR</span> <img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+												
+											</div>
+				</div>
+			
+				<ol class="children">
+		<li id="comment-7582" class="comment byuser comment-author-admin odd alt depth-2 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/f6cef12ece75d355eadef152b3249b1d" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite><a href="http://www.mauroalfieri.it/es/" rel="external">Mauro Alfieri</a></cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														25 ottobre 2013, a las 14:41							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-7582">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=7582#respond" onclick="return addComment.moveForm(&quot;comment-7582&quot;, &quot;7582&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p>Ciao Andrea,<br>
+    <span class="tr_" id="tr_121" data-token="cGVyc29uYWxtZW50ZSBubw,," data-source="1">personalmente no</span>, <span class="tr_" id="tr_122" data-token="YyYjODIxNzvDqCB1biBvdHRpbW8gdHV0b3JpYWwgbmVsIG1pbyBibG9nIGRlZGljYXRvIGFsbGEgRWFzeSBWcg,," data-source="1">Hay un excelente tutorial en mi blog dedicado a Easy Vr</span>, <span class="tr_" id="tr_123" data-token="c2NyaXR0byBkYSBkdWUgcmFnYXp6aSBhcHBhc3Npb25hdGkgYXJkdWlubw,," data-source="1">escrito por dos jóvenes amantes Arduino</span>.</p>
+<p>Mauro</p>
+												
+											</div>
+				</div>
+			
+				</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-7584" class="comment even thread-even depth-1 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+											<div class="comment-avatar-wrap">
+							<img alt="" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/c0cf909c1fc283e77438eede5dc391fa" class="avatar avatar-40 photo" height="40" width="40">													</div>
+										
+					<h5 class="comment-author">
+						<cite>Andrea</cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														25 ottobre 2013, a las 17:40							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink" style="display: none;"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-7584">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=7584#respond" onclick="return addComment.moveForm(&quot;comment-7584&quot;, &quot;7584&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p><span class="tr_" id="tr_124" data-token="b2sgR3JhemllIGFuY29yYQ,," data-source="1">ok Gracias de nuevo</span> <img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+												
+											</div>
+				</div>
+			
+				</li><!-- #comment-## -->
+        </ol>
+       	
+            </div>
+        
+            <ol class="clearfix" id="pings_list">
+            		<li id="comment-7559" class="pingback even thread-even depth-1 clearfix">
+						
+									
+				<div class="comment-wrap clearfix">
+					
+										
+					<h5 class="comment-author">
+						<cite><a href="http://www.mauroalfieri.it/es/elettronica/display-lcd-1602-i2c-pcf8574t.html" rel="external nofollow" class="url">Pantalla lcd 1602 PCF8574T I2C - Mauro Alfieri Electrónica Robótica</a></cite>
+											</h5>
+					<div class="comment-meta">
+						<p class="commentmetadata">
+														23 ottobre 2013, a las 09:14							<span class="timezone">(UTC 1)</span>
+																					<span class="comment-permalink"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#comment-7559">Enlace a este comentario</a></span>
+							    
+						</p>
+						<p class="comment-reply-link">
+							<a class="comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html?replytocom=7559#respond" onclick="return addComment.moveForm(&quot;comment-7559&quot;, &quot;7559&quot;, &quot;respond&quot;, &quot;3800&quot;)">Responder</a>						
+													</p>
+						
+											</div>
+					<div class="comment-entry">
+												
+													<p>[…] <span class="tr_" id="tr_125" data-token="aW4gcGFzc2F0byBobyBwdWJibGljYXRvIHVuIGFydGljb2xvIHNjcml0dG8gZGEgTWF0dGVv" data-source="1">en el pasado publiqué un artículo escrito por Mateo</span>, un ávido arduino, donde una pantalla lcd 1602 <span class="tr_" id="tr_126" data-token="Y29sbGVnYXRvIGFkIHVuIHBjZjg1NzRwIHBvdGV2aSBjb250cm9sbGFybG8," data-source="1">conectado a un control podría pcf8574p</span> […]</p>
+												
+											</div>
+				</div>
+			
+				</li><!-- #comment-## -->
+        </ol>
+        
+    </div>
+
+
+
+
+
+	<div id="comment-form-wrap" class="clearfix">
+										<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Lascia un Commento <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#respond" style="display:none;">Annulla risposta</a></small></h3>
+									<form action="http://www.mauroalfieri.it/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">L'indirizzo email non verrà pubblicato. I campi obbligatori sono contrassegnati <span class="required">*</span></p>							<p class="comment-form-author clearfix">
+						<label for="author" class="graphene_form_label">Nombre: <span class="required">*</span></label>
+						<input id="author" name="author" type="text" class="graphene-form-field" aria-required="true" value="">
+					</p>
+<p class="comment-form-email clearfix">
+						<label for="email" class="graphene_form_label">Email: <span class="required">*</span></label>
+						<input id="email" name="email" type="text" class="graphene-form-field" aria-required="true" value="">
+					</p>
+<p class="comment-form-url clearfix">
+						<label for="url" class="graphene_form_label">Sitio web: </label>
+						<input id="url" name="url" type="text" class="graphene-form-field" value="">
+					</p>
+												<p class="comment-form-message comment-form-comment clearfix">
+										<label class="graphene_form_label" for="comment">Mensaje: <span class="required">*</span></label>
+										<textarea name="comment" id="comment" cols="40" rows="20" class="graphene-form-field" aria-required="true"></textarea>
+									 </p>						<p class="form-allowed-tags">Puedes utilizar las siguientes etiquetas y atributos <abbr title="HyperText Markup Language">HTML</abbr>: <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Enviar">
+							<input type="hidden" name="comment_post_ID" value="3800" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="b57f3bb4d8"></p><div class="clear"></div>					</form>
+							</div><!-- #respond -->
+				</div>
+    
+
+            
+  
+    </div><!-- #content-main -->
+    
+    	
+    
+<div id="sidebar1" class="sidebar grid_5">
+
+	
+    <div id="transposh-2" class="sidebar-wrap clearfix widget_transposh"><h3>Traducción</h3><div class="no_translate transposh_flags"><a href="http://www.mauroalfieri.it/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html"><img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/it.png" title="Italiano" alt="Italiano"></a><a href="http://www.mauroalfieri.it/en/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html"><img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/us.png" title="English" alt="English"></a><a href="http://www.mauroalfieri.it/fr/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html"><img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/fr.png" title="Français" alt="Français"></a><a href="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica.htm" class="tr_active"><img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/es.png" title="Español" alt="Español"></a></div><a id="tr_setdeflang" class="tr_setdeflang" onclick="return false;" href="http://www.mauroalfieri.it/wp-admin/admin-ajax.php?action=tp_cookie_bck">Establecer como idioma predeterminado</a><br><div id="tr_credit" style="overflow: auto;"><div style="float: left;width: 90%;height: 10px" id="tr_pbar" class="ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><div class="ui-progressbar-value ui-widget-header ui-corner-left ui-corner-right" style="display: block; width: 100%;"></div></div><div style="margin-bottom:10px;float:left;width: 90%;height: 10px" id="tr_pbar_s" class="ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96.2406015037594"><div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: block; width: 96%; background-color: rgb(40, 248, 40); border: 1px solid rgb(8, 169, 8); background-position: initial initial; background-repeat: initial initial;"></div></div></div></div><div id="adrotate_widgets-4" class="sidebar-wrap clearfix widget_adrotate_widgets"><h3>Próximos Cursos</h3><a href="http://www.mauroalfieri.it/wp-content/plugins/adrotate/adrotate-out.php?track=NywxLDAsaHR0cDovL3d3dy5tYXVyb2FsZmllcmkuaXQvZXZlbnRzL2NvcnNvLWFyZHVpbm8tYmFzZS0yMy1ub3ZlbWJyZS0yMDEz"><img src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/bannerCorsoArduinoBase.jpg"></a></div><div id="dfrads-widget-3" class="sidebar-wrap clearfix dfrads"><h3>Patrocinar</h3><br> <br><script type="text/javascript"><!--
+google_ad_client = "ca-pub-0476734494487635";
+/* 200x200 */
+google_ad_slot = "4262287817";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/show_ads.js">
+</script><br> <br></div><div id="mc4wp_widget-2" class="sidebar-wrap clearfix widget_mc4wp_widget"><h3>Mantente al día</h3>
+<!-- Form by MailChimp for WordPress plugin v1.4 - http://dannyvankooten.com/mailchimp-for-wordpress/ -->
+<form method="post" action="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#mc4wp-form-1" id="mc4wp-form-1" class="mc4wp-form form "><p>
+	<label for="mc4wp_email">Suscríbase al boletín de noticias ya estamos 866</label>
+</p>
+<p>
+	<input type="email" id="mc4wp_email" name="EMAIL" required="" placeholder="Inserisci l&#39;indirizzo email">
+</p>
+<p><span class="tr_" id="tr_127" data-token="Jm5ic3A," data-source="1">&nbsp;</span></p>
+<p align="right">
+	<input type="submit" value="Contratar" class="button">
+</p><textarea name="mc4wp_required_but_not_really" style="display: none;"></textarea><input type="hidden" name="mc4wp_form_submit" value="1"><input type="hidden" name="mc4wp_form_instance" value="1"><input type="hidden" name="mc4wp_form_nonce" value="94bf21debb"></form>
+<!-- / MailChimp for WP Plugin -->
+</div><div id="calendar-3" class="sidebar-wrap clearfix widget_calendar"><h3>Elementos del calendario</h3><div id="calendar_wrap"><table id="wp-calendar">
+	<caption>novembre: 2013</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="lunedì">L</th>
+		<th scope="col" title="martedì">M</th>
+		<th scope="col" title="mercoledì">M</th>
+		<th scope="col" title="giovedì">G</th>
+		<th scope="col" title="venerdì">V</th>
+		<th scope="col" title="sabato">S</th>
+		<th scope="col" title="domenica">D</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev"><a href="http://www.mauroalfieri.it/es/2013/10" title="Visualizza articoli di ottobre 2013">« ott</a></td>
+		<td class="pad"><span class="tr_" id="tr_128" data-token="Jm5ic3A7" data-source="1">&nbsp;</span></td>
+		<td colspan="3" id="next" class="pad"><span class="tr_" id="tr_129" data-token="Jm5ic3A7" data-source="1">&nbsp;</span></td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="4" class="pad"><span class="tr_" id="tr_130" data-token="Jm5ic3A7" data-source="1">&nbsp;</span></td><td>1</td><td>2</td><td>3</td>
+	</tr>
+	<tr>
+		<td><a href="http://www.mauroalfieri.it/es/2013/11/04" title="Principiante Robot Radio transmisor XBee">4</a></td><td>5</td><td><a href="http://www.mauroalfieri.it/es/2013/11/06" title="Robot Principiante Radio Ricevitore XBee">6</a></td><td>7</td><td><a href="http://www.mauroalfieri.it/es/2013/11/08" title="Makers un informe 04 Noviembre 2013">8</a></td><td id="today">9</td><td>10</td>
+	</tr>
+	<tr>
+		<td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
+	</tr>
+	<tr>
+		<td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+	</tr>
+	<tr>
+		<td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td>
+		<td class="pad" colspan="1"><span class="tr_" id="tr_131" data-token="Jm5ic3A7" data-source="1">&nbsp;</span></td>
+	</tr>
+	</tbody>
+	</table></div></div><div id="categories-2" class="sidebar-wrap clearfix widget_categories"><h3>Categorie</h3>		<ul>
+	<li class="cat-item cat-item-7"><a href="http://www.mauroalfieri.it/es/category/bricolage" title="Listado de la categoría dedicada a la pequeña obra todos los días y no sólo ...">DIY</a> (48)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.mauroalfieri.it/es/category/cucina" title="The Well, Me deleito en la preparación de algún manjar y cuando puedo publicar mis recetas para que usted pueda experimentar en la cocina">Cocina</a> (23)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.mauroalfieri.it/es/category/elettronica" title="Encuentra tutoriales e información sobre electrónica y electrónicos relacionados con proyectos como Arduino y el apantallamiento conectado">Electrónica</a> (289)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.mauroalfieri.it/es/category/equitazione" title="Algunas películas, fotos y artículos sobre mi deporte favorito y práctico que todavía">Equitación</a> (2)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.mauroalfieri.it/es/category/informatica" title="Lo&#39; mi trabajo, pero a menudo tienen a la mano un par de consejos y notas que me ayude a resolver los primeros problemas que de vez en cuando algunos pequeños tropiezan. No puedo recordar todo de memoria, y aquí es una sección donde escribí mis pequeños trucos de metiere">Informática</a> (47)
+</li>
+	<li class="cat-item cat-item-322"><a href="http://www.mauroalfieri.it/es/category/robotica-domotica" title="Buscar en esta categoría todos los artículos y proyectos dedicados a la robótica y la automatización con Arduino">Robótica y Domótica</a> (228)
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.mauroalfieri.it/es/category/senza-categoria" title="Todo lo que no se detiene en ningún otro lugar está aquí ...">Uncategorized</a> (12)
+</li>
+		</ul>
+</div><div id="ctc-3" class="sidebar-wrap clearfix ctc"><h3>Los presentes Términos</h3><div class="ctc"><a href="http://www.mauroalfieri.it/es/tag/motor-shield" class="ctc-tag tag-link-325" title="14 temas" rel="tag" style="font-size: 8.3344947735192px; color: #8abce5;">el blindaje del motor</a>
+<a href="http://www.mauroalfieri.it/es/tag/robot" class="ctc-tag tag-link-282" title="19 temas" rel="tag" style="font-size: 8.4738675958188px; color: #88bbe5;">robot</a>
+<a href="http://www.mauroalfieri.it/es/tag/step-to-step" class="ctc-tag tag-link-12" title="13 temas" rel="tag" style="font-size: 8.3066202090592px; color: #8abce5;">paso a paso</a>
+<a href="http://www.mauroalfieri.it/es/tag/motori-passo-passo" class="ctc-tag tag-link-9" title="37 temas" rel="tag" style="font-size: 8.9756097560976px; color: #83b9e4;">motores paso a paso</a>
+<a href="http://www.mauroalfieri.it/es/category/robotica-domotica" class="ctc-tag tag-link-322" title="228 temas" rel="tag" style="font-size: 14.299651567944px; color: #50a2da;">Robótica y Domótica</a>
+<a href="http://www.mauroalfieri.it/es/category/cucina" class="ctc-tag tag-link-8" title="23 temas" rel="tag" style="font-size: 8.5853658536585px; color: #87bbe4;">Cocina</a>
+<a href="http://www.mauroalfieri.it/es/tag/ricetta" class="ctc-tag tag-link-275" title="13 temas" rel="tag" style="font-size: 8.3066202090592px; color: #8abce5;">receta</a>
+<a href="http://www.mauroalfieri.it/es/tag/fotografia" class="ctc-tag tag-link-311" title="20 temas" rel="tag" style="font-size: 8.5017421602787px; color: #88bbe5;">fotografía</a>
+<a href="http://www.mauroalfieri.it/es/category/elettronica" class="ctc-tag tag-link-6" title="289 temas" rel="tag" style="font-size: 16px; color: #409bd8;">Electrónica</a>
+<a href="http://www.mauroalfieri.it/es/tag/linux" class="ctc-tag tag-link-59" title="18 temas" rel="tag" style="font-size: 8.4459930313589px; color: #88bbe5;">Linux</a>
+<a href="http://www.mauroalfieri.it/es/tag/stepper" class="ctc-tag tag-link-10" title="21 temas" rel="tag" style="font-size: 8.5296167247387px; color: #87bbe4;">paso a paso</a>
+<a href="http://www.mauroalfieri.it/es/tag/motori-stepper" class="ctc-tag tag-link-26" title="17 temas" rel="tag" style="font-size: 8.418118466899px; color: #89bbe5;">motores paso a paso</a>
+<a href="http://www.mauroalfieri.it/es/tag/motori-bipolari" class="ctc-tag tag-link-25" title="13 temas" rel="tag" style="font-size: 8.3066202090592px; color: #8abce5;">bipolar motores</a>
+<a href="http://www.mauroalfieri.it/es/tag/pulsanti-e-arduino" class="ctc-tag tag-link-172" title="18 temas" rel="tag" style="font-size: 8.4459930313589px; color: #88bbe5;">botones y Arduino</a>
+<a href="http://www.mauroalfieri.it/es/category/equitazione" class="ctc-tag tag-link-4" title="2 temas" rel="tag" style="font-size: 8px; color: #8dbde5;">Equitación</a>
+<a href="http://www.mauroalfieri.it/es/tag/servo" class="ctc-tag tag-link-220" title="28 temas" rel="tag" style="font-size: 8.7247386759582px; color: #86bae4;">servo</a>
+<a href="http://www.mauroalfieri.it/es/category/bricolage" class="ctc-tag tag-link-7" title="48 temas" rel="tag" style="font-size: 9.2822299651568px; color: #80b8e3;">DIY</a>
+<a href="http://www.mauroalfieri.it/es/category/informatica" class="ctc-tag tag-link-5" title="47 temas" rel="tag" style="font-size: 9.2543554006969px; color: #80b8e3;">Informática</a>
+<a href="http://www.mauroalfieri.it/es/tag/passo-passo" class="ctc-tag tag-link-11" title="18 temas" rel="tag" style="font-size: 8.4459930313589px; color: #88bbe5;">Paso a paso</a>
+<a href="http://www.mauroalfieri.it/es/tag/dolly-project" class="ctc-tag tag-link-310" title="18 temas" rel="tag" style="font-size: 8.4459930313589px; color: #88bbe5;">Dolly proyecto</a>
+<a href="http://www.mauroalfieri.it/es/tag/servomotori" class="ctc-tag tag-link-221" title="13 temas" rel="tag" style="font-size: 8.3066202090592px; color: #8abce5;">servomotores</a>
+<a href="http://www.mauroalfieri.it/es/tag/led" class="ctc-tag tag-link-38" title="39 temas" rel="tag" style="font-size: 9.0313588850174px; color: #83b9e4;">llevó</a>
+<a href="http://www.mauroalfieri.it/es/tag/pulsanti" class="ctc-tag tag-link-409" title="15 temas" rel="tag" style="font-size: 8.3623693379791px; color: #8abce5;">botones</a>
+<a href="http://www.mauroalfieri.it/es/tag/dolly-foto" class="ctc-tag tag-link-394" title="15 temas" rel="tag" style="font-size: 8.3623693379791px; color: #8abce5;">Dolly fotos</a>
+<a href="http://www.mauroalfieri.it/es/category/senza-categoria" class="ctc-tag tag-link-1" title="12 temas" rel="tag" style="font-size: 8.2787456445993px; color: #8abce5;">Uncategorized</a>
+<a href="http://www.mauroalfieri.it/es/tag/lcd" class="ctc-tag tag-link-276" title="20 temas" rel="tag" style="font-size: 8.5017421602787px; color: #88bbe5;">lcd</a></div></div>    
+        
+    
+</div><!-- #sidebar1 -->    
+    
+</div><!-- #content -->
+
+
+
+<div id="footer" class="clearfix">
+    
+        <div id="copyright">
+    	<h3>Derechos de autor</h3>
+		        	<p>© 2012 Mauro Alfieri.</p>
+ 	            
+        
+    	    </div>
+
+		<div class="footer-menu-wrap">
+    	<ul id="footer-menu" class="clearfix">
+			                    	<li class="menu-item return-top"><a href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#">Volver al inicio</a></li>
+                    </ul>
+    </div>
+    	
+        <div id="developer" class="grid_7">
+        <p>
+        Blog elaborado con <a href="http://wordpress.org/">WordPress</a> y el <a href="http://www.graphene-theme.com/">Tema Graphene</a>.        </p>
+
+	    </div>
+        
+    </div><!-- #footer -->
+
+
+</div><!-- #container -->
+
+
+	<!--[if IE 8]>
+    <script type="text/javascript">
+        (function($) {
+            var imgs, i, w;
+            var imgs = document.getElementsByTagName( 'img' );
+            maxwidth = 0.98 * $( '.entry-content' ).width();
+            for( i = 0; i < imgs.length; i++ ) {
+                w = imgs[i].getAttribute( 'width' );
+                if ( w > maxwidth ) {
+                    imgs[i].removeAttribute( 'width' );
+                    imgs[i].removeAttribute( 'height' );
+                }
+            }
+        })(jQuery);
+    </script>
+    <![endif]-->
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shCore.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushBash.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushClojure.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushErlang.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushFSharp.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushJava.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushLatex.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushMatlabKey.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushObjC.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushR.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushScala.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushSql.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/shBrushXml.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.mauroalfieri.it/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.mauroalfieri.it/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = true;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script><span class="tr_" id="tr_0" data-token="TWF0dGVvIENhbmV0dG8gRWxldHRyb25pY2E," data-source="1" data-orig="Matteo Canetto Elettronica" data-hidden="y" data-trans="Mateo Canetto Electrónica"></span>
+
+<iframe name="oauth2relay379637522" id="oauth2relay379637522" src="./PCF8574P interfaz I2C para pantalla LCD - Matteo Canetto Elettronica_files/postmessageRelay.htm" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div id="stimuli_overlay" style="display: none;"></div><div id="stimuli_lightbox" style="display: none;"><div id="stimuli_outerImageContainer" style="width: 250px; height: 250px;"><div id="stimuli_imageContainer"><img id="stimuli_lightboxImage"><div id="stimuli_hoverNav"><a id="stimuli_prevLink" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#"></a><a id="stimuli_nextLink" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#"></a></div><div id="stimuli_loading"><a id="stimuli_loadingLink" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#"></a></div></div></div><div id="stimuli_imageDataContainer"><div id="stimuli_imageData"><div id="stimuli_imageDetails"><span id="stimuli_caption"></span><span id="stimuli_numberDisplay"></span></div><div id="stimuli_bottomNav"><a id="stimuli_bottomNavClose" href="http://www.mauroalfieri.it/es/elettronica/pcf8574p-interfaccia-i2c-display-lcd.html#"></a></div></div></div></div></body></html>
