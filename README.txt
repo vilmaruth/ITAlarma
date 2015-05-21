@@ -18,3 +18,15 @@ Bibliografia
 ------------
 * http://www.hispavila.com/3ds/atmega/pulsadores.html
 * http://www.hispavila.com/3ds/atmega/keypad.html#axzz3amHZaOUo
+
+Do
+-----------
+
+
+
+Done 
+-----------
+* Circuito del Teclado Numerico 4*4 y  Libreria ya implementada.
+* 
+
+
