@@ -13,3 +13,8 @@ Herramientas
 *Metodologia de desarrollo: Scrum
 *Arduino
 *Android
+
+Bibliografia
+------------
+* http://www.hispavila.com/3ds/atmega/pulsadores.html
+* http://www.hispavila.com/3ds/atmega/keypad.html#axzz3amHZaOUo
