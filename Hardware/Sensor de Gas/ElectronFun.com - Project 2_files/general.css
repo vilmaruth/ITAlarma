@@ -1,0 +1,197 @@
+body {
+	margin-left: auto;
+	margin-right: auto;
+	background: url(../images/flare.png) 50% top no-repeat, url(../images/electronfun_logo_big.png) 1420px 140px no-repeat, url(../images/background.png) left top repeat-x;
+	background-color: #5F7498;
+	font-family: 'Exo 2', Verdana, Geneva, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 17px;
+	text-align: justify;
+}
+
+img {
+	border: none;
+}
+
+p {
+	line-height: 165%;
+}
+
+a {
+	font-family: 'Exo 2';
+	font-weight: 600;
+	text-decoration: none;
+	color: #2158c2;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	padding-top: 15px;
+	text-align: center;
+	font-weight: 600;
+	font-size: 24px;
+}
+
+h3 {
+	padding-top: 15px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	font-weight: 600;
+	font-size: 18px;
+}
+
+#heading {
+	position: relative;
+	width: 960px;
+	height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#logo {
+	margin: 35px;
+	border: none;
+}
+
+#menu_background {
+	width: 100%;
+	height: 35px;
+	background: url(../images/menu_background.png);
+	background-repeat: repeat-x;
+}
+
+#menu {
+	width:621px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* Menu w stylu sprites */
+#nav {
+	position: relative;
+	height: 35px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#nav li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	top: 0;
+}
+
+#nav li, #nav a {
+	height: 29px;
+	display: block;
+	top: 3px;
+}
+
+#nav_home {
+	left: 0px;
+	width: 124px;
+	background: url('../images/menu.png') 0 0;
+}
+
+#nav_home a:hover {
+	background: url('../images/menu.png') 0 -58px;
+}
+
+#nav_forum {
+	left: 125px;
+	width: 124px;
+	background: url('../images/menu.png') -125px 0;
+}
+
+#nav_forum a:hover {
+	background: url('../images/menu.png') -125px -58px;
+}
+
+#nav_videos	{
+	left: 248px;
+	width: 124px;
+	background: url('../images/menu.png') -248px 0;
+}
+
+#nav_videos a:hover {
+	background: url('../images/menu.png') -248px -58px;
+}
+
+#nav_projects {
+	left: 373px;
+	width: 123px;
+	background: url('../images/menu.png') -373px 0;
+}
+
+#nav_projects a:hover {
+	background: url('../images/menu.png') -373px -58px;
+}
+
+#nav_contact {
+	left: 497px;
+	width: 124px;
+	background: url('../images/menu.png') -497px 0;
+}
+
+#nav_contact a:hover {
+	background: url('../images/menu.png') -497px -58px;
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////*/
+
+#page {
+	position: relative;
+	width: 960px;
+	min-height: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 20px;
+	background-color: #FFFFFF;
+	color: #000000;
+	border-radius: 8px;
+	box-shadow: 3px 3px 15px #000000;
+}
+
+#content {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#contact_form {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#footer {
+	position: relative;
+	width: 960px;
+	height: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+.error {
+	background-color: #ffd0b9;
+	color: #c82f00;
+	margin: 10px 0px;
+	padding: 7px;
+	border: 1px solid #c82f00;
+	text-align: center;
+}
+
+.info {
+	background-color: #cbd7ed;
+	color: #2a4576;
+	margin: 10px 0px;
+	padding: 7px;
+	border: 1px solid #2a4576;
+	text-align: center;
+}
